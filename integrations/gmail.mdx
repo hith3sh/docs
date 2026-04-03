@@ -1,0 +1,116 @@
+---
+title: "How to Connect Gmail to OpenClaw"
+description: "Step-by-step guide to connect Gmail to OpenClaw. Send emails, read messages, and manage your inbox with AI."
+---
+
+# How to Connect Gmail to OpenClaw
+
+A complete guide to integrating Gmail with OpenClaw using ClawLink. Send emails, read messages, and manage your inbox with your AI agent.
+
+## What You Can Do
+
+Once connected, your OpenClaw agent can:
+- **Send emails** - Compose and send new emails
+- **Read emails** - Fetch recent messages from your inbox
+- **Create drafts** - Save drafts for review
+- **Manage labels** - Organize emails with labels
+- **Search emails** - Find specific messages
+
+## Prerequisites
+
+Before connecting Gmail, you'll need:
+- A Google account (Gmail or Google Workspace)
+- Access to Google Cloud Console (for OAuth setup)
+
+## Step 1: Set Up Google Cloud Project
+
+1. Go to [console.cloud.google.com](https://console.cloud.google.com)
+2. Click **Select a project** → **New Project**
+3. Name it "ClawLink" and create
+
+## Step 2: Enable Gmail API
+
+1. Go to **APIs & Services** → **Library**
+2. Search for "Gmail API"
+3. Click **Enable**
+
+## Step 3: Configure OAuth Consent
+
+1. Go to **APIs & Services** → **OAuth consent screen**
+2. Choose **External**
+3. Fill in required fields:
+   - App name: "ClawLink"
+   - Email: your email
+4. Click **Save and continue**
+5. Add these scopes:
+   - `https://www.googleapis.com/auth/gmail.readonly`
+   - `https://www.googleapis.com/auth/gmail.send`
+   - `https://www.googleapis.com/auth/gmail.modify`
+6. Add your email as a test user
+
+## Step 4: Create Credentials
+
+1. Go to **APIs & Services** → **Credentials**
+2. Click **Create Credentials** → **OAuth client ID**
+3. Application type: **Desktop application**
+4. Click **Create**
+5. Download the JSON file
+
+## Step 5: Connect to ClawLink
+
+1. Go to your ClawLink dashboard
+2. Navigate to **Integrations**
+3. Find **Gmail** and click **Connect**
+4. Enter your OAuth credentials:
+   - Client ID
+   - Client Secret
+   - Run the OAuth flow to get refresh token
+5. Click **Save**
+
+## Example Usage
+
+Here are common prompts for Gmail:
+
+### Send an Email
+> "Send an email to john@example.com with subject 'Project Update' and body 'Here's the latest progress on our project.'"
+
+### Read Recent Emails
+> "Show me the last 5 unread emails in my inbox."
+
+### Find Specific Email
+> "Find emails from boss@example.com from the last week."
+
+## API Reference
+
+| Function | Description |
+|----------|-------------|
+| `gmail_send_email` | Send a new email |
+| `gmail_read_emails` | Read emails from inbox |
+| `gmail_create_draft` | Create an email draft |
+| `gmail_modify_labels` | Add/remove labels from emails |
+
+## Troubleshooting
+
+### "OAuth error"
+- Make sure you added test users in OAuth consent
+- Verify all scopes are selected
+
+### "Token expired"
+- Run the OAuth flow again to refresh
+- Generate a new refresh token
+
+### "Permission denied"
+- Check Gmail API is enabled
+- Verify scopes match your needs
+
+## Security
+
+- Credentials encrypted at rest
+- Only decrypted at request time
+- OAuth tokens auto-refresh
+
+## Related Guides
+
+- [How to Connect Notion to OpenClaw](/integrations/notion)
+- [How to Connect Slack to OpenClaw](/integrations/slack)
+- [How to Connect Google Sheets to OpenClaw](/integrations/google-sheets)

@@ -1,55 +1,120 @@
 ---
-title: "Notion"
-description: "Connect Notion to let your AI agent read and write pages, databases, and blocks"
+title: "How to Connect Notion to OpenClaw"
+description: "Step-by-step guide to connect Notion to OpenClaw. Read and write pages, query databases, and manage your workspace with AI."
 ---
 
-Notion lets your AI agent read, create, and update pages, databases, and blocks in your workspace.
+# How to Connect Notion to OpenClaw
+
+A complete guide to integrating Notion with OpenClaw using ClawLink. Connect your Notion workspace and let your AI agent read pages, query databases, and manage content.
 
 ## What You Can Do
 
-- **Read pages** - Fetch any page content, including text, tables, and nested blocks
+Once connected, your OpenClaw agent can:
+- **Read pages** - Fetch any page content from your workspace
 - **Query databases** - Search and filter Notion databases
-- **Create pages** - Add new pages to any parent page or database
+- **Create pages** - Add new pages to any parent or database
 - **Update blocks** - Modify existing content in pages
 - **Create blocks** - Add new content blocks to pages
 
-## Available Tools
+## Prerequisites
 
-| Tool | Description | Required Inputs |
-|------|-------------|-----------------|
-| `notion_read_page` | Read a page's content by ID | `page_id` |
-| `notion_query_database` | Query a database with filters | `database_id`, optional `filter` |
-| `notion_create_page` | Create a new page | `parent_page_id`, `title`, optional `content` |
-| `notion_append_blocks` | Add blocks to a page | `page_id`, `blocks` |
-| `notion_update_block` | Update a specific block | `block_id`, `content` |
+Before connecting Notion, you'll need:
+- A Notion account
+- Admin access to pages/databases you want to connect (optional - you can connect your own)
+- A ClawLink account
 
-## How to Connect
+## Step 1: Create a Notion Integration
 
-<Steps>
-  <Step title="Go to Notion Developers">
-    Visit [notion.so/my-integrations](https://www.notion.so/my-integrations) and click **+ New integration**.
-  </Step>
-  <Step title="Name Your Integration">
-    Give it a name like "ClawLink" and click **Submit**.
-  </Step>
-  <Step title="Copy the API Key">
-    You'll see an **Internal Integration Token** starting with `secret_` — copy this.
-  </Step>
-  <Step title="Authorize Access">
-    Open each Notion page/database you want ClawLink to access, click **•••** → **Connect to** → select your integration.
-  </Step>
-</Steps>
+1. Go to [notion.so/my-integrations](https://notion.so/my-integrations)
+2. Click **+ New integration**
+3. Name it "ClawLink" or "OpenClaw"
+4. Select the capabilities you need:
+   - ✅ Read content
+   - ✅ Update content (optional)
+   - ✅ Insert content (optional)
+5. Click **Submit**
+6. Copy the **Internal Integration Token** (starts with `secret_`)
 
-## Example Prompts
+<Note>
+Keep this token secure! Anyone with access can manage your Notion pages.
+</Note>
 
-> "List all pages in my Notion workspace that were updated today."
+## Step 2: Connect Notion to ClawLink
 
-> "Create a new page in my Projects database with the title 'Q2 Marketing Campaign' and add a description."
+1. Go to your ClawLink dashboard
+2. Navigate to **Integrations**
+3. Find **Notion** and click **Connect**
+4. Paste your Notion Integration Token
+5. Click **Save**
 
-> "Query my Tasks database for all items where status is 'In Progress'."
+## Step 3: Grant Page Access
+
+Your integration needs permission to access each page:
+
+1. Open the Notion page you want to connect
+2. Click the **•••** menu (top right)
+3. Select **Connect to**
+4. Choose your ClawLink integration
+
+Repeat for each page or database.
+
+## Example Usage
+
+Here are common prompts you can give your OpenClaw agent:
+
+### Read Pages
+> "Read my Project Tracker page and tell me the status of all active projects."
+
+### Query Databases
+> "Show me all tasks in my Notion database where status is 'In Progress'."
+
+### Create Pages
+> "Create a new page in my Team Wiki called 'Weekly Standup Notes' and add today's date."
+
+### Update Content
+> "Add a new section to my Meeting Notes page with the summary from our last call."
+
+## API Reference
+
+ClawLink provides these functions:
+
+| Function | Description |
+|----------|-------------|
+| `notion_read_page` | Read a page's content by ID |
+| `notion_query_database` | Query a database with filters |
+| `notion_create_page` | Create a new page |
+| `notion_append_blocks` | Add blocks to a page |
+| `notion_update_block` | Update a block |
+
+## Troubleshooting
+
+### "Connection failed"
+- Make sure you copied the **full token** (starts with `secret_`)
+- Verify the integration is created at [notion.so/my-integrations](https://notion.so/my-integrations)
+
+### "Page not accessible"
+- Open the page in Notion
+- Click **•••** → **Connect to** → Select your integration
+
+### "Permission denied"
+- Check that your integration has the right capabilities
+- Make sure you've shared the page with the integration
 
 ## Security
 
-Your Notion integration token is encrypted and stored securely. ClawLink never stores your credentials in plain text.
+Your Notion credentials are:
+- Encrypted at rest (AES-256-GCM)
+- Never stored in plain text
+- Only decrypted at request time
 
-Need help? Check the [Troubleshooting](/troubleshooting) guide or [Contact Support](/faq).
+## Related Guides
+
+- [How to Connect Slack to OpenClaw](/integrations/slack)
+- [How to Connect Gmail to OpenClaw](/integrations/gmail)
+- [How to Connect GitHub to OpenClaw](/integrations/github)
+
+## Need Help?
+
+- Check our [Troubleshooting](/troubleshooting) guide
+- Visit our [GitHub](https://github.com/hith3sh/clawlink)
+- Open an issue if you find a bug
