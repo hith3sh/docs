@@ -1,11 +1,16 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "name": "ClawLink",
-  "theme": "luma",
+  "theme": "mint",
   "colors": {
     "primary": "#EF4444",
-    "light": "#FEF2F2",
-    "dark": "#7F1D1D"
+    "light": "#FEE2E2",
+    "dark": "#991B1B",
+    "accent": "#F97316",
+    "background": {
+      "light": "#FFFFFF",
+      "dark": "#0F172A"
+    }
   },
   "favicon": "/images/logo/favicon.png",
   "navbar": {
