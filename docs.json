@@ -27,10 +27,18 @@
   "favicon": "/images/logo/favicon.png",
   "navbar": {
     "logo": {
-      "name": "",
-      "url": "/images/logo/clawlink-512.png",
-      "alt": "ClawLink"
+      "url": "/images/logo/clawlink-512.png"
     },
+    "items": [
+      {
+        "label": "Documentation",
+        "url": "/introduction"
+      },
+      {
+        "label": "Integrations",
+        "url": "/integrations/overview"
+      }
+    ],
     "primary": {
       "type": "github",
       "href": "https://github.com/hith3sh/clawlink"
