@@ -1,0 +1,59 @@
+---
+title: "Security"
+description: "How ClawLink keeps your credentials and data secure"
+---
+
+ClawLink is designed so that your credentials stay off your machine and out of your codebase. Every API call you make goes through ClawLink's edge network, which handles authentication and decryption on your behalf.
+
+## Credential storage
+
+Your API keys and OAuth tokens are encrypted at rest using AES-256-GCM. ClawLink never stores or exposes your credentials in plaintext. When your agent makes an API call, your credentials are decrypted only at the moment of execution—and only on the edge network, never on your local machine.
+
+## Your machine stays clean
+
+Because ClawLink proxies all API calls through its edge network, you never need to put third-party API keys in your environment variables, `.env` files, or source code. Connect your integrations once from the dashboard, and ClawLink handles the rest.
+
+## Authentication
+
+When you copy your MCP command from the dashboard, it includes a personal API key in the format `sk_live_...`. This key authenticates your requests to ClawLink and identifies your account.
+
+<Warning>
+  Your API key provides full access to your ClawLink account and all connected integrations. Never share it, commit it to source control, or post it publicly. If you believe your key has been exposed, rotate it immediately in **Settings > API Keys**.
+</Warning>
+
+### API key best practices
+
+- Store your MCP command in a secure location, not in a shared config file
+- Use one key per environment (e.g., separate keys for personal projects vs. team workflows)
+- Rotate your key regularly as a precaution—generate a new one in **Settings > API Keys** and update your MCP command
+
+## If your API key is compromised
+
+If you suspect your API key has been exposed or misused, act immediately:
+
+<Steps>
+  <Step title="Go to Settings > API Keys">
+    Open the [ClawLink dashboard](https://claw-link.dev/dashboard) and navigate to **Settings > API Keys**.
+  </Step>
+  <Step title="Generate a new key">
+    Click **Create New Key** to generate a replacement key.
+  </Step>
+  <Step title="Update your MCP command">
+    Copy your new MCP command from the dashboard and replace the old command in OpenClaw or wherever you have it saved.
+  </Step>
+  <Step title="Delete the old key">
+    Remove the compromised key to ensure it can no longer be used.
+  </Step>
+</Steps>
+
+<Note>
+  Deleting an old key immediately invalidates it. Any agent or tool still using the old key will stop working until you update it with the new key.
+</Note>
+
+## Transport security
+
+All communication between your agent and ClawLink, and between ClawLink and third-party APIs, uses HTTPS. Credentials and request payloads are never transmitted over unencrypted connections.
+
+## Two-factor authentication
+
+You can enable two-factor authentication (2FA) on your ClawLink account for an additional layer of login protection. To turn it on, go to **Settings > Security** and click **Enable** next to **Two-Factor Authentication**.

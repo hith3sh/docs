@@ -1,0 +1,67 @@
+---
+title: "How It Works"
+description: "How ClawLink securely proxies your agent's requests to third-party APIs"
+---
+
+When you ask your AI agent to send an email or create a GitHub issue, ClawLink handles the entire request on your behalf — authentication, credential lookup, the API call itself, and the response back to your agent. Here's what happens at each step.
+
+## Request flow
+
+```
+OpenClaw (your machine)
+        │
+        │  MCP request + your API key
+        ▼
+ClawLink Edge Network
+        ├── Authenticates your request
+        ├── Looks up your stored credentials
+        ├── Calls the third-party API
+        ├── Logs the request
+        └── Returns the result
+        │
+        ▼
+Gmail / Slack / GitHub / Stripe / etc.
+```
+
+<Steps>
+  <Step title="OpenClaw sends an MCP request">
+    When you ask your agent to do something — "send an email to alice@example.com" — OpenClaw translates that into an MCP request and sends it to ClawLink's edge network along with your API key.
+  </Step>
+
+  <Step title="ClawLink authenticates the request">
+    ClawLink verifies your API key before doing anything else. If the key is invalid or missing, the request is rejected immediately and nothing is executed.
+  </Step>
+
+  <Step title="ClawLink looks up your credentials">
+    ClawLink identifies which integration the request targets (Gmail, in this example) and retrieves the stored credentials for your account. Credentials are decrypted only at this moment — they are never cached in plaintext or sent to your machine.
+  </Step>
+
+  <Step title="ClawLink calls the third-party API">
+    Using your decrypted credentials, ClawLink makes the API call on your behalf — sending the email, posting the Slack message, creating the GitHub issue, or whatever the request requires.
+  </Step>
+
+  <Step title="The result is returned to your agent">
+    ClawLink logs the request (integration, action, status, latency) and returns the result to OpenClaw. Your agent sees the outcome and responds to you accordingly.
+  </Step>
+</Steps>
+
+## Security
+
+Your credentials are protected at every stage:
+
+- **Encrypted at rest with AES-256-GCM** — credentials are encrypted before being stored and can only be decrypted with keys that are never co-located with the data.
+- **Decrypted only at execution time** — credentials are decrypted on the edge, used for the single API call, and not retained in plaintext anywhere.
+- **Never sent to your machine** — your API keys and OAuth tokens exist only on ClawLink's edge network. OpenClaw never sees them.
+
+<Warning>
+  Treat your ClawLink API key like a password. Anyone with your key can make requests on behalf of your connected integrations. Rotate it from **Dashboard > Settings > API Keys** if you believe it has been compromised.
+</Warning>
+
+## Built-in reliability
+
+ClawLink handles the reliability concerns that would otherwise fall on you:
+
+- **Retries with exponential backoff** — if a third-party API returns a transient error, ClawLink retries the request automatically, waiting longer between each attempt to avoid overwhelming the service.
+- **Rate limit handling** — when an API enforces rate limits, ClawLink manages the pacing so your agent's requests go through without you having to think about it.
+
+Every request — successful or not — is recorded in your dashboard with the integration name, action, status, and latency, so you always have a clear picture of what your agent has done.

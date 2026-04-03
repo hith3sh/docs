@@ -1,0 +1,51 @@
+---
+title: "Quick Start"
+description: "Connect your AI agent to 40+ APIs in under 5 minutes"
+---
+
+<Steps>
+  <Step title="Sign up at claw-link.dev">
+    Go to [claw-link.dev](https://claw-link.dev) and create your account. No credit card required to get started.
+  </Step>
+
+  <Step title="Connect your first integration">
+    From the dashboard, open the **Integrations** tab. Find the integration you want to use and click **Connect** next to it.
+
+    - For OAuth-based integrations like Gmail or Google Sheets, ClawLink opens the provider's auth screen. Sign in and grant access — that's all you do.
+    - For API key-based integrations like Stripe or GitHub, paste your API key into the input field and click **Save**.
+
+    Your credentials are encrypted immediately and never leave the edge.
+  </Step>
+
+  <Step title="Copy your MCP command">
+    From the dashboard home, find the **Your MCP Command** section and click **Copy**.
+
+    Your personal command looks like this:
+
+    ```bash
+    npx @clawlink/mcp --api-key sk_live_xxxx
+    ```
+
+    <Note>
+      Your API key is specific to your account. Find it any time under **Dashboard > Settings > API Keys**.
+    </Note>
+  </Step>
+
+  <Step title="Paste into OpenClaw">
+    Open OpenClaw and add the MCP command you just copied. OpenClaw will connect to ClawLink's edge network and load the tools for every integration you've connected.
+  </Step>
+
+  <Step title="Start using your integrations">
+    Your agent can now act on your connected integrations. Try asking it things like:
+
+    - "Send an email to sarah@example.com with subject 'Hello'"
+    - "Post a message to #general in Slack saying the deploy is done"
+    - "Create a GitHub issue titled 'Fix login bug' in my main repo"
+    - "Add a row to my sales tracker Google Sheet"
+    - "List my last 5 Stripe customers"
+  </Step>
+</Steps>
+
+<Tip>
+  Start with the integrations you use most day-to-day — Gmail and Slack are good first choices since your agent can immediately handle routine communication tasks. Add more integrations from the dashboard any time without updating your MCP command.
+</Tip>

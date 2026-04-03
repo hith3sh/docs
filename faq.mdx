@@ -1,0 +1,94 @@
+---
+title: "FAQ"
+description: "Frequently asked questions about ClawLink"
+---
+
+<AccordionGroup>
+  <Accordion title="What is ClawLink?">
+    ClawLink is a platform that connects your AI agent to 40+ APIs—Gmail, Slack, GitHub, Stripe, Notion, Google Sheets, and more—with a single command. You connect your integrations once from the dashboard, and ClawLink securely proxies every API call your agent makes. No environment variables, no API keys in your code, no OAuth flows to manage yourself.
+  </Accordion>
+
+  <Accordion title="What is OpenClaw and do I need it?">
+    [OpenClaw](https://github.com/openclaw/openclaw) is an AI agent that works with ClawLink via the MCP (Model Context Protocol). ClawLink is designed to work with OpenClaw out of the box—you paste your MCP command into OpenClaw and you're ready to go.
+
+    If you're using a different MCP-compatible agent, ClawLink may still work, but OpenClaw is the primary supported client.
+  </Accordion>
+
+  <Accordion title="How is ClawLink different from calling APIs directly?">
+    When you call APIs directly, you need to manage credentials in your environment, implement OAuth flows, handle token refresh, deal with rate limiting, and debug failures yourself.
+
+    ClawLink handles all of that. Your credentials are stored encrypted in ClawLink's edge network—not on your machine. OAuth flows happen in the dashboard with a single click. Retries and rate limiting are built in. And you can see every request and its outcome in the Request Logs, without digging through logs on your own server.
+  </Accordion>
+
+  <Accordion title="Are my API keys safe?">
+    Yes. Your API keys and OAuth tokens are encrypted at rest using AES-256-GCM. They're never stored or transmitted in plaintext. ClawLink only decrypts your credentials at the exact moment a call is made—and that decryption happens on ClawLink's edge network, not on your machine.
+
+    For more details, see the [Security](/security) page.
+  </Accordion>
+
+  <Accordion title="Which integrations are supported?">
+    ClawLink supports 40+ integrations across these categories:
+
+    - **Communication**: Gmail, Slack, Discord, Microsoft Teams, Telegram
+    - **CRM & Sales**: Apollo, HubSpot, Salesforce, Pipedrive
+    - **Content & CMS**: WordPress, Webflow, Ghost, Contentful
+    - **Social Media**: YouTube, Twitter/X, LinkedIn, Instagram
+    - **Productivity**: Google Sheets, Google Calendar, Google Drive, Notion, Airtable, Todoist
+    - **Developer Tools**: GitHub, GitLab, Jira, Linear, Vercel
+    - **Payments & Finance**: Stripe, PayPal, QuickBooks
+    - **Data & Analytics**: Google Analytics, Mixpanel, Segment
+    - **Storage & Databases**: AWS S3, Supabase, Firebase
+    - **E-commerce**: Shopify, WooCommerce
+    - **AI & ML**: OpenAI, Replicate, ElevenLabs
+
+    The full list is available on the [Integrations](/integrations/overview) page.
+  </Accordion>
+
+  <Accordion title="How do I add an integration that isn't listed?">
+    ClawLink is open source, so you can contribute a new integration yourself. Fork the repository on GitHub, add an integration handler, and open a pull request. See the [CONTRIBUTING.md](https://github.com/hith3sh/clawlink/blob/main/CONTRIBUTING.md) for details.
+
+    If you'd prefer to request an integration rather than build it, you can open an issue on GitHub to let the team know what you need.
+  </Accordion>
+
+  <Accordion title="What does 'one command' mean?">
+    After you connect your integrations in the dashboard, ClawLink gives you a single MCP command—something like `npx @clawlink/mcp --api-key sk_live_...`. Paste that command into OpenClaw, and your agent immediately has access to every API you've connected. You don't need to configure anything else.
+  </Accordion>
+
+  <Accordion title="Do I need to write any code?">
+    No. Connecting integrations, getting your MCP command, and using ClawLink with OpenClaw requires no coding. You use the dashboard to connect services and copy the command.
+
+    If you want to add a custom integration or self-host ClawLink, that does require working with the codebase—but standard usage is entirely no-code.
+  </Accordion>
+
+  <Accordion title="What happens if an API call fails?">
+    ClawLink automatically retries failed calls with exponential backoff for server errors and rate limits. If a request still fails after retries, the failure is recorded in your Request Logs with details about the integration, action, and error—so you can see exactly what went wrong.
+
+    For persistent failures, check the [Troubleshooting](/troubleshooting) guide.
+  </Accordion>
+
+  <Accordion title="How do I get my MCP command?">
+    <Steps>
+      <Step title="Sign up or log in">
+        Go to [claw-link.dev](https://claw-link.dev) and sign in to your account.
+      </Step>
+      <Step title="Connect your integrations">
+        Go to **Dashboard > Integrations** and connect the services you want your agent to use.
+      </Step>
+      <Step title="Copy your MCP command">
+        Your personal MCP command is available in the dashboard. Copy it and paste it into OpenClaw.
+      </Step>
+    </Steps>
+  </Accordion>
+
+  <Accordion title="Can I use ClawLink with multiple AI agents?">
+    Your MCP command is tied to your ClawLink account, not a specific machine. You can paste the same command into multiple OpenClaw instances. All requests route through your account, count toward your usage limit, and appear in your Request Logs.
+  </Accordion>
+
+  <Accordion title="Is there a free plan?">
+    Yes. The free plan includes **1,000 requests per month** and up to **5 integrations**—no credit card required. If you need more capacity, paid plans with higher limits are coming soon. See the [Billing](/billing) page for details.
+  </Accordion>
+
+  <Accordion title="How do I contact support?">
+    For bugs or feature requests, open an issue on the [ClawLink GitHub repository](https://github.com/hith3sh/clawlink). For account-related questions, reach out through the dashboard.
+  </Accordion>
+</AccordionGroup>

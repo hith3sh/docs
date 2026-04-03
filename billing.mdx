@@ -1,0 +1,88 @@
+---
+title: "Billing"
+description: "Plans, usage limits, and payment details"
+---
+
+ClawLink offers a free plan to get started, with paid plans available for higher usage and more integrations.
+
+## Plans
+
+<CardGroup cols={2}>
+  <Card title="Free Plan" icon="sparkles">
+    **1,000 requests/month** and up to **5 integrations**. No credit card required to start.
+  </Card>
+  <Card title="Paid Plan" icon="rocket">
+    Higher request limits and more integrations. **Coming soon.**
+  </Card>
+</CardGroup>
+
+### What counts toward your limits
+
+- **Requests**: Each API call your agent makes through ClawLink counts as one request. For example, sending one email, creating one GitHub issue, or posting one Slack message each count as a single request.
+- **Integrations**: Each service you connect (Gmail, Slack, GitHub, etc.) counts as one integration toward your limit.
+
+## Viewing your usage
+
+To check how many requests you've used this month:
+
+1. Go to **Dashboard > Settings > Billing**
+2. Under **Usage this month**, you'll see a breakdown of your request count against your plan limit
+
+The usage counter resets at the start of each calendar month.
+
+## What happens when you reach your limit
+
+If you reach your monthly request limit, ClawLink stops processing new API calls until your usage resets at the start of the next month. Your connected integrations remain intact—requests simply won't go through until you have available capacity again.
+
+<Warning>
+  If your agent hits the limit mid-task, that task will fail. Consider upgrading before you reach your limit to avoid interruptions.
+</Warning>
+
+To avoid hitting your limit, you can:
+
+- Monitor your usage in **Settings > Billing**
+- Enable usage alerts in **Settings > Notifications** to get notified when you reach 80% of your limit
+- Upgrade to a paid plan for higher limits
+
+## Upgrading your plan
+
+To upgrade:
+
+1. Go to **Settings > Billing**
+2. Click **Upgrade**
+3. Add a payment method if you haven't already
+4. Confirm your new plan
+
+Your new limits take effect immediately after upgrading.
+
+## Payment method
+
+To add a credit card:
+
+1. Go to **Settings > Billing > Payment Method**
+2. Click **Add Card**
+3. Enter your card details
+
+Your card is required to activate a paid plan. You won't be charged anything while on the free plan.
+
+---
+
+## Billing FAQ
+
+<AccordionGroup>
+  <Accordion title="What counts as a request?">
+    Each API call your agent makes through ClawLink counts as one request. Examples include sending an email, posting a Slack message, creating a GitHub issue, or reading a Google Sheet row. Multiple actions in a single conversation each count separately.
+  </Accordion>
+
+  <Accordion title="When does my usage reset?">
+    Your request count resets at the start of each calendar month. For example, if you sign up on March 15, your usage resets on April 1—and on the first of every month after that.
+  </Accordion>
+
+  <Accordion title="What happens if I exceed my limit?">
+    Once you reach your monthly request limit, ClawLink stops processing new API calls. Your integrations stay connected, but requests won't go through until either the month resets or you upgrade to a higher plan. To restore access immediately, upgrade in **Settings > Billing**.
+  </Accordion>
+
+  <Accordion title="Can I downgrade my plan?">
+    Paid plan downgrade options will be available when paid plans launch. If you have questions about your current plan, contact support.
+  </Accordion>
+</AccordionGroup>

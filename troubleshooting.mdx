@@ -1,0 +1,113 @@
+---
+title: "Troubleshooting"
+description: "Fix common issues with ClawLink integrations and agent connectivity"
+---
+
+<Tip>
+  Start every debugging session with **Request Logs**. Go to your dashboard and open the logs to see exactly which integration was called, what action was attempted, and any error message returned. Most issues can be diagnosed in under a minute from the logs alone.
+</Tip>
+
+## Common issues
+
+<AccordionGroup>
+  <Accordion title="Integration shows 'Error' status">
+    An "Error" status on an integration usually means the credentials have expired or been revoked by the third-party service.
+
+    **To fix this:**
+
+    <Steps>
+      <Step title="Go to Dashboard > Integrations">
+        Open your dashboard and navigate to **Integrations**.
+      </Step>
+      <Step title="Disconnect the integration">
+        Find the affected integration and click **Disconnect**.
+      </Step>
+      <Step title="Reconnect with fresh credentials">
+        Click **Connect** on the same integration and enter your credentials again (or go through the OAuth flow). This refreshes the connection.
+      </Step>
+    </Steps>
+  </Accordion>
+
+  <Accordion title="Agent can't connect / 'Unauthorized' error">
+    An "Unauthorized" error means ClawLink couldn't verify your API key. This usually happens when the key in your MCP command is incorrect, outdated, or missing.
+
+    **To fix this:**
+
+    <Steps>
+      <Step title="Go to Settings > API Keys">
+        Open **Settings > API Keys** in your dashboard.
+      </Step>
+      <Step title="Copy your current key">
+        Click **Copy** next to your Live API Key to copy the exact key value.
+      </Step>
+      <Step title="Update your MCP command">
+        Replace the API key in your MCP command with the one you just copied, then restart OpenClaw.
+      </Step>
+    </Steps>
+  </Accordion>
+
+  <Accordion title="API calls are failing">
+    If your agent is making requests but they're failing, check the Request Logs for details.
+
+    **To diagnose this:**
+
+    1. Go to your dashboard and open **Request Logs**
+    2. Find the failed request—the log shows the integration, the action attempted, and the error message returned
+    3. Use the error message to identify whether the issue is with your credentials, the request itself, or the third-party service
+
+    Common causes include invalid parameters, permissions issues with the connected account, or the third-party service being temporarily unavailable.
+  </Accordion>
+
+  <Accordion title="Rate limit errors">
+    Rate limit errors mean the third-party API (not ClawLink) has throttled requests from your account. This happens when too many calls are made in a short window.
+
+    ClawLink automatically retries rate-limited requests with exponential backoff—so occasional rate limits resolve themselves. If failures persist, your agent is making requests faster than the third-party API allows.
+
+    **To resolve persistent rate limiting:**
+
+    - Slow down how frequently your agent triggers the affected integration
+    - Check the third-party service's rate limit documentation to understand the limits for your account tier
+    - Consider upgrading your account with the third-party service if you need higher throughput
+  </Accordion>
+
+  <Accordion title="OAuth token expired (Gmail, Google Sheets, etc.)">
+    Some integrations—including Gmail, Google Sheets, and Google Calendar—use OAuth tokens that expire over time. When a token expires, the integration will stop working until you refresh it.
+
+    **To fix this:**
+
+    <Steps>
+      <Step title="Go to Dashboard > Integrations">
+        Open your dashboard and navigate to **Integrations**.
+      </Step>
+      <Step title="Disconnect the integration">
+        Find the affected integration (e.g., Gmail) and click **Disconnect**.
+      </Step>
+      <Step title="Reconnect to get a fresh token">
+        Click **Connect** and complete the OAuth flow again. This issues a new token and restores the connection.
+      </Step>
+    </Steps>
+  </Accordion>
+
+  <Accordion title="MCP command not working in OpenClaw">
+    If OpenClaw doesn't recognize or can't use your MCP command, the most common cause is an incomplete or incorrectly formatted command.
+
+    **Check the following:**
+
+    - Make sure you copied the **full** command from the dashboard, including the API key flag at the end
+    - The command should look something like: `npx @clawlink/mcp --api-key sk_live_...`
+    - Don't add extra spaces or line breaks when pasting
+    - Restart OpenClaw after updating the command
+
+    If the command looks correct but still isn't working, verify that your API key is valid in **Settings > API Keys**.
+  </Accordion>
+
+  <Accordion title="Requests not appearing in logs">
+    If your agent is running but you don't see requests in the logs, try the following:
+
+    1. **Refresh the logs page**—there can be a short delay before new entries appear
+    2. **Confirm your agent is using the correct MCP endpoint**—check that the MCP command in OpenClaw matches exactly what's in your dashboard
+    3. **Verify your API key**—if the key is invalid, requests are rejected before they're logged
+
+    If requests still don't appear after a few minutes, the agent may not be reaching ClawLink at all. Double-check the MCP command and API key configuration.
+  </Accordion>
+</AccordionGroup>

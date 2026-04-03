@@ -1,0 +1,92 @@
+---
+title: "Productivity"
+description: "Google Sheets, Google Calendar, Google Drive, Notion, Airtable, and Todoist integrations"
+---
+
+Give your agent access to the tools you use to stay organized. From reading and writing spreadsheet data to creating calendar events and managing tasks, these integrations let your agent handle the busywork.
+
+<AccordionGroup>
+  <Accordion title="Google Sheets">
+    Google Sheets lets your agent read and write data in your spreadsheets.
+
+    **What you can do:**
+    - Read rows and cells from any sheet
+    - Write or append data to a spreadsheet
+    - Update existing rows based on conditions
+
+    **Credentials:** OAuth 2.0 — authorize access through your Google account.
+
+    **Example prompt:**
+    > "Add today's sales total to the 'Daily Revenue' tab in my Google Sheet."
+  </Accordion>
+
+  <Accordion title="Google Calendar">
+    Google Calendar lets your agent create and manage events on your calendar.
+
+    **What you can do:**
+    - Create new events with titles, times, attendees, and descriptions
+    - List upcoming events
+    - Update or delete existing events
+
+    **Credentials:** OAuth 2.0 — authorize access through your Google account.
+
+    **Example prompt:**
+    > "Schedule a 30-minute sync with john@example.com for tomorrow at 2 PM and add it to my calendar."
+  </Accordion>
+
+  <Accordion title="Google Drive">
+    Google Drive lets your agent upload, search, and manage files in your Drive.
+
+    **What you can do:**
+    - Upload new files to Drive
+    - Search for files by name or content
+    - Manage file permissions and sharing
+
+    **Credentials:** OAuth 2.0 — authorize access through your Google account.
+
+    **Example prompt:**
+    > "Find the latest version of the Q3 report in my Google Drive and share it with the team."
+  </Accordion>
+
+  <Accordion title="Notion">
+    Notion lets your agent manage pages, databases, and blocks in your workspace.
+
+    **What you can do:**
+    - Create and update pages
+    - Query and write to databases
+    - Add and edit blocks within existing pages
+
+    **Credentials:** Integration token — create an internal integration in Notion and share your workspace pages with it, then paste the token into ClawLink.
+
+    **Example prompt:**
+    > "Add a new row to my Notion project tracker with the task 'Write onboarding docs' and set the status to In Progress."
+  </Accordion>
+
+  <Accordion title="Airtable">
+    Airtable lets your agent manage bases, tables, and records in your Airtable workspace.
+
+    **What you can do:**
+    - Read and filter records from any table
+    - Create new records
+    - Update or delete existing records
+
+    **Credentials:** Personal access token — generate one in your Airtable account settings and paste it into ClawLink.
+
+    **Example prompt:**
+    > "Add a new contact to the Leads table in my Airtable base with the name and email from this form submission."
+  </Accordion>
+
+  <Accordion title="Todoist">
+    Todoist lets your agent create and manage tasks and projects.
+
+    **What you can do:**
+    - Create tasks with due dates, priorities, and labels
+    - List tasks in a project or filtered by criteria
+    - Complete or delete tasks
+
+    **Credentials:** API token — find it in your Todoist settings under **Integrations**.
+
+    **Example prompt:**
+    > "Create a Todoist task to follow up with the client by Friday and add it to my Work project."
+  </Accordion>
+</AccordionGroup>

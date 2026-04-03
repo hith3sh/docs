@@ -1,0 +1,59 @@
+---
+title: "Integrations"
+description: "Connect and manage your API integrations"
+---
+
+The Integrations page is where you authorize ClawLink to act on your behalf in third-party services. Once connected, your agent can call actions in those services — like sending a Slack message, creating a GitHub issue, or charging a Stripe customer — without any additional setup.
+
+Integrations are organized by category (Communication, CRM & Sales, Developer Tools, and more). Use the search bar or category filters to find what you need.
+
+## Connect an integration
+
+<Steps>
+  <Step title="Go to Dashboard > Integrations">
+    Open your ClawLink dashboard and select **Integrations** from the sidebar.
+  </Step>
+  <Step title="Find the integration">
+    Browse by category or type the integration name into the search bar.
+  </Step>
+  <Step title="Click Connect">
+    Select the integration card, then click **Connect**.
+  </Step>
+  <Step title="Provide your credentials">
+    Depending on the integration, you'll either:
+    - **Enter your API key** — paste the key from the service's developer settings
+    - **Complete an OAuth flow** — log in to the service and grant ClawLink access
+
+    See [credential types](#credential-types) below for details.
+  </Step>
+  <Step title="Confirm the connection">
+    Once authorized, the integration card shows a **Connected** badge. It's ready for your agent to use.
+  </Step>
+</Steps>
+
+## Credential types
+
+Different integrations use different authorization methods.
+
+**API key** — You copy a secret key from the service and paste it into ClawLink. This is common for services like Stripe, OpenAI, and Airtable.
+
+**OAuth** — You're redirected to the service to log in and approve access. ClawLink receives a token on your behalf. This is common for Gmail, Slack, GitHub, and Google Workspace apps.
+
+<Note>
+All credentials are encrypted at rest. ClawLink never stores your raw API keys in plain text.
+</Note>
+
+## Disconnect an integration
+
+To disconnect an integration, open its detail page and select **Disconnect**. This immediately revokes ClawLink's access to that service. Any agent actions that depend on this integration will stop working until you reconnect it.
+
+## Integration statuses
+
+| Status | Meaning | What to do |
+|---|---|---|
+| **Connected** | The integration is authorized and working | Nothing — it's ready to use |
+| **Error** | The credentials are invalid or expired | Reconnect the integration by clicking **Manage** and re-entering your credentials |
+
+<Warning>
+If your API key or OAuth token expires, any agent actions that use that integration will fail until you reconnect it. Check your request logs if you notice unexpected errors.
+</Warning>

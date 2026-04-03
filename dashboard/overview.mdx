@@ -1,0 +1,68 @@
+---
+title: "Overview"
+description: "Your ClawLink dashboard at a glance"
+---
+
+The dashboard gives you a real-time view of your API activity. From here you can check how your integrations are performing, review recent requests, and grab your MCP command to connect your agent.
+
+## Stats
+
+Four cards at the top of the dashboard summarize your account activity.
+
+| Card | What it shows |
+|---|---|
+| **Total Requests** | The total number of API calls made across all your integrations |
+| **Success Rate** | The percentage of requests that completed without an error |
+| **Avg Latency** | The average response time across all recent requests |
+| **Active Integrations** | The number of integrations you currently have connected |
+
+Each card also shows a trend indicator so you can see how your numbers are changing over time.
+
+## Connected integrations
+
+The **Connected Integrations** panel lists every integration you've authorized, along with its current status and when it was last used.
+
+| Status | Meaning |
+|---|---|
+| **Connected** | The integration is working and ready to use |
+| **Error** | Something is wrong — the integration may need to be reconnected |
+
+Select **View all** to go to the full Integrations page, where you can connect new services or manage existing ones.
+
+## Recent requests
+
+The **Recent Requests** panel shows the last few API calls your agent made. Each entry includes:
+
+- The integration and action that was called (for example, `gmail/send_email`)
+- How long ago the request was made
+- The latency for that call
+
+A green dot means the request succeeded. A red dot means it failed. Select **View all** to open the full request logs.
+
+## Your MCP command
+
+The **Your MCP Command** section at the bottom of the dashboard contains the command you paste into your agent to connect all your ClawLink integrations at once.
+
+```bash
+npx @clawlink/mcp --api-key sk_live_xxxx
+```
+
+Select **Copy** to copy the command to your clipboard. Your personal API key is embedded in the command automatically.
+
+<Note>
+Your MCP command is unique to your account. Do not share it publicly.
+</Note>
+
+## Explore the dashboard
+
+<CardGroup cols={3}>
+  <Card title="Integrations" icon="plug" href="/dashboard/integrations">
+    Connect and manage your API integrations
+  </Card>
+  <Card title="Request Logs" icon="list" href="/dashboard/request-logs">
+    Monitor every API call your agent makes
+  </Card>
+  <Card title="Settings" icon="gear" href="/dashboard/settings">
+    Manage your account, API keys, and billing
+  </Card>
+</CardGroup>

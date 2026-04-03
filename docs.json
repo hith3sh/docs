@@ -1,0 +1,69 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "name": "ClawLink",
+  "theme": "luma",
+  "colors": {
+    "primary": "#EF4444",
+    "light": "#FEF2F2",
+    "dark": "#7F1D1D"
+  },
+  "navbar": {
+    "primary": {
+      "type": "github",
+      "href": "https://github.com/hith3sh/clawlink"
+    }
+  },
+  "navigation": {
+    "tabs": [
+      {
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": [
+              "introduction",
+              "quickstart",
+              "how-it-works"
+            ]
+          },
+          {
+            "group": "Dashboard",
+            "pages": [
+              "dashboard/overview",
+              "dashboard/integrations",
+              "dashboard/request-logs",
+              "dashboard/settings"
+            ]
+          },
+          {
+            "group": "Integrations",
+            "pages": [
+              "integrations/overview",
+              "integrations/communication",
+              "integrations/productivity",
+              "integrations/developer-tools",
+              "integrations/crm-sales",
+              "integrations/payments",
+              "integrations/social-media",
+              "integrations/ai-ml"
+            ]
+          },
+          {
+            "group": "Security & Billing",
+            "pages": [
+              "security",
+              "billing"
+            ]
+          },
+          {
+            "group": "Help",
+            "pages": [
+              "troubleshooting",
+              "faq"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

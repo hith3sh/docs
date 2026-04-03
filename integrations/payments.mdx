@@ -1,0 +1,57 @@
+---
+title: "Payments"
+description: "Stripe, PayPal, and QuickBooks integrations"
+---
+
+Connect your payment and accounting tools so your agent can manage transactions, generate invoices, and track financial data.
+
+<Warning>
+  Keep your payment API keys secure. Never share them publicly or commit them to source control. ClawLink encrypts and stores your credentials securely, but you should rotate any key that you suspect has been compromised immediately.
+</Warning>
+
+<AccordionGroup>
+  <Accordion title="Stripe">
+    Stripe lets your agent manage payments, customers, and invoices in your Stripe account.
+
+    **What you can do:**
+    - Look up customers and their payment history
+    - Create and send invoices
+    - Retrieve payment intent and charge details
+    - Manage subscriptions and billing
+
+    **Credentials:** API secret key — find it in the Stripe Dashboard under **Developers → API keys**. Use a restricted key with only the permissions your agent needs.
+
+    **Example prompt:**
+    > "Pull up all failed payments from the last 7 days in Stripe and give me the customer emails."
+  </Accordion>
+
+  <Accordion title="PayPal">
+    PayPal lets your agent process payments and manage transactions in your PayPal account.
+
+    **What you can do:**
+    - Look up transaction history
+    - Issue refunds
+    - Create and send payment requests
+    - Manage payouts
+
+    **Credentials:** Client ID and secret — create a REST API app in the PayPal Developer Dashboard and use the live credentials for your account.
+
+    **Example prompt:**
+    > "Check if the PayPal payment from order #4821 has been completed and show me the transaction details."
+  </Accordion>
+
+  <Accordion title="QuickBooks">
+    QuickBooks lets your agent manage invoices and accounting data in your QuickBooks Online company.
+
+    **What you can do:**
+    - Create and send invoices
+    - Record expenses and payments
+    - Query customers and vendors
+    - Pull profit and loss reports
+
+    **Credentials:** OAuth 2.0 — authorize access through your Intuit account during the connection flow.
+
+    **Example prompt:**
+    > "Create an invoice in QuickBooks for client Acme Corp for $3,200 due in 30 days."
+  </Accordion>
+</AccordionGroup>

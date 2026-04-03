@@ -1,0 +1,53 @@
+---
+title: "Introduction"
+description: "What ClawLink is and why you'd use it"
+---
+
+ClawLink connects your AI agent to 40+ APIs — Gmail, Slack, Stripe, GitHub, Notion, and more — through a single MCP command. Connect your integrations once from the dashboard, and every API call is handled for you: authentication, retries, rate limiting, and request logging included.
+
+## Why use ClawLink
+
+- **OAuth handled for you** — click Connect next to an integration and ClawLink manages the entire auth flow. No tokens, no refresh logic to maintain.
+- **Credentials never stored on your machine** — your API keys and OAuth tokens are encrypted at rest and only decrypted at the moment a request executes.
+- **Request logs** — every API call is logged with status, latency, and integration name. Debug and audit from the dashboard.
+- **Rate limiting and retries built in** — ClawLink handles throttling and retries automatically so your agent keeps working even when APIs are slow.
+- **Free tier included** — get started at no cost and pay only as you scale.
+
+## Supported integrations
+
+<CardGroup cols={2}>
+  <Card title="Communication" icon="message" href="/integrations/communication">
+    Gmail, Slack, Discord, Microsoft Teams, Telegram
+  </Card>
+  <Card title="Productivity" icon="calendar" href="/integrations/productivity">
+    Google Sheets, Google Calendar, Google Drive, Notion, Airtable, Todoist
+  </Card>
+  <Card title="Developer Tools" icon="code" href="/integrations/developer-tools">
+    GitHub, GitLab, Jira, Linear, Vercel
+  </Card>
+  <Card title="CRM & Sales" icon="users" href="/integrations/crm-sales">
+    Apollo, HubSpot, Salesforce, Pipedrive
+  </Card>
+  <Card title="Payments & Finance" icon="credit-card" href="/integrations/payments">
+    Stripe, PayPal, QuickBooks
+  </Card>
+  <Card title="Social Media" icon="share" href="/integrations/social-media">
+    YouTube, Twitter/X, LinkedIn, Instagram
+  </Card>
+  <Card title="AI & ML" icon="microchip" href="/integrations/ai-ml">
+    OpenAI, Replicate, ElevenLabs
+  </Card>
+  <Card title="All Integrations" icon="grid" href="/integrations/overview">
+    Browse all 40+ integrations across every category.
+  </Card>
+</CardGroup>
+
+## Without ClawLink vs. with ClawLink
+
+| Without ClawLink | With ClawLink |
+|---|---|
+| Implement OAuth flows per integration | Click Connect — OAuth handled automatically |
+| Store credentials locally or in your own vault | Credentials encrypted and stored securely on the edge |
+| Write retry and rate-limit logic yourself | Retries and rate limiting built in |
+| No visibility into what your agent called | Full request logs with status and latency |
+| Integrate each API's SDK separately | One MCP command covers every integration |

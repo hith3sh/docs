@@ -1,0 +1,83 @@
+---
+title: "Developer Tools"
+description: "GitHub, GitLab, Jira, Linear, and Vercel integrations"
+---
+
+Connect your development workflow to ClawLink so your agent can manage repos, track issues, and trigger deployments without you switching context.
+
+<AccordionGroup>
+  <Accordion title="GitHub">
+    GitHub lets your agent manage repositories, issues, and pull requests.
+
+    **What you can do:**
+    - Open, update, and close issues
+    - Create and review pull requests
+    - Read file contents and commit history
+    - Manage repository settings
+
+    **Credentials:** Personal access token — generate one in GitHub under **Settings → Developer settings → Personal access tokens**.
+
+    **Example prompt:**
+    > "Open a GitHub issue titled 'Fix login page redirect bug' in the frontend repo and assign it to me."
+  </Accordion>
+
+  <Accordion title="GitLab">
+    GitLab lets your agent manage repositories and CI/CD pipelines.
+
+    **What you can do:**
+    - Create and manage merge requests
+    - Open and update issues
+    - Trigger and monitor CI/CD pipelines
+    - Manage repository files and branches
+
+    **Credentials:** Personal access token — generate one in GitLab under **User Settings → Access Tokens**.
+
+    **Example prompt:**
+    > "Check the status of the latest CI/CD pipeline on the main branch of my GitLab project."
+  </Accordion>
+
+  <Accordion title="Jira">
+    Jira lets your agent create and manage issues and sprints in your projects.
+
+    **What you can do:**
+    - Create, update, and transition issues
+    - Assign issues to team members
+    - Query issues using JQL
+    - Manage sprints and backlogs
+
+    **Credentials:** API token — generate one at [id.atlassian.com](https://id.atlassian.com) and combine it with your Atlassian email and site URL when connecting.
+
+    **Example prompt:**
+    > "Create a Jira story for 'Add dark mode support' in the Design sprint with a medium priority."
+  </Accordion>
+
+  <Accordion title="Linear">
+    Linear lets your agent manage issues, projects, and cycles in your team's workspace.
+
+    **What you can do:**
+    - Create and update issues
+    - Move issues between cycles and projects
+    - Assign and label issues
+    - Query team backlogs
+
+    **Credentials:** Personal API key — generate one in Linear under **Settings → API**.
+
+    **Example prompt:**
+    > "Add a bug report to the current Linear cycle: 'Sidebar collapses on mobile' assigned to the frontend team."
+  </Accordion>
+
+  <Accordion title="Vercel">
+    Vercel lets your agent manage deployments and projects.
+
+    **What you can do:**
+    - List recent deployments and check their status
+    - Trigger new deployments
+    - Manage environment variables
+    - Inspect deployment logs
+
+    **Credentials:** API token — generate one in your Vercel account under **Settings → Tokens**.
+
+    **Example prompt:**
+    > "List the last 5 deployments for my Vercel project and tell me if any of them failed."
+  </Accordion>
+</AccordionGroup>

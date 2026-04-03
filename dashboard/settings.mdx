@@ -1,0 +1,60 @@
+---
+title: "Settings"
+description: "Manage your account, API keys, billing, and notifications"
+---
+
+The Settings page lets you control everything about your ClawLink account. Use the sidebar to switch between the five tabs: Profile, API Keys, Billing, Notifications, and Security.
+
+## Profile
+
+The Profile tab shows your name, email address, and avatar.
+
+- **Name** — edit your display name and click **Save Changes** to update it.
+- **Email** — your email address is set by your login provider and cannot be changed here.
+- **Avatar** — click **Change Avatar** to upload a profile picture.
+
+## API keys
+
+Your API key is what ClawLink uses to authenticate requests from your agent. You'll find your live key on this tab.
+
+To copy your key, click the **Copy** button next to the masked key value. The button confirms when the key is in your clipboard.
+
+To generate a new key, click **+ Create New Key**.
+
+<Warning>
+Your live API key grants full access to your ClawLink account. Do not share it in public repositories, client-side code, or anywhere others can see it. If a key is compromised, generate a new one immediately.
+</Warning>
+
+## Billing
+
+The Billing tab shows your current plan, your usage for the month, and your payment method.
+
+**Free plan** includes:
+- 1,000 requests per month
+- Up to 5 integrations
+
+The usage meter shows how many requests you've used against your monthly limit. When you approach the limit, you'll receive a notification (if enabled).
+
+To upgrade to a higher plan, click **Upgrade** and add a payment method. This increases your request limit and the number of integrations you can connect.
+
+## Notifications
+
+The Notifications tab lets you enable or disable each type of alert.
+
+| Notification | When it fires |
+|---|---|
+| **Request failures** | An API call returns an error |
+| **Rate limit warnings** | You're approaching your monthly request limit |
+| **Integration disconnections** | An integration loses its connection or credentials expire |
+| **Usage alerts** | Your usage exceeds 80% of your monthly limit |
+| **Product updates** | News about new features and integrations |
+
+Toggle each notification on or off using the switch next to it.
+
+## Security
+
+The Security tab gives you control over your account access.
+
+- **Password** — click **Change** to update your password.
+- **Two-factor authentication** — click **Enable** to add a second verification step when you log in. This is strongly recommended.
+- **Active sessions** — click **View** to see all devices currently logged in to your account. You can revoke any session you don't recognize.

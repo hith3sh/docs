@@ -1,0 +1,53 @@
+---
+title: "ClawLink Documentation"
+description: "Give your AI agent instant access to 40+ API integrations — Gmail, Slack, Stripe, GitHub, and more — with one command and zero configuration."
+---
+
+ClawLink connects your AI agent to over 40 APIs through the MCP protocol. Sign up, connect your integrations from the dashboard, and paste one command into OpenClaw. That's it — no tokens to manage, no OAuth flows to implement, no retry logic to write.
+
+<CardGroup cols={2}>
+  <Card title="Quick Start" icon="rocket" href="/quickstart">
+    Get connected in under 5 minutes. Sign up, grab your MCP command, and start making API calls.
+  </Card>
+  <Card title="How It Works" icon="diagram-project" href="/how-it-works">
+    Understand how ClawLink proxies your agent's requests securely to third-party APIs.
+  </Card>
+  <Card title="Integrations" icon="plug" href="/integrations/overview">
+    Browse all 40+ supported integrations across communication, productivity, developer tools, and more.
+  </Card>
+  <Card title="Dashboard" icon="chart-line" href="/dashboard/overview">
+    Connect integrations, view request logs, and manage your API keys from the dashboard.
+  </Card>
+</CardGroup>
+
+## Get started in 3 steps
+
+<Steps>
+  <Step title="Sign up at claw-link.dev">
+    Create your account and connect the integrations you need — Gmail, Slack, GitHub, Stripe, and 40+ more. OAuth is handled for you; just click **Connect**.
+  </Step>
+  <Step title="Copy your MCP command">
+    From the dashboard, copy your personal MCP command. It looks like this:
+
+    ```bash
+    npx @clawlink/mcp --api-key sk_live_xxxx
+    ```
+  </Step>
+  <Step title="Paste into OpenClaw">
+    Paste the command into OpenClaw and you're done. Your agent can now send emails, post Slack messages, create GitHub issues, and much more — just by asking.
+  </Step>
+</Steps>
+
+## What you can do
+
+Once connected, your AI agent can perform actions like:
+
+- **"Send an email to sarah@example.com"** — via Gmail
+- **"Post a message in #general"** — via Slack
+- **"Create a GitHub issue titled 'Fix login bug'"** — via GitHub
+- **"Add a row to my Google Sheet"** — via Google Sheets
+- **"List my recent Stripe customers"** — via Stripe
+
+<Note>
+  ClawLink handles all OAuth flows, token refresh, rate limiting, and retries on your behalf. You never touch a credential directly.
+</Note>
