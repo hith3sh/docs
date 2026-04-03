@@ -8,6 +8,11 @@
     "dark": "#7F1D1D"
   },
   "navbar": {
+    "logo": {
+      "name": "ClawLink",
+      "url": "https://docs.claw-link.dev/images/logo/clawlink-512.png",
+      "alt": "ClawLink Logo"
+    },
     "primary": {
       "type": "github",
       "href": "https://github.com/hith3sh/clawlink"
