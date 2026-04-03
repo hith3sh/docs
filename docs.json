@@ -24,6 +24,10 @@
       "900": "#171717"
     }
   },
+  "logo": {
+    "dark": "/images/logo/clawlink-512.png",
+    "light": "/images/logo/clawlink-512.png"
+  },
   "favicon": "/images/logo/favicon.png",
   "navbar": {
     "logo": {
