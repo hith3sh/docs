@@ -45,7 +45,8 @@
               "integrations/crm-sales",
               "integrations/payments",
               "integrations/social-media",
-              "integrations/ai-ml"
+              "integrations/ai-ml",
+              "integrations/notion"
             ]
           },
           {

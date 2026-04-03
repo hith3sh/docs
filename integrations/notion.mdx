@@ -1,0 +1,55 @@
+---
+title: "Notion"
+description: "Connect Notion to let your AI agent read and write pages, databases, and blocks"
+---
+
+Notion lets your AI agent read, create, and update pages, databases, and blocks in your workspace.
+
+## What You Can Do
+
+- **Read pages** - Fetch any page content, including text, tables, and nested blocks
+- **Query databases** - Search and filter Notion databases
+- **Create pages** - Add new pages to any parent page or database
+- **Update blocks** - Modify existing content in pages
+- **Create blocks** - Add new content blocks to pages
+
+## Available Tools
+
+| Tool | Description | Required Inputs |
+|------|-------------|-----------------|
+| `notion_read_page` | Read a page's content by ID | `page_id` |
+| `notion_query_database` | Query a database with filters | `database_id`, optional `filter` |
+| `notion_create_page` | Create a new page | `parent_page_id`, `title`, optional `content` |
+| `notion_append_blocks` | Add blocks to a page | `page_id`, `blocks` |
+| `notion_update_block` | Update a specific block | `block_id`, `content` |
+
+## How to Connect
+
+<Steps>
+  <Step title="Go to Notion Developers">
+    Visit [notion.so/my-integrations](https://www.notion.so/my-integrations) and click **+ New integration**.
+  </Step>
+  <Step title="Name Your Integration">
+    Give it a name like "ClawLink" and click **Submit**.
+  </Step>
+  <Step title="Copy the API Key">
+    You'll see an **Internal Integration Token** starting with `secret_` — copy this.
+  </Step>
+  <Step title="Authorize Access">
+    Open each Notion page/database you want ClawLink to access, click **•••** → **Connect to** → select your integration.
+  </Step>
+</Steps>
+
+## Example Prompts
+
+> "List all pages in my Notion workspace that were updated today."
+
+> "Create a new page in my Projects database with the title 'Q2 Marketing Campaign' and add a description."
+
+> "Query my Tasks database for all items where status is 'In Progress'."
+
+## Security
+
+Your Notion integration token is encrypted and stored securely. ClawLink never stores your credentials in plain text.
+
+Need help? Check the [Troubleshooting](/troubleshooting) guide or [Contact Support](/faq).
