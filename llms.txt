@@ -1,0 +1,88 @@
+# ClawLink Documentation
+
+Comprehensive guide to using ClawLink - the AI agent integration platform.
+
+## Overview
+
+ClawLink connects your AI agent (OpenClaw) to 40+ external services with a single command. No OAuth flows, no API key management, no environment variables to configure.
+
+## Documentation Site: https://docs.claw-link.dev
+
+### Get Started
+- **Introduction** - What ClawLink is and why use it
+- **Quick Start** - Connect your first integration in 5 minutes
+- **How It Works** - Technical architecture and security
+
+### Dashboard
+- **Overview** - Navigate and understand your dashboard
+- **Integrations** - Connect Gmail, Slack, Notion, Stripe, GitHub, and more
+- **Request Logs** - Monitor every API call your agent makes
+- **Settings** - API keys, team management, billing
+
+### Integration Categories
+
+#### Communication
+- Gmail - Send/read emails, create drafts, manage labels
+- Slack - Send messages, manage channels, webhooks
+- Discord - Bot messages, server management
+- Microsoft Teams - Channel messaging, team management
+- Telegram - Bot API, send messages
+
+#### Productivity
+- Notion - Pages, databases, blocks (read/write)
+- Google Docs - Create and update documents
+- Google Sheets - Read/write data, formulas
+- Calendar - Events, scheduling
+
+#### Developer Tools
+- GitHub - Repositories, issues, pull requests, branches
+- GitLab - Projects, merge requests
+- Jira - Issues, projects, workflows
+
+#### Payments
+- Stripe - Customers, payments, invoices, subscriptions
+
+#### CRM & Sales
+- HubSpot - Contacts, companies, deals, tickets
+- Salesforce - Objects, SOQL queries
+
+#### Social Media
+- Twitter/X - Tweets, user info
+- LinkedIn - Posts, profile
+
+#### AI & ML
+- OpenAI - GPT-4, embeddings, images
+- Anthropic - Claude models
+- Google AI - Gemini models
+
+## Security Features
+
+- Credentials encrypted at rest (AES-256-GCM)
+- Decrypted only at moment of API call
+- Never stored in plaintext
+- Per-request authorization
+- API key rotation in dashboard
+
+## Troubleshooting
+
+Common issues and solutions:
+- API key errors
+- OAuth connection problems
+- Rate limiting
+- Permission errors
+- Timeout issues
+
+## Billing
+
+- Per-request pricing
+- Free tier available
+- Usage tracking in dashboard
+- Team seats and permissions
+
+## Support
+
+- GitHub: github.com/hith3sh/clawlink
+- Docs: https://docs.claw-link.dev
+- Report issues via GitHub
+
+Last updated: April 2026
