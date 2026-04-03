@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "name": "ClawLink",
-  "theme": "neon",
+  "theme": "mint",
   "colors": {
     "primary": "#EF4444",
     "light": "#FEE2E2",
