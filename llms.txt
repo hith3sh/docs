@@ -17,7 +17,7 @@ ClawLink connects your AI agent (OpenClaw) to 40+ external services with a singl
 - **Overview** - Navigate and understand your dashboard
 - **Integrations** - Connect Gmail, Slack, Notion, Stripe, GitHub, and more
 - **Request Logs** - Monitor every API call your agent makes
-- **Settings** - API keys, team management, billing
+- **Settings** - API keys, billing, notifications, and security
 
 ### Integration Categories
 
@@ -50,11 +50,6 @@ ClawLink connects your AI agent (OpenClaw) to 40+ external services with a singl
 - Twitter/X - Tweets, user info
 - LinkedIn - Posts, profile
 
-#### AI & ML
-- OpenAI - GPT-4, embeddings, images
-- Anthropic - Claude models
-- Google AI - Gemini models
-
 ## Security Features
 
 - Credentials encrypted at rest (AES-256-GCM)
@@ -74,10 +69,10 @@ Common issues and solutions:
 
 ## Billing
 
-- Per-request pricing
-- Free tier available
-- Usage tracking in dashboard
-- Team seats and permissions
+- First connected app is free
+- Pro costs $5/month
+- Upgrade when you want to connect additional apps
+- Manage billing from the dashboard
 
 ## Support
 

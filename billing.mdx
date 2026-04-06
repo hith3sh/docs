@@ -1,88 +1,84 @@
 ---
 title: "Billing"
-description: "Plans, usage limits, and payment details"
+description: "Plans, upgrade flow, and subscription management"
 ---
 
-ClawLink offers a free plan to get started, with paid plans available for higher usage and more integrations.
+ClawLink keeps billing simple. Your first connected app is free. Upgrade to **ClawLink Pro** for **$5/month** when you want to connect additional apps.
 
 ## Plans
 
 <CardGroup cols={2}>
   <Card title="Free Plan" icon="sparkles">
-    **1,000 requests/month** and up to **5 integrations**. No credit card required to start.
+    **$0/month**. Connect **one app** and start using ClawLink without adding a card.
   </Card>
   <Card title="Paid Plan" icon="rocket">
-    Higher request limits and more integrations. **Coming soon.**
+    **$5/month**. Unlock additional connected apps and manage billing through Polar.
   </Card>
 </CardGroup>
 
-### What counts toward your limits
+## How the free limit works
 
-- **Requests**: Each API call your agent makes through ClawLink counts as one request. For example, sending one email, creating one GitHub issue, or posting one Slack message each count as a single request.
-- **Integrations**: Each service you connect (Gmail, Slack, GitHub, etc.) counts as one integration toward your limit.
+- The free plan includes **one connected app**.
+- Once you already have one app connected, adding a different app prompts you to upgrade.
+- Your existing connected app keeps working even if you do not upgrade.
+- Pro removes that one-app cap so you can keep connecting more services.
 
-## Viewing your usage
+ClawLink currently gates billing by connected apps, not by monthly request quotas.
 
-To check how many requests you've used this month:
+## What you see in settings
 
-1. Go to **Dashboard > Settings > Billing**
-2. Under **Usage this month**, you'll see a breakdown of your request count against your plan limit
+In **Dashboard > Settings > Billing**, ClawLink shows:
 
-The usage counter resets at the start of each calendar month.
+- Your current plan and billing status
+- How many apps are connected
+- Whether your next connection requires an upgrade
+- Your renewal date when Pro is active
 
-## What happens when you reach your limit
+If you return from checkout and still see the free plan for a moment, refresh the page. Billing state is synced after checkout completes.
 
-If you reach your monthly request limit, ClawLink stops processing new API calls until your usage resets at the start of the next month. Your connected integrations remain intact—requests simply won't go through until you have available capacity again.
-
-<Warning>
-  If your agent hits the limit mid-task, that task will fail. Consider upgrading before you reach your limit to avoid interruptions.
-</Warning>
-
-To avoid hitting your limit, you can:
-
-- Monitor your usage in **Settings > Billing**
-- Enable usage alerts in **Settings > Notifications** to get notified when you reach 80% of your limit
-- Upgrade to a paid plan for higher limits
-
-## Upgrading your plan
+## Upgrading to Pro
 
 To upgrade:
 
-1. Go to **Settings > Billing**
-2. Click **Upgrade**
-3. Add a payment method if you haven't already
-4. Confirm your new plan
+1. Go to **Dashboard > Settings > Billing**
+2. Click **Upgrade to Pro**
+3. Complete checkout in Polar
+4. Return to the dashboard and refresh if needed
 
-Your new limits take effect immediately after upgrading.
+Your paid plan becomes active as soon as checkout and billing sync finish.
 
-## Payment method
+## Managing your subscription
 
-To add a credit card:
+If you already have Pro, use **Manage subscription** in the Billing tab to:
 
-1. Go to **Settings > Billing > Payment Method**
-2. Click **Add Card**
-3. Enter your card details
+- Update your payment method
+- View invoices and receipts
+- Cancel renewal for a future billing period
 
-Your card is required to activate a paid plan. You won't be charged anything while on the free plan.
+ClawLink sends you to the Polar customer portal for those actions.
 
 ---
 
 ## Billing FAQ
 
 <AccordionGroup>
-  <Accordion title="What counts as a request?">
-    Each API call your agent makes through ClawLink counts as one request. Examples include sending an email, posting a Slack message, creating a GitHub issue, or reading a Google Sheet row. Multiple actions in a single conversation each count separately.
+  <Accordion title="Do I need a credit card to start?">
+    No. You can connect your first app on the free plan without adding a card. A payment method is only required when you upgrade to Pro.
   </Accordion>
 
-  <Accordion title="When does my usage reset?">
-    Your request count resets at the start of each calendar month. For example, if you sign up on March 15, your usage resets on April 1—and on the first of every month after that.
+  <Accordion title="What happens when I try to connect a second app on Free?">
+    ClawLink blocks the new connection and sends you to Billing to upgrade. Your existing connected app stays active.
   </Accordion>
 
-  <Accordion title="What happens if I exceed my limit?">
-    Once you reach your monthly request limit, ClawLink stops processing new API calls. Your integrations stay connected, but requests won't go through until either the month resets or you upgrade to a higher plan. To restore access immediately, upgrade in **Settings > Billing**.
+  <Accordion title="Can I manage or cancel my subscription later?">
+    Yes. Once you're on Pro, open **Dashboard > Settings > Billing** and click **Manage subscription** to open the Polar customer portal.
   </Accordion>
 
-  <Accordion title="Can I downgrade my plan?">
-    Paid plan downgrade options will be available when paid plans launch. If you have questions about your current plan, contact support.
+  <Accordion title="Does reconnecting the same provider count as another app?">
+    Billing is based on the connected app type. Reconnecting an app you already use does not require a new upgrade. Adding a different app does.
+  </Accordion>
+
+  <Accordion title="How much is Pro?">
+    ClawLink Pro is **$5/month**.
   </Accordion>
 </AccordionGroup>
