@@ -4,20 +4,21 @@ Comprehensive guide to using ClawLink - the AI agent integration platform.
 
 ## Overview
 
-ClawLink connects your AI agent (OpenClaw) to 40+ external services with a single command. No OAuth flows, no API key management, no environment variables to configure.
+ClawLink connects OpenClaw to a growing catalog of external services through one hosted integration layer. Install the plugin, pair the device in the browser, and connect apps from the dashboard.
 
 ## Documentation Site: https://docs.claw-link.dev
 
 ### Get Started
 - **Introduction** - What ClawLink is and why use it
-- **Quick Start** - Connect your first integration in 5 minutes
-- **How It Works** - Technical architecture and security
+- **Quick Start** - Install the plugin, pair OpenClaw, and connect your first app
+- **OpenClaw setup** - Plugin install, browser pairing, and manual fallback
+- **How It Works** - Two-worker runtime architecture and request flow
 
 ### Dashboard
 - **Overview** - Navigate and understand your dashboard
-- **Integrations** - Connect Gmail, Slack, Notion, Stripe, GitHub, and more
+- **Integrations** - Add, reconnect, and remove connection rows
 - **Request Logs** - Monitor every API call your agent makes
-- **Settings** - API keys, billing, notifications, and security
+- **Settings** - Profile, advanced API keys, and account security handoff
 
 ### Integration Categories
 
@@ -55,14 +56,14 @@ ClawLink connects your AI agent (OpenClaw) to 40+ external services with a singl
 - Credentials encrypted at rest (AES-256-GCM)
 - Decrypted only at moment of API call
 - Never stored in plaintext
-- Per-request authorization
+- Browser pairing for OpenClaw
 - API key rotation in dashboard
 
 ## Troubleshooting
 
 Common issues and solutions:
-- API key errors
-- OAuth connection problems
+- Pairing issues
+- Hosted connection problems
 - Rate limiting
 - Permission errors
 - Timeout issues
@@ -71,8 +72,8 @@ Common issues and solutions:
 
 - First connected app is free
 - Pro costs $5/month
-- Upgrade when you want to connect additional apps
-- Manage billing from the dashboard
+- Billing is based on distinct integrations
+- Manage billing from Dashboard > Billing
 
 ## Support
 
@@ -80,4 +81,4 @@ Common issues and solutions:
 - Docs: https://docs.claw-link.dev
 - Report issues via GitHub
 
-Last updated: April 2026
+Last updated: May 2026

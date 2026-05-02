@@ -8,13 +8,13 @@
     "dark": "#991B1B"
   },
   "logo": {
-    "dark": "/images/logo/clawlink-512.png",
-    "light": "/images/logo/clawlink-512.png"
+    "dark": "/images/logo/link.png",
+    "light": "/images/logo/link.png"
   },
-  "favicon": "/images/logo/favicon.png",
+  "favicon": "/images/logo/link.png",
   "navbar": {
     "logo": {
-      "url": "/images/logo/clawlink-512.png"
+      "url": "/images/logo/link.png"
     },
     "items": [
       {
@@ -46,6 +46,7 @@
             "pages": [
               "introduction",
               "quickstart",
+              "openclaw",
               "how-it-works"
             ]
           },

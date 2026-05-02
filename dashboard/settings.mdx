@@ -1,9 +1,9 @@
 ---
 title: "Settings"
-description: "Manage your account, API keys, billing, and notifications"
+description: "Manage your profile, advanced API keys, and account security handoff"
 ---
 
-The Settings page lets you control everything about your ClawLink account. Use the sidebar to switch between the five tabs: Profile, API Keys, Billing, Notifications, and Security.
+The Settings page currently has three tabs: **Profile**, **API Keys**, and **Security**. Billing is a separate page in the sidebar.
 
 ## Profile
 
@@ -15,52 +15,36 @@ The Profile tab shows your name, email address, and avatar.
 
 ## API keys
 
-Your API key is what ClawLink uses to authenticate requests from your agent. You'll find your live key on this tab.
+This tab is for advanced and manual setups. Most users do not need it because browser pairing is the recommended OpenClaw setup flow.
 
-To copy your key, click the **Copy** button next to the masked key value. The button confirms when the key is in your clipboard.
+You can:
 
-To generate a new key, click **+ Create New Key**.
+- Create a new `cllk_live_...` key
+- Copy the raw value one time, immediately after creation
+- Review created and last-used timestamps for existing keys
+- Revoke a key you no longer trust
 
 <Warning>
-Your live API key grants full access to your ClawLink account. Do not share it in public repositories, client-side code, or anywhere others can see it. If a key is compromised, generate a new one immediately.
+Raw key values are never shown again after creation. If you lose one, revoke it and create a new key instead of expecting the dashboard to reveal it again.
 </Warning>
-
-## Billing
-
-The Billing tab shows your current plan, billing status, and whether your next app connection requires an upgrade.
-
-**Free plan** includes:
-- 1 connected app
-- No credit card required
-
-**ClawLink Pro** costs **$5/month** and unlocks additional app connections.
-
-The Billing tab also shows:
-
-- Your connected app count
-- Whether you can keep connecting apps on your current plan
-- Your renewal date if Pro is active
-
-To upgrade, click **Upgrade to Pro**. If you already subscribe, click **Manage subscription** to open the Polar customer portal.
-
-## Notifications
-
-The Notifications tab lets you enable or disable each type of alert.
-
-| Notification | When it fires |
-|---|---|
-| **Request failures** | An API call returns an error |
-| **Rate limit warnings** | You're approaching your monthly request limit |
-| **Integration disconnections** | An integration loses its connection or credentials expire |
-| **Usage alerts** | Your usage exceeds 80% of your monthly limit |
-| **Product updates** | News about new features and integrations |
-
-Toggle each notification on or off using the switch next to it.
 
 ## Security
 
-The Security tab gives you control over your account access.
+The Security tab is a handoff into your hosted account management flow.
 
-- **Password** — click **Change** to update your password.
-- **Two-factor authentication** — click **Enable** to add a second verification step when you log in. This is strongly recommended.
-- **Active sessions** — click **View** to see all devices currently logged in to your account. You can revoke any session you don't recognize.
+Use **Manage** to open the account screen for:
+
+- Password and email changes
+- Connected sign-in methods
+- Any additional protections your identity provider supports
+
+ClawLink does not currently expose the old in-dashboard notifications controls described in earlier docs.
+
+## Billing lives separately
+
+Use the dedicated [Billing](/billing) page in the sidebar to:
+
+- Review your current plan
+- Upgrade to Pro
+- Open the Polar customer portal
+- See whether the next new integration requires an upgrade

@@ -5,11 +5,11 @@ description: "Frequently asked questions about ClawLink"
 
 <AccordionGroup>
   <Accordion title="What is ClawLink?">
-    ClawLink is a platform that connects your AI agent to 40+ APIs—Gmail, Slack, GitHub, Stripe, Notion, Google Sheets, and more—with a single command. You connect your integrations once from the dashboard, and ClawLink securely proxies every API call your agent makes. No environment variables, no API keys in your code, no OAuth flows to manage yourself.
+    ClawLink is a hosted integration layer for OpenClaw. Install the ClawLink plugin once, pair your OpenClaw device in the browser, connect apps from the dashboard, and ClawLink securely proxies the provider calls for you. No provider credentials in your code, no self-built OAuth flows, and no retry logic to maintain yourself.
   </Accordion>
 
   <Accordion title="What is OpenClaw and do I need it?">
-    [OpenClaw](https://github.com/openclaw/openclaw) is an AI agent that works with ClawLink via the MCP (Model Context Protocol). ClawLink is designed to work with OpenClaw out of the box—you paste your MCP command into OpenClaw and you're ready to go.
+    [OpenClaw](https://github.com/openclaw/openclaw) is the primary client ClawLink is built for. You install the ClawLink plugin in OpenClaw, approve browser pairing, and then use your connected apps from chat.
 
     If you're using a different MCP-compatible agent, ClawLink may still work, but OpenClaw is the primary supported client.
   </Accordion>
@@ -27,7 +27,7 @@ description: "Frequently asked questions about ClawLink"
   </Accordion>
 
   <Accordion title="Which integrations are supported?">
-    ClawLink supports 40+ integrations across these categories:
+    ClawLink supports a growing catalog of integrations across these categories:
 
     - **Communication**: Gmail, Slack, Discord, Microsoft Teams, Telegram
     - **CRM & Sales**: Apollo, HubSpot, Salesforce, Pipedrive
@@ -48,12 +48,12 @@ description: "Frequently asked questions about ClawLink"
     If you'd prefer to request an integration rather than build it, you can open an issue on GitHub to let the team know what you need.
   </Accordion>
 
-  <Accordion title="What does 'one command' mean?">
-    After you connect your integrations in the dashboard, ClawLink gives you a single MCP command—something like `npx @clawlink/mcp --api-key sk_live_...`. Paste that command into OpenClaw, and your agent immediately has access to every API you've connected. You don't need to configure anything else.
+  <Accordion title="What happened to the old one-command setup?">
+    Earlier docs described a single pasted command. The current recommended flow is simpler for most users: install one OpenClaw plugin, pair the device once in the browser, and then connect apps from the dashboard as needed.
   </Accordion>
 
   <Accordion title="Do I need to write any code?">
-    No. Connecting integrations, getting your MCP command, and using ClawLink with OpenClaw requires no coding. You use the dashboard to connect services and copy the command.
+    No. Installing the plugin, approving pairing, connecting apps, and using ClawLink with OpenClaw does not require coding.
 
     If you want to add a custom integration or self-host ClawLink, that does require working with the codebase—but standard usage is entirely no-code.
   </Accordion>
@@ -64,22 +64,25 @@ description: "Frequently asked questions about ClawLink"
     For persistent failures, check the [Troubleshooting](/troubleshooting) guide.
   </Accordion>
 
-  <Accordion title="How do I get my MCP command?">
+  <Accordion title="How do I set up ClawLink in OpenClaw?">
     <Steps>
       <Step title="Sign up or log in">
         Go to [claw-link.dev](https://claw-link.dev) and sign in to your account.
       </Step>
-      <Step title="Connect your integrations">
-        Go to **Dashboard > Integrations** and connect the services you want your agent to use.
+      <Step title="Install the plugin">
+        Run `openclaw plugins install @useclawlink/openclaw-plugin`.
       </Step>
-      <Step title="Copy your MCP command">
-        Your personal MCP command is available in the dashboard. Copy it and paste it into OpenClaw.
+      <Step title="Pair this device">
+        Ask OpenClaw to set up ClawLink, open the pairing URL in your browser, and approve the device.
+      </Step>
+      <Step title="Connect your apps">
+        Go to **Dashboard > Connections** and finish the hosted flow for the apps you want to use.
       </Step>
     </Steps>
   </Accordion>
 
-  <Accordion title="Can I use ClawLink with multiple AI agents?">
-    Your MCP command is tied to your ClawLink account, not a specific machine. You can paste the same command into multiple OpenClaw instances. All requests route through your account, count toward your usage limit, and appear in your Request Logs.
+  <Accordion title="Can I use ClawLink on multiple OpenClaw installs?">
+    Yes, but each OpenClaw install should run its own browser pairing flow so it stores its own local credential. The connected apps, billing state, and usage history still belong to the same ClawLink account.
   </Accordion>
 
   <Accordion title="Is there a free plan?">

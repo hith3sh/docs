@@ -1,22 +1,25 @@
 ---
 title: "ClawLink Documentation"
-description: "Give your AI agent instant access to 40+ API integrations — Gmail, Slack, Stripe, GitHub, and more — with one command and zero configuration."
+description: "Install the ClawLink OpenClaw plugin, pair this device, and connect apps through hosted flows."
 ---
 
-ClawLink connects your AI agent to over 40 APIs through the MCP protocol. Sign up, connect your integrations from the dashboard, and paste one command into OpenClaw. That's it — no tokens to manage, no OAuth flows to implement, no retry logic to write.
+ClawLink connects OpenClaw to a growing catalog of apps through one hosted setup flow. Install the plugin once, approve this device in your browser, and connect the apps you want from the dashboard. ClawLink handles hosted auth, credential storage, retries, and request logging for you.
 
 <CardGroup cols={2}>
   <Card title="Quick Start" icon="rocket" href="/quickstart">
-    Get connected in under 5 minutes. Sign up, grab your MCP command, and start making API calls.
+    Get connected in under 5 minutes with plugin install, browser pairing, and your first hosted app connection.
+  </Card>
+  <Card title="OpenClaw setup" icon="terminal" href="/openclaw">
+    Install the plugin, pair this OpenClaw device, and understand the fallback API key flow.
   </Card>
   <Card title="How It Works" icon="diagram-project" href="/how-it-works">
-    Understand how ClawLink proxies your agent's requests securely to third-party APIs.
+    Understand the hosted app, execution worker, shared storage, and request lifecycle.
   </Card>
   <Card title="Integrations" icon="plug" href="/integrations/overview">
-    Browse all 40+ supported integrations across communication, productivity, developer tools, and more.
+    Browse supported integrations across communication, productivity, developer tools, finance, and more.
   </Card>
   <Card title="Dashboard" icon="chart-line" href="/dashboard/overview">
-    Connect integrations, view request logs, and manage your API keys from the dashboard.
+    Browse apps, manage connections, inspect usage, and handle billing from the dashboard.
   </Card>
 </CardGroup>
 
@@ -24,17 +27,20 @@ ClawLink connects your AI agent to over 40 APIs through the MCP protocol. Sign u
 
 <Steps>
   <Step title="Sign up at claw-link.dev">
-    Create your account and connect the integrations you need — Gmail, Slack, GitHub, Stripe, and 40+ more. OAuth is handled for you; just click **Connect**.
+    Create your account at [claw-link.dev](https://claw-link.dev). Your first connected app is free.
   </Step>
-  <Step title="Copy your MCP command">
-    From the dashboard, copy your personal MCP command. It looks like this:
+  <Step title="Install the OpenClaw plugin and pair this device">
+    Install the plugin in OpenClaw:
 
     ```bash
-    npx @clawlink/mcp --api-key sk_live_xxxx
+    openclaw plugins install @useclawlink/openclaw-plugin
+    openclaw gateway restart
     ```
+
+    Then ask OpenClaw to set up ClawLink or start pairing. Open the browser URL it gives you and approve this device.
   </Step>
-  <Step title="Paste into OpenClaw">
-    Paste the command into OpenClaw and you're done. Your agent can now send emails, post Slack messages, create GitHub issues, and much more — just by asking.
+  <Step title="Connect your first app">
+    Open [Dashboard > Connections](https://claw-link.dev/dashboard/integrations), click **Add connection**, and finish the hosted flow for the app you want to use. After that, ask OpenClaw to use it.
   </Step>
 </Steps>
 
@@ -49,5 +55,5 @@ Once connected, your AI agent can perform actions like:
 - **"List my recent Stripe customers"** — via Stripe
 
 <Note>
-  ClawLink handles all OAuth flows, token refresh, rate limiting, and retries on your behalf. You never touch a credential directly.
+  Normal setup does not require copying a raw API key. Browser pairing is the recommended OpenClaw flow. API keys in Settings are an advanced fallback for manual plugin settings UIs and debugging.
 </Note>

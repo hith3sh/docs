@@ -10,38 +10,41 @@ description: "Fix common issues with ClawLink integrations and agent connectivit
 ## Common issues
 
 <AccordionGroup>
-  <Accordion title="Integration shows 'Error' status">
-    An "Error" status on an integration usually means the credentials have expired or been revoked by the third-party service.
+  <Accordion title="Connection shows 'Needs reconnect'">
+    A **Needs reconnect** status usually means the provider credentials expired, were revoked, or need fresh consent.
 
     **To fix this:**
 
     <Steps>
-      <Step title="Go to Dashboard > Integrations">
-        Open your dashboard and navigate to **Integrations**.
+      <Step title="Go to Dashboard > Connections">
+        Open your dashboard and navigate to **Connections**.
       </Step>
-      <Step title="Disconnect the integration">
-        Find the affected integration and click **Disconnect**.
+      <Step title="Expand the affected row">
+        Find the affected app and expand its connection row.
       </Step>
-      <Step title="Reconnect with fresh credentials">
-        Click **Connect** on the same integration and enter your credentials again (or go through the OAuth flow). This refreshes the connection.
+      <Step title="Run the hosted reconnect flow">
+        Click **Reconnect** and finish the provider flow in the popup.
       </Step>
     </Steps>
   </Accordion>
 
-  <Accordion title="Agent can't connect / 'Unauthorized' error">
-    An "Unauthorized" error means ClawLink couldn't verify your API key. This usually happens when the key in your MCP command is incorrect, outdated, or missing.
+  <Accordion title="ClawLink tools are missing in OpenClaw">
+    If you just installed the plugin and cannot see ClawLink tools yet, OpenClaw is usually still using an older tool catalog for the current chat.
 
     **To fix this:**
 
     <Steps>
-      <Step title="Go to Settings > API Keys">
-        Open **Settings > API Keys** in your dashboard.
+      <Step title="Install the plugin">
+        Run `openclaw plugins install @useclawlink/openclaw-plugin`.
       </Step>
-      <Step title="Copy your current key">
-        Click **Copy** next to your Live API Key to copy the exact key value.
+      <Step title="Restart the gateway if needed">
+        Run `openclaw gateway restart` if your OpenClaw setup requires it.
       </Step>
-      <Step title="Update your MCP command">
-        Replace the API key in your MCP command with the one you just copied, then restart OpenClaw.
+      <Step title="Start a fresh chat">
+        If the current chat started before installation, open a new chat so OpenClaw reloads the plugin tools.
+      </Step>
+      <Step title="Run pairing again">
+        Ask OpenClaw to set up ClawLink or start pairing.
       </Step>
     </Steps>
   </Accordion>
@@ -56,6 +59,24 @@ description: "Fix common issues with ClawLink integrations and agent connectivit
     3. Use the error message to identify whether the issue is with your credentials, the request itself, or the third-party service
 
     Common causes include invalid parameters, permissions issues with the connected account, or the third-party service being temporarily unavailable.
+  </Accordion>
+
+  <Accordion title="Pairing link expired or approval did not finish">
+    Pairing links are short lived. If the browser page says the session expired, or OpenClaw never finishes after you approved it, start a fresh pairing flow.
+
+    **To fix this:**
+
+    <Steps>
+      <Step title="Start pairing again from OpenClaw">
+        Ask OpenClaw to set up ClawLink or start pairing again.
+      </Step>
+      <Step title="Approve the new browser URL">
+        Open the new pairing URL, sign in if needed, and click **Approve this device**.
+      </Step>
+      <Step title="Return to OpenClaw">
+        After approval, go back to OpenClaw so the plugin can finish the local save step.
+      </Step>
+    </Steps>
   </Accordion>
 
   <Accordion title="Rate limit errors">
@@ -76,38 +97,34 @@ description: "Fix common issues with ClawLink integrations and agent connectivit
     **To fix this:**
 
     <Steps>
-      <Step title="Go to Dashboard > Integrations">
-        Open your dashboard and navigate to **Integrations**.
-      </Step>
-      <Step title="Disconnect the integration">
-        Find the affected integration (e.g., Gmail) and click **Disconnect**.
+      <Step title="Go to Dashboard > Connections">
+        Open your dashboard and navigate to **Connections**.
       </Step>
       <Step title="Reconnect to get a fresh token">
-        Click **Connect** and complete the OAuth flow again. This issues a new token and restores the connection.
+        Expand the affected row and click **Reconnect**. This runs the hosted provider flow again and refreshes the token.
       </Step>
     </Steps>
   </Accordion>
 
-  <Accordion title="MCP command not working in OpenClaw">
-    If OpenClaw doesn't recognize or can't use your MCP command, the most common cause is an incomplete or incorrectly formatted command.
+  <Accordion title="Manual API key setup is not working">
+    Manual key entry is a fallback path. If it fails, the simplest fix is usually to switch back to browser pairing.
 
     **Check the following:**
 
-    - Make sure you copied the **full** command from the dashboard, including the API key flag at the end
-    - The command should look something like: `npx @clawlink/mcp --api-key sk_live_...`
-    - Don't add extra spaces or line breaks when pasting
-    - Restart OpenClaw after updating the command
-
-    If the command looks correct but still isn't working, verify that your API key is valid in **Settings > API Keys**.
+    - Make sure the key starts with `cllk_live_...`
+    - Confirm you copied the raw key when it was first shown after creation
+    - Revoke old keys you no longer trust and create a fresh one if needed
+    - If possible, remove the manual key and run browser pairing instead
   </Accordion>
 
   <Accordion title="Requests not appearing in logs">
     If your agent is running but you don't see requests in the logs, try the following:
 
     1. **Refresh the logs page**—there can be a short delay before new entries appear
-    2. **Confirm your agent is using the correct MCP endpoint**—check that the MCP command in OpenClaw matches exactly what's in your dashboard
-    3. **Verify your API key**—if the key is invalid, requests are rejected before they're logged
+    2. **Confirm the device is paired**—if OpenClaw is not authenticated to ClawLink, requests never reach tool execution
+    3. **Verify the app is actually connected**—an unconnected provider cannot produce tool execution rows
+    4. **Check the local credential**—if the device credential was revoked, requests are rejected before they are logged
 
-    If requests still don't appear after a few minutes, the agent may not be reaching ClawLink at all. Double-check the MCP command and API key configuration.
+    If requests still do not appear after a few minutes, run pairing again and make sure the app is connected in **Connections**.
   </Accordion>
 </AccordionGroup>

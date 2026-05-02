@@ -1,38 +1,33 @@
 ---
 title: "Quick Start"
-description: "Connect your AI agent to 40+ APIs in under 5 minutes"
+description: "Install the plugin, pair OpenClaw, and connect your first app in under 5 minutes"
 ---
 
 <Steps>
   <Step title="Sign up at claw-link.dev">
-    Go to [claw-link.dev](https://claw-link.dev) and create your account. No credit card required to get started.
+    Go to [claw-link.dev](https://claw-link.dev) and create your account. No card is required to connect your first app.
   </Step>
 
-  <Step title="Connect your first integration">
-    From the dashboard, open the **Integrations** tab. Find the integration you want to use and click **Connect** next to it.
-
-    - For OAuth-based integrations like Gmail or Google Sheets, ClawLink opens the provider's auth screen. Sign in and grant access — that's all you do.
-    - For API key-based integrations like Stripe or GitHub, paste your API key into the input field and click **Save**.
-
-    Your credentials are encrypted immediately and never leave the edge.
-  </Step>
-
-  <Step title="Copy your MCP command">
-    From the dashboard home, find the **Your MCP Command** section and click **Copy**.
-
-    Your personal command looks like this:
+  <Step title="Install the OpenClaw plugin">
+    Install the official ClawLink plugin for OpenClaw:
 
     ```bash
-    npx @clawlink/mcp --api-key sk_live_xxxx
+    openclaw plugins install @useclawlink/openclaw-plugin
+    openclaw gateway restart
     ```
 
-    <Note>
-      Your API key is specific to your account. Find it any time under **Dashboard > Settings > API Keys**.
-    </Note>
+    If the current OpenClaw chat started before the plugin was installed and you do not see the ClawLink tools yet, start a fresh chat after install.
   </Step>
 
-  <Step title="Paste into OpenClaw">
-    Open OpenClaw and add the MCP command you just copied. OpenClaw will connect to ClawLink's edge network and load the tools for every integration you've connected.
+  <Step title="Pair this OpenClaw device">
+    In OpenClaw, ask the assistant to set up ClawLink or start pairing. The plugin returns a browser URL. Open it, sign in to ClawLink if needed, and click **Approve this device**.
+  </Step>
+
+  <Step title="Connect your first app">
+    In the ClawLink dashboard, open **Connections** and click **Add connection**. Pick the app you want and complete the hosted flow.
+
+    - OAuth-backed apps open the provider's consent screen in a popup.
+    - Manual credential apps are being replaced by hosted flows. If an app is not ready yet, it shows **Coming soon** or **Hosted flow pending**.
   </Step>
 
   <Step title="Start using your integrations">
@@ -47,5 +42,9 @@ description: "Connect your AI agent to 40+ APIs in under 5 minutes"
 </Steps>
 
 <Tip>
-  Start with the integrations you use most day-to-day — Gmail and Slack are good first choices since your agent can immediately handle routine communication tasks. Add more integrations from the dashboard any time without updating your MCP command.
+  Start with the apps you use most day to day. Gmail and Google Calendar are good first choices because the hosted flow is fast and the results are easy to verify. You can add more apps later without changing the OpenClaw plugin setup.
 </Tip>
+
+<Note>
+  **Settings > API Keys** is still available, but it is an advanced fallback for manual plugin settings UIs and debugging. Browser pairing is the recommended setup path.
+</Note>

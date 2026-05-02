@@ -19,28 +19,32 @@ ClawLink keeps billing simple. Your first connected app is free. Upgrade to **Cl
 ## How the free limit works
 
 - The free plan includes **one connected app**.
-- Once you already have one app connected, adding a different app prompts you to upgrade.
+- Billing is based on **distinct integration slugs**, not total connection rows.
+- Once you already have one distinct app connected, adding a different app prompts you to upgrade.
 - Your existing connected app keeps working even if you do not upgrade.
 - Pro removes that one-app cap so you can keep connecting more services.
 
-ClawLink currently gates billing by connected apps, not by monthly request quotas.
+If you connect two Gmail accounts, that is still one distinct integration for billing. If you connect Gmail and Slack, that counts as two.
 
-## What you see in settings
+ClawLink currently gates billing by connected integrations, not by monthly request quotas.
 
-In **Dashboard > Settings > Billing**, ClawLink shows:
+## What you see on the Billing page
+
+In **Dashboard > Billing**, ClawLink shows:
 
 - Your current plan and billing status
-- How many apps are connected
-- Whether your next connection requires an upgrade
+- How many distinct integrations are connected
+- Whether the next new integration requires an upgrade
 - Your renewal date when Pro is active
+- A direct upgrade or **Manage subscription** action
 
-If you return from checkout and still see the free plan for a moment, refresh the page. Billing state is synced after checkout completes.
+If you return from checkout and still see the free plan for a moment, wait a minute and refresh. Billing state is synced after checkout completes and the webhook lands.
 
 ## Upgrading to Pro
 
 To upgrade:
 
-1. Go to **Dashboard > Settings > Billing**
+1. Go to **Dashboard > Billing**
 2. Click **Upgrade to Pro**
 3. Complete checkout in Polar
 4. Return to the dashboard and refresh if needed
@@ -49,7 +53,7 @@ Your paid plan becomes active as soon as checkout and billing sync finish.
 
 ## Managing your subscription
 
-If you already have Pro, use **Manage subscription** in the Billing tab to:
+If you already have Pro, use **Manage subscription** on the Billing page to:
 
 - Update your payment method
 - View invoices and receipts
@@ -71,11 +75,11 @@ ClawLink sends you to the Polar customer portal for those actions.
   </Accordion>
 
   <Accordion title="Can I manage or cancel my subscription later?">
-    Yes. Once you're on Pro, open **Dashboard > Settings > Billing** and click **Manage subscription** to open the Polar customer portal.
+    Yes. Once you're on Pro, open **Dashboard > Billing** and click **Manage subscription** to open the Polar customer portal.
   </Accordion>
 
   <Accordion title="Does reconnecting the same provider count as another app?">
-    Billing is based on the connected app type. Reconnecting an app you already use does not require a new upgrade. Adding a different app does.
+    No. Billing is based on distinct integrations, not total connection rows. Reconnecting Gmail or adding another Gmail account does not require a new upgrade. Adding a different integration like Slack does.
   </Accordion>
 
   <Accordion title="How much is Pro?">

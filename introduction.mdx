@@ -3,14 +3,15 @@ title: "Introduction"
 description: "What ClawLink is and why you'd use it"
 ---
 
-ClawLink connects your AI agent to 40+ APIs — Gmail, Slack, Stripe, GitHub, Notion, and more — through a single MCP command. Connect your integrations once from the dashboard, and every API call is handled for you: authentication, retries, rate limiting, and request logging included.
+ClawLink connects OpenClaw to a growing catalog of apps through one hosted integration layer. Install the ClawLink plugin once, pair your OpenClaw device in the browser, and connect apps from the dashboard. ClawLink handles authentication, credential storage, retries, rate limiting, and request logging for you.
 
 ## Why use ClawLink
 
-- **OAuth handled for you** — click Connect next to an integration and ClawLink manages the entire auth flow. No tokens, no refresh logic to maintain.
+- **Hosted connect flows** — click **Connect** next to an app and ClawLink manages the OAuth or provider auth flow for you.
+- **Browser pairing for OpenClaw** — pair your device once instead of pasting a raw secret into chat for normal setup.
 - **Credentials never stored on your machine** — your API keys and OAuth tokens are encrypted at rest and only decrypted at the moment a request executes.
-- **Request logs** — every API call is logged with status, latency, and integration name. Debug and audit from the dashboard.
-- **Rate limiting and retries built in** — ClawLink handles throttling and retries automatically so your agent keeps working even when APIs are slow.
+- **Usage logs** — every tool call is logged with status, latency, integration, and action. Debug and audit from the dashboard.
+- **Built-in reliability** — ClawLink handles throttling and retries automatically so your agent keeps working even when APIs are slow.
 - **First connected app is free** — start at no cost, then upgrade to Pro for $5/month when you need more apps.
 
 ## Supported integrations
@@ -35,7 +36,7 @@ ClawLink connects your AI agent to 40+ APIs — Gmail, Slack, Stripe, GitHub, No
     YouTube, Twitter/X, LinkedIn, Instagram
   </Card>
   <Card title="All Integrations" icon="grid" href="/integrations/overview">
-    Browse all 40+ integrations across every category.
+    Browse every supported app across every category.
   </Card>
 </CardGroup>
 
@@ -43,8 +44,8 @@ ClawLink connects your AI agent to 40+ APIs — Gmail, Slack, Stripe, GitHub, No
 
 | Without ClawLink | With ClawLink |
 |---|---|
-| Implement OAuth flows per integration | Click Connect — OAuth handled automatically |
+| Implement provider auth flows per integration | Start a hosted connect flow from the dashboard |
 | Store credentials locally or in your own vault | Credentials encrypted and stored securely on the edge |
 | Write retry and rate-limit logic yourself | Retries and rate limiting built in |
 | No visibility into what your agent called | Full request logs with status and latency |
-| Integrate each API's SDK separately | One MCP command covers every integration |
+| Hand-wire every client setup in OpenClaw | Install one plugin, pair once, then connect apps as needed |

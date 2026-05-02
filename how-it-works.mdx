@@ -1,47 +1,62 @@
 ---
 title: "How It Works"
-description: "How ClawLink securely proxies your agent's requests to third-party APIs"
+description: "How the hosted app, execution worker, shared storage, and request flow fit together"
 ---
 
-When you ask your AI agent to send an email or create a GitHub issue, ClawLink handles the entire request on your behalf — authentication, credential lookup, the API call itself, and the response back to your agent. Here's what happens at each step.
+ClawLink no longer runs as one undifferentiated edge app. It has two production Cloudflare Workers that share the same database and credential store:
 
-## Request flow
+- `clawlink-web` on `claw-link.dev` handles the hosted app, dashboard, pairing pages, billing routes, OAuth callbacks, and Next API routes.
+- `clawlink` on `api.claw-link.dev` handles tool execution, request routing, and scheduled backend work.
+
+Both workers use the same D1 database and the same `CREDENTIALS` KV namespace, so browser flows and execution stay in sync.
+
+## Runtime architecture
 
 ```
-OpenClaw (your machine)
-        │
-        │  MCP request + your API key
-        ▼
-ClawLink Edge Network
-        ├── Authenticates your request
-        ├── Looks up your stored credentials
-        ├── Calls the third-party API
-        ├── Logs the request
-        └── Returns the result
-        │
-        ▼
-Gmail / Slack / GitHub / Stripe / etc.
+OpenClaw
+   │
+   │  plugin install + browser pairing
+   ▼
+claw-link.dev  (clawlink-web)
+   ├── hosted dashboard
+   ├── pairing pages
+   ├── connect popups and callbacks
+   ├── billing routes
+   └── Next API routes
+   │
+   ├── shared D1: clawlink
+   └── shared KV: CREDENTIALS
+   │
+   ▼
+api.claw-link.dev  (clawlink)
+   ├── tool execution
+   ├── connection-aware routing
+   ├── retries and provider calls
+   └── scheduled backend work
+   │
+   ▼
+Third-party APIs
 ```
 
 <Steps>
-  <Step title="OpenClaw sends an MCP request">
-    When you ask your agent to do something — "send an email to alice@example.com" — OpenClaw translates that into an MCP request and sends it to ClawLink's edge network along with your API key.
+  <Step title="Pairing and connect flows start on claw-link.dev">
+    You sign in to the hosted app, approve browser pairing for OpenClaw, and connect apps from the dashboard. Hosted OAuth and provider callbacks also land here.
   </Step>
 
-  <Step title="ClawLink authenticates the request">
-    ClawLink verifies your API key before doing anything else. If the key is invalid or missing, the request is rejected immediately and nothing is executed.
+  <Step title="Connection sessions create or update exact connection rows">
+    Every hosted connect flow is tied to a connection session. When setup finishes, ClawLink creates or updates the correct `user_integrations` row, including the stable connection id, labels, provider metadata, and default-connection state.
   </Step>
 
-  <Step title="ClawLink looks up your credentials">
-    ClawLink identifies which integration the request targets (Gmail, in this example) and retrieves the stored credentials for your account. Credentials are decrypted only at this moment — they are never cached in plaintext or sent to your machine.
+  <Step title="OpenClaw authenticates with its local ClawLink credential">
+    Browser pairing stores a local ClawLink credential for the OpenClaw plugin. OpenClaw uses that credential when it asks ClawLink to list tools, preview actions, or execute a tool call.
   </Step>
 
-  <Step title="ClawLink calls the third-party API">
-    Using your decrypted credentials, ClawLink makes the API call on your behalf — sending the email, posting the Slack message, creating the GitHub issue, or whatever the request requires.
+  <Step title="The execution worker resolves the right connection">
+    The backend worker looks up the user, finds the target integration, and resolves the right connection row. If multiple connections exist for the same provider, ClawLink uses the default connection unless the request names a specific one.
   </Step>
 
-  <Step title="The result is returned to your agent">
-    ClawLink logs the request (integration, action, status, latency) and returns the result to OpenClaw. Your agent sees the outcome and responds to you accordingly.
+  <Step title="Credentials are decrypted only when the provider call runs">
+    ClawLink decrypts the stored provider credential only for the live request, makes the provider API call, records the execution result, and returns the response to OpenClaw.
   </Step>
 </Steps>
 
@@ -49,12 +64,13 @@ Gmail / Slack / GitHub / Stripe / etc.
 
 Your credentials are protected at every stage:
 
-- **Encrypted at rest with AES-256-GCM** — credentials are encrypted before being stored and can only be decrypted with keys that are never co-located with the data.
-- **Decrypted only at execution time** — credentials are decrypted on the edge, used for the single API call, and not retained in plaintext anywhere.
-- **Never sent to your machine** — your API keys and OAuth tokens exist only on ClawLink's edge network. OpenClaw never sees them.
+- **Encrypted at rest with AES-256-GCM** — provider credentials are encrypted before storage.
+- **Decrypted only at execution time** — credentials are decrypted only for the live provider request.
+- **OpenClaw stores only the ClawLink device credential locally** — provider OAuth tokens and app credentials stay in ClawLink's shared infrastructure.
+- **Delete is row-level for connections** — connection lifecycle is tied to stable connection ids, not a one-row-per-provider assumption.
 
 <Warning>
-  Treat your ClawLink API key like a password. Anyone with your key can make requests on behalf of your connected integrations. Rotate it from **Dashboard > Settings > API Keys** if you believe it has been compromised.
+  Treat the locally stored ClawLink device credential like a password. If you believe it has been exposed, revoke it in **Settings > API Keys** and run browser pairing again.
 </Warning>
 
 ## Built-in reliability
@@ -63,5 +79,6 @@ ClawLink handles the reliability concerns that would otherwise fall on you:
 
 - **Retries with exponential backoff** — if a third-party API returns a transient error, ClawLink retries the request automatically, waiting longer between each attempt to avoid overwhelming the service.
 - **Rate limit handling** — when an API enforces rate limits, ClawLink manages the pacing so your agent's requests go through without you having to think about it.
+- **Connection-aware routing** — if one provider has multiple connected accounts, ClawLink can route through the default connection instead of guessing from a single old row.
 
-Every request — successful or not — is recorded in your dashboard with the integration name, action, status, and latency, so you always have a clear picture of what your agent has done.
+Every request — successful or not — is recorded in **Usage** with the integration name, action, status, and latency so you can see what OpenClaw actually did.

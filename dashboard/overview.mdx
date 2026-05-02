@@ -1,68 +1,47 @@
 ---
 title: "Overview"
-description: "Your ClawLink dashboard at a glance"
+description: "What the current dashboard shows and where each workflow lives"
 ---
 
-The dashboard gives you a real-time view of your API activity. From here you can check how your integrations are performing, review recent requests, and grab your MCP command to connect your agent.
+The dashboard is organized around setup and connection management, not a single copy-and-paste command. The current home page focuses on OpenClaw setup, app discovery, and quick paths into the rest of the product.
 
-## Stats
+## Sidebar navigation
 
-Four cards at the top of the dashboard summarize your account activity.
+The main sidebar is split into **Platform** and **Resources**.
 
-| Card | What it shows |
+| Section | What it contains |
 |---|---|
-| **Total Requests** | The total number of API calls made across all your integrations |
-| **Success Rate** | The percentage of requests that completed without an error |
-| **Avg Latency** | The average response time across all recent requests |
-| **Active Integrations** | The number of integrations you currently have connected |
+| **Platform** | **Home**, **Connections**, **Usage**, **Request App** |
+| **Resources** | **Settings**, **Billing**, **Feedback**, **Documentation** |
 
-Each card also shows a trend indicator so you can see how your numbers are changing over time.
+## Home page
 
-## Connected integrations
+The home page currently gives you:
 
-The **Connected Integrations** panel lists every integration you've authorized, along with its current status and when it was last used.
+- An **OpenClaw setup** card that explains browser pairing and links to **Settings > API Keys** for advanced/manual fallback
+- A searchable app grid across the full integration catalog
+- Sorting controls for **Live first**, **Connected first**, and **Alphabetical**
+- A **Show more apps** control when the page is hiding non-live or less relevant entries by default
 
-| Status | Meaning |
-|---|---|
-| **Connected** | The integration is working and ready to use |
-| **Error** | Something is wrong — the integration may need to be reconnected |
+The home page does not currently show the old stats cards, recent requests list, or an embedded MCP command block.
 
-Select **View all** to go to the full Integrations page, where you can connect new services or manage existing ones.
+## Where to go for each job
 
-## Recent requests
-
-The **Recent Requests** panel shows the last few API calls your agent made. Each entry includes:
-
-- The integration and action that was called (for example, `gmail/send_email`)
-- How long ago the request was made
-- The latency for that call
-
-A green dot means the request succeeded. A red dot means it failed. Select **View all** to open the full request logs.
-
-## Your MCP command
-
-The **Your MCP Command** section at the bottom of the dashboard contains the command you paste into your agent to connect all your ClawLink integrations at once.
-
-```bash
-npx @clawlink/mcp --api-key sk_live_xxxx
-```
-
-Select **Copy** to copy the command to your clipboard. Your personal API key is embedded in the command automatically.
-
-<Note>
-Your MCP command is unique to your account. Do not share it publicly.
-</Note>
+- Use **Connections** to add, reconnect, expand, or remove individual connection rows.
+- Use **Usage** to inspect tool execution history, failures, and latency.
+- Use **Settings** for profile, advanced/manual API keys, and account security handoff.
+- Use **Billing** for plan status, upgrade, and subscription management.
 
 ## Explore the dashboard
 
 <CardGroup cols={3}>
-  <Card title="Integrations" icon="plug" href="/dashboard/integrations">
-    Connect and manage your API integrations
+  <Card title="Connections" icon="plug" href="/dashboard/integrations">
+    Add apps, reconnect existing accounts, and remove individual connection rows
   </Card>
-  <Card title="Request Logs" icon="list" href="/dashboard/request-logs">
-    Monitor every API call your agent makes
+  <Card title="Usage" icon="list" href="/dashboard/request-logs">
+    Monitor every tool call your agent makes
   </Card>
   <Card title="Settings" icon="gear" href="/dashboard/settings">
-    Manage your account, API keys, and billing
+    Manage your profile, advanced API keys, and security handoff
   </Card>
 </CardGroup>
