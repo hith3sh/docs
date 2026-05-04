@@ -69,7 +69,11 @@
               "integrations/crm-sales",
               "integrations/payments",
               "integrations/social-media",
-              "integrations/notion"
+              "integrations/notion",
+              "integrations/openclaw-to-notion",
+              "integrations/openclaw-to-slack",
+              "integrations/openclaw-to-gmail",
+              "integrations/openclaw-to-airtable"
             ]
           },
           {
