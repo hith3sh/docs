@@ -49,6 +49,58 @@ description: "Fix common issues with ClawLink integrations and agent connectivit
     </Steps>
   </Accordion>
 
+  <Accordion title="ClawLink is enabled, but no ClawLink tools load at runtime">
+    If ClawLink shows as installed and enabled in your plugin list, but ClawLink is missing from the gateway startup log and no ClawLink tools appear in chat, the bundled `tools` host plugin is almost certainly disabled.
+
+    The gateway startup log looks like this:
+
+    ```text
+    http server listening (8 plugins: bonjour, browser, device-pair, file-transfer, memory-core, phone-control, talk-voice, whatsapp)
+    ```
+
+    If `tools` is not listed, OpenClaw cannot expose ClawLink's runtime-registered tools to agent sessions, even though the plugin itself is configured correctly.
+
+    **To fix this:**
+
+    <Steps>
+      <Step title="Open your OpenClaw config">
+        Edit `~/.openclaw/openclaw.json`.
+      </Step>
+      <Step title="Add `tools` to the allow list">
+        If a `plugins.allow` array exists, make sure it contains `"tools"` (and `"clawlink-plugin"`):
+
+        ```json
+        {
+          "plugins": {
+            "allow": [
+              "bonjour",
+              "browser",
+              "device-pair",
+              "file-transfer",
+              "memory-core",
+              "phone-control",
+              "talk-voice",
+              "whatsapp",
+              "tools",
+              "clawlink-plugin"
+            ]
+          }
+        }
+        ```
+
+        If there is no `plugins.allow` list, the `tools` plugin loads by default — you only need this step when an explicit allow list is in use.
+      </Step>
+      <Step title="Reload the gateway">
+        Run `openclaw gateway restart` and confirm the new startup line includes `tools` and `clawlink-plugin`.
+      </Step>
+      <Step title="Start a fresh chat and retry">
+        Open a new chat and try the affected app again (for example, Google Calendar).
+      </Step>
+    </Steps>
+
+    On managed OpenClaw deployments, ask your OpenClaw admin to enable the bundled `tools` plugin and reload the gateway.
+  </Accordion>
+
   <Accordion title="API calls are failing">
     If your agent is making requests but they're failing, check the Request Logs for details.
 

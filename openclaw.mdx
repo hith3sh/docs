@@ -3,9 +3,31 @@ title: "OpenClaw setup"
 description: "Install the ClawLink plugin in OpenClaw and pair this device"
 ---
 
-ClawLink works with OpenClaw through the `@useclawlink/openclaw-plugin` package. Install the plugin once, approve this device in your browser, then connect apps from the ClawLink dashboard.
+ClawLink works with OpenClaw through the `@useclawlink/openclaw-plugin` package. The flow is: install OpenClaw, install the ClawLink plugin into it, approve this device in your browser, then connect apps from the ClawLink dashboard.
 
-## Recommended setup
+## 1. Install OpenClaw
+
+If you don't have OpenClaw yet, install it before adding the ClawLink plugin.
+
+<Steps>
+  <Step title="Install the OpenClaw client">
+    Follow the official OpenClaw install instructions for your platform from [openclaw.com](https://openclaw.com). Most users install the desktop client; self-hosted gateway installs are also supported.
+  </Step>
+  <Step title="Start the gateway at least once">
+    Launch OpenClaw so the gateway initializes and writes its config file at `~/.openclaw/openclaw.json`. ClawLink reads pairing state from that file.
+  </Step>
+  <Step title="Confirm the gateway is running">
+    When the gateway starts, the log prints a line like:
+
+    ```text
+    http server listening (8 plugins: bonjour, browser, device-pair, file-transfer, memory-core, phone-control, talk-voice, whatsapp)
+    ```
+
+    Keep this line in mind — you'll check it again after installing the ClawLink plugin to make sure `clawlink-plugin` shows up alongside the built-ins.
+  </Step>
+</Steps>
+
+## 2. Install the ClawLink plugin
 
 <Steps>
   <Step title="Install the plugin">
