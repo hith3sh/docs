@@ -1,0 +1,293 @@
+---
+title: "Connected Channel or Bot Is Online but OpenClaw Ignores Messages"
+description: "Troubleshoot when your connected bot or channel looks healthy and online, but OpenClaw still does not respond to messages."
+---
+
+![OpenClaw logo](/images/articles/openclaw-logo.svg)
+
+*This is one of the more irritating OpenClaw problems because it creates a very convincing illusion of health. The bot is online. The channel is connected. Everything looks alive. And yet OpenClaw behaves like your message was whispered into a pillow.*
+
+If OpenClaw is online in a connected channel but still **ignores messages**, the issue is usually not that the whole install is dead.
+
+It is usually one of these:
+
+- the routing/config for that channel is incomplete or mismatched
+- the bot is connected, but the wrong chat, thread, or scope is being tested
+- permissions are technically present but insufficient for the action you expect
+- the gateway/runtime is healthy enough to appear online, but not healthy enough to process correctly
+- the message reached the platform, but did not reach the path OpenClaw is actually listening on
+
+This guide is the fastest way to separate “online” from “actually wired correctly.”
+
+> ![Lightbulb icon](/images/icons/lightbulb.svg)
+> **Simple rule:** online presence only proves the connection exists at some level. It does **not** prove OpenClaw is receiving, routing, and processing the messages you expect.
+
+## ![Monitor icon](/images/icons/monitor-cog.svg) At a glance
+
+- Confirm you are testing the **right channel/chat/thread/scope** first.
+- Check **routing and permissions**, not just presence.
+- If the bot looks online but acts dead, verify the exact path OpenClaw is listening on.
+
+
+## What this usually looks like
+
+Users usually mean one of these:
+
+- the bot shows as online, but replies to nothing
+- OpenClaw worked before, but now it sits silently in the channel
+- direct chat works, but the group/channel does not
+- some messages seem to work, but others are ignored
+- the platform shows the integration alive, but no useful response happens
+
+These are not always the same bug.
+But they usually live in the same family: **the connection exists, the handling path does not**.
+
+## First: define where it is failing
+
+Before changing config, figure out which one is true:
+
+### Case 1: the message never reached OpenClaw
+Possible causes:
+
+- wrong routing
+- wrong channel/thread/chat target
+- platform-side permission/scope mismatch
+- event handling mismatch
+
+### Case 2: the message reached OpenClaw, but processing failed
+Possible causes:
+
+- gateway/runtime health issue
+- stale or broken config
+- plugin/runtime path mismatch
+
+### Case 3: OpenClaw intentionally did not respond
+Possible causes:
+
+- the message did not qualify for a response in that context
+- the bot was not directly addressed where that matters
+- group behavior/rules filtered it out
+
+That distinction matters a lot.
+
+## Fast troubleshooting flow
+
+## 1) Check that you are testing the right target
+This sounds basic, but it catches a lot.
+
+Make sure you are testing the exact:
+
+- chat
+- channel
+- thread
+- group
+- DM
+- mention mode / addressing pattern
+
+that your OpenClaw setup is actually supposed to handle.
+
+A bot can be online globally while still not being configured to respond in the exact place you are testing.
+
+## 2) Check OpenClaw status and gateway health
+Run:
+
+```bash
+openclaw status
+```
+
+Then:
+
+```bash
+openclaw gateway status
+```
+
+And if available:
+
+```bash
+openclaw gateway status --json
+```
+
+You are looking for clues like:
+
+- unhealthy gateway state
+- plugin/runtime load issues
+- channel/plugin config mismatch
+- validation problems
+
+A bot can remain visibly connected even while the actual processing path is broken.
+
+## 3) Confirm the platform permissions are sufficient
+Online does not equal fully functional.
+
+Depending on the channel/platform, the account/bot may still be missing some combination of:
+
+- read access
+- send/reply access
+- thread access
+- mention handling
+- event subscription scope
+- server/channel-specific permissions
+
+The result is often:
+
+> “It is online, so why is it acting dead?”
+
+Because presence is easier than full interaction.
+
+## 4) Check whether this is really a routing problem
+If OpenClaw works in one place but not another, routing is a prime suspect.
+
+Examples:
+
+- works in direct chat, fails in group chat
+- works in one server/channel, fails in another
+- works after reconnect, then not after config change
+
+That usually points to:
+
+- wrong target scope
+- wrong plugin/channel binding
+- chat-specific filtering
+- environment drift after updates or config edits
+
+## 5) Re-test with a minimal message in the simplest context
+Do not test first with a complicated multi-part request.
+
+Try the smallest possible valid interaction in the simplest context you expect to work.
+
+For example:
+
+- a direct message
+- a clearly addressed mention
+- one short prompt in the known target channel
+
+If that works, but the original case does not, the problem is not total connectivity.
+It is probably scope, routing, or context rules.
+
+## 6) Check whether the current behavior is intentional in group/shared contexts
+Sometimes OpenClaw is not broken.
+It is being selective.
+
+In shared spaces, it may not answer every message automatically.
+
+That means you should ask:
+
+- was it directly addressed?
+- does the current context require mention/trigger conditions?
+- is silence actually expected for low-signal messages?
+
+This does **not** explain every case, but it rules out false alarms.
+
+## Common root causes
+
+## Root cause 1: wrong target/scope
+Symptoms:
+
+- bot is online
+- no response in a particular channel/thread/chat
+- works elsewhere
+
+Fix:
+
+- verify the exact place OpenClaw is configured to handle
+
+## Root cause 2: permission mismatch
+Symptoms:
+
+- can appear online
+- cannot read/respond properly in the target context
+
+Fix:
+
+- review channel/platform permissions and scopes
+
+## Root cause 3: routing/config mismatch
+Symptoms:
+
+- connection exists
+- response path behaves inconsistently
+- issue started after changes
+
+Fix:
+
+- inspect channel/plugin/gateway config
+- compare working vs non-working context
+
+## Root cause 4: gateway/runtime unhealthy behind the scenes
+Symptoms:
+
+- connection still visible
+- actual processing fails or stalls
+
+Fix:
+
+- inspect `openclaw status`
+- inspect `openclaw gateway status --json`
+
+## Root cause 5: expected-response rules do not match the test
+Symptoms:
+
+- bot ignores casual/group messages
+- responds only when directly addressed or in specific contexts
+
+Fix:
+
+- test with an explicit, minimal, direct message
+
+## Practical checklist
+
+Use this order:
+
+### 1. Verify the exact chat/channel/thread you are testing
+### 2. Send one minimal direct/clearly addressed message
+### 3. Check `openclaw status`
+### 4. Check `openclaw gateway status --json`
+### 5. Compare permissions and scope between working and non-working contexts
+### 6. Inspect routing/config if behavior differs by target
+
+## How to tell whether this is really a routing problem
+
+It probably is if:
+
+- OpenClaw works in one target but not another
+- the bot is visibly online but selectively silent
+- the issue appeared after channel/config changes
+
+It is probably **not** just routing if:
+
+- the gateway is broadly unhealthy
+- the message was never valid for response in that context
+- the problem is actually a missing tool/runtime path instead
+
+## Common mistakes
+
+### Treating online presence as proof everything is wired correctly
+It is not.
+
+### Testing only in the most complicated shared context first
+Bad signal.
+
+### Ignoring permission subtleties because the bot “looks connected”
+Very common.
+
+### Not comparing a working target against a broken one
+That comparison is often the fastest clue.
+
+## Final thought
+
+When a connected channel or bot is online but OpenClaw ignores messages, the useful question is not:
+
+> “Why is the bot dead?”
+
+It is:
+
+> “What part of the message path is alive, and what part is not?”
+
+Presence, routing, permissions, processing, and response rules are different layers.
+Find the broken one and the whole thing stops feeling mysterious.
+
+## Related pages
+
+- `OpenClaw Not Responding After an Update? Start Here`
+- `Why OpenClaw Says It Will Act but Doesn’t Complete the Task`
+- `Plugin Installed but Tools Don’t Appear in OpenClaw`

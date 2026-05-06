@@ -1,0 +1,262 @@
+---
+title: "Healthy Gateway, Wrong Routing: Why OpenClaw Isn’t Responding in the Channel You Expect"
+description: "Troubleshoot cases where OpenClaw looks healthy overall, but messages in a specific channel, chat, or route still do not trigger the expected response."
+---
+
+![OpenClaw connection guide](/images/articles/openclaw-lobster.svg)
+
+*This is one of those especially annoying setup failures because the diagnostics keep telling you something is healthy while the actual user experience keeps telling you otherwise.*
+
+If the **gateway looks healthy** but OpenClaw still does **not respond in the specific channel, chat, or route you expect**, you are usually dealing with a routing problem rather than a global outage.
+
+That means the system may be healthy in general while the exact message path you care about is still broken.
+
+Common causes include:
+
+- the wrong channel/chat/thread is being tested
+- the bot is connected, but not bound to the path you think
+- scope or filtering rules differ between targets
+- a plugin/channel config mismatch affects one route but not another
+- gateway health is fine, but delivery and handling rules are not
+
+This guide is about narrowing that down quickly.
+
+> ![Monitor icon](/images/icons/monitor-cog.svg)
+> **Important distinction:** global health tells you the engine is running. It does **not** guarantee the steering is pointed at the lane you care about.
+
+## ![Lightbulb icon](/images/icons/lightbulb.svg) At a glance
+
+- A healthy gateway only proves the core runtime is alive.
+- If one route fails while others work, compare the **exact target, scope, and config differences**.
+- Debug one known-working route against one failing route instead of guessing globally.
+
+
+## What this problem usually looks like
+
+Users often describe one of these:
+
+- `openclaw status` looks fine, but one channel still gets no response
+- direct chat works, but a group/channel/thread does not
+- one bot target works, another stays silent
+- the install looks healthy after restart, but the real-world route is still broken
+
+That usually means:
+
+> the system health checks are passing, but the route-specific handling path is not.
+
+## First: prove that this is route-specific
+
+Before changing config, answer this:
+
+- does OpenClaw respond anywhere else?
+- is the failure isolated to one platform target?
+- is one thread/channel broken while another works?
+
+If yes, you are probably not chasing a total outage.
+You are chasing routing.
+
+## Fast troubleshooting flow
+
+## 1) Compare one working target with one failing target
+This is the fastest high-signal step.
+
+Make a side-by-side comparison:
+
+- working chat/channel/thread
+- failing chat/channel/thread
+
+Check differences in:
+
+- target type
+- permissions
+- scope
+- addressing requirements
+- plugin/channel configuration
+- whether the context is direct or shared
+
+Without that comparison, it is easy to overgeneralize from one broken route.
+
+## 2) Verify the exact target you are testing
+Make sure you are not accidentally mixing up:
+
+- DM vs group
+- group vs thread
+- one server/channel vs another
+- a bot account being present vs actually active in that scope
+
+This sounds trivial. It is not.
+A lot of “wrong routing” issues are really “wrong target assumptions.”
+
+## 3) Check gateway health — then move past it
+Yes, still run the basics:
+
+```bash
+openclaw status
+```
+
+```bash
+openclaw gateway status
+```
+
+```bash
+openclaw gateway status --json
+```
+
+But if those look healthy, stop trying to make a route-specific problem into a global health problem.
+
+That is usually wasted motion.
+
+## 4) Check whether response rules differ in that context
+Some routes have different behavior expectations.
+
+Examples:
+
+- direct chats may respond more readily than group chats
+- shared channels may require direct mention or stronger intent
+- thread-specific behavior may differ from parent-channel behavior
+
+So ask:
+
+- was OpenClaw directly addressed?
+- is the failing route shared/group context?
+- does the expected trigger differ there?
+
+A healthy route can still stay silent if your test does not meet the route’s response conditions.
+
+## 5) Check permissions and scope differences
+This is one of the highest-value checks.
+
+A bot can be healthy and connected while still lacking the exact permissions or scope needed in one route.
+
+Compare:
+
+- read access
+- reply/send access
+- thread visibility
+- event subscription coverage
+- channel-specific restrictions
+
+Especially if one route works and another does not, permissions are a serious suspect.
+
+## 6) Inspect recent config changes
+If the issue started after:
+
+- reconnecting a plugin
+- updating OpenClaw
+- changing gateway config
+- changing channel/plugin bindings
+- moving to a new thread/chat/server
+
+…then route drift may be the explanation.
+
+Gateway health can stay green while route mapping quietly becomes wrong.
+
+## Common root causes
+
+## Root cause 1: wrong target assumption
+Symptoms:
+
+- user thinks a channel/thread is in scope
+- OpenClaw is actually wired for something else
+
+Fix:
+
+- verify the exact target path being tested
+
+## Root cause 2: route-specific permissions problem
+Symptoms:
+
+- one route works, another does not
+- bot looks healthy overall
+
+Fix:
+
+- compare permissions and scope directly
+
+## Root cause 3: direct-vs-shared context mismatch
+Symptoms:
+
+- DM works
+- group or thread does not
+
+Fix:
+
+- test with explicit addressing in the shared route
+- verify expected trigger behavior there
+
+## Root cause 4: config/binding drift
+Symptoms:
+
+- route used to work
+- recent config/update/reconnect happened
+- health checks still look fine
+
+Fix:
+
+- inspect recent config changes affecting that route
+
+## Root cause 5: healthy core runtime, broken delivery path
+Symptoms:
+
+- status looks good
+- real interaction path still fails
+
+Fix:
+
+- focus on route-level comparison instead of global status alone
+
+## Practical checklist
+
+Use this order:
+
+### 1. Identify one working route and one failing route
+### 2. Compare target type, permissions, and scope
+### 3. Check `openclaw status`
+### 4. Check `openclaw gateway status --json`
+### 5. Test with one minimal direct/explicit message in the failing route
+### 6. Inspect recent routing/config changes
+
+## How to tell whether this is truly route-specific
+
+It probably is if:
+
+- global status is healthy
+- at least one target still works
+- the failure is isolated to a specific channel/chat/thread
+
+It probably is **not** just routing if:
+
+- nothing works anywhere
+- the gateway is actually unhealthy
+- tools/plugins are missing in the current session more broadly
+
+## Common mistakes
+
+### Trusting health checks more than the actual user path
+Health matters, but the user path is the thing that has to work.
+
+### Not comparing working and failing routes directly
+That comparison is gold.
+
+### Debugging the whole install instead of the one broken route
+Classic time sink.
+
+### Forgetting that response rules may differ in shared spaces
+Very common.
+
+## Final thought
+
+When the gateway is healthy but OpenClaw is not responding in the channel you expect, the system is usually not lying.
+
+It is just answering a different question.
+
+- **Gateway health** asks: is the core runtime alive?
+- **Routing success** asks: does this exact message path reach the right handling logic?
+
+Those are not the same thing.
+
+## Related pages
+
+- `Connected Channel or Bot Is Online but OpenClaw Ignores Messages`
+- `OpenClaw Not Responding After an Update? Start Here`
+- `Why OpenClaw Says It Will Act but Doesn’t Complete the Task`
