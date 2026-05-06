@@ -73,7 +73,10 @@
               "integrations/openclaw-to-notion",
               "integrations/openclaw-to-slack",
               "integrations/openclaw-to-gmail",
-              "integrations/openclaw-to-airtable"
+              "integrations/openclaw-to-airtable",
+              "integrations/openclaw-to-google-calendar",
+              "integrations/openclaw-to-hubspot",
+              "integrations/openclaw-to-discord"
             ]
           },
           {
@@ -96,7 +99,10 @@
               "why-exec-tools-may-not-appear-on-windows-or-wsl1-in-openclaw",
               "how-acp-sessions-work-in-openclaw",
               "openclaw-not-responding-after-an-update-start-here",
-              "why-acpx-isnt-showing-up-in-openclaw"
+              "why-acpx-isnt-showing-up-in-openclaw",
+              "why-openclaw-says-it-will-act-but-doesnt-complete-the-task",
+              "acp-agent-configuration-in-openclaw-what-actually-needs-to-be-wired",
+              "plugin-installed-but-tools-dont-appear-in-openclaw"
             ]
           }
         ]

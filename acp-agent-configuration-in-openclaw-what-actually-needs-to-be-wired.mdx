@@ -1,0 +1,250 @@
+---
+title: "ACP Agent Configuration in OpenClaw: What Actually Needs to Be Wired"
+description: "Understand what has to be configured for ACP-backed agents in OpenClaw, including runtime path, ACPX, gateway reloads, and fresh-session testing."
+---
+
+![OpenClaw logo](/images/articles/openclaw-logo.svg)
+
+*This is one of the most common OpenClaw confusion traps: people install a coding CLI, read one ACP thread, change one config value, and reasonably assume the whole thing should now work. Unfortunately, OpenClaw is a little more literal than that.*
+
+If you are trying to use **ACP-backed agents** in OpenClaw, the important thing to understand is this:
+
+> ACP does not become real just because the words “Claude Code,” “Codex,” “Gemini CLI,” or “ACP” now exist somewhere on your machine.
+
+There has to be an actual runtime path wired up.
+
+This guide explains what usually needs to be true, what users often miss, and how to test the setup without guessing.
+
+> ![Monitor icon](/images/icons/monitor-cog.svg)
+> **Useful framing:** ACP is not the default assistant path. It is a separate execution path that OpenClaw needs to be able to see, load, and route through.
+
+## ![Lightbulb icon](/images/icons/lightbulb.svg) At a glance
+
+- Installing a CLI is **not** the same as wiring ACP into OpenClaw.
+- ACP-related plugin/runtime support has to be available and loaded.
+- After configuration changes, restart the gateway and test in a **fresh chat**.
+
+
+## What people usually mean by “ACP agent configuration”
+
+Usually, they mean one of these:
+
+- “I installed a coding agent CLI and expected OpenClaw to use it”
+- “I enabled something ACP-related but the workflow still does nothing”
+- “I am not sure whether this is a normal agent config problem or an ACP runtime problem”
+- “I want OpenClaw to use an external coding/runtime path instead of just the default assistant behavior”
+
+That is the right bucket.
+
+But the details matter.
+
+## The core idea: ACP is a path, not a vibe
+
+A normal OpenClaw agent path is the default assistant/runtime path.
+
+An ACP-backed path is different.
+
+It usually means OpenClaw needs to:
+
+- know that an ACP-related runtime path exists
+- have the right plugin/runtime support available
+- route a compatible workflow through that path
+- get the result back into the current session
+
+If any one of those is broken, ACP can feel “configured” while still not actually functioning.
+
+## What actually needs to be wired
+
+## 1) The workflow really has to depend on ACP
+Not every task does.
+
+If you are just using OpenClaw normally, you may not need ACP at all.
+
+ACP matters when the workflow explicitly depends on:
+
+- ACP-backed sessions
+- coding-agent/runtime harnesses
+- external CLI-backed agent flows
+- session/thread behaviors that are specifically ACP-based
+
+If the workflow is not ACP-specific, you may be over-debugging the wrong layer.
+
+## 2) ACP-related runtime support has to be available
+This is the first real gate.
+
+If your install does not actually expose the ACP-related runtime layer, OpenClaw cannot route through it.
+
+This is where users often confuse:
+
+- having software installed on the machine
+- with OpenClaw actually being configured to use that software
+
+Those are not the same thing.
+
+## 3) ACPX may need to be allowed or enabled
+In many ACP-related troubleshooting flows, ACPX is part of the story.
+
+If your setup uses a plugin allowlist, a commonly referenced pattern is:
+
+```bash
+openclaw config set plugins.allow '["acpx"]' --strict-json
+```
+
+Then reload the gateway:
+
+```bash
+openclaw gateway restart
+```
+
+Without that, the runtime path you expect may never surface.
+
+## 4) The gateway has to reload the new state
+This one is boring and constant.
+
+If config changed but the gateway never reloaded, OpenClaw may keep acting like nothing happened.
+
+So after changing ACP-related config:
+
+```bash
+openclaw gateway restart
+```
+
+Then inspect status:
+
+```bash
+openclaw gateway status --json
+```
+
+## 5) The current chat may still be stale
+This is one of the biggest fake failures.
+
+If you enabled ACP support after the current conversation was already open, the session may still reflect the old tool/runtime catalog.
+
+So after making ACP-related changes:
+
+- start a fresh chat
+- retry the ACP-specific workflow there
+
+Do not keep retesting in the stale session forever.
+
+## 6) The result path has to come back cleanly
+Even if the external runtime path starts correctly, the workflow is still broken if:
+
+- results do not return to the parent session
+- the current channel never sees the outcome
+- the bridge/routing path is incomplete
+
+This is why some ACP issues feel like “it started, but nothing came back.”
+
+That is still an ACP configuration problem in practice.
+
+## What does *not* count as ACP being configured
+
+These things by themselves do **not** prove ACP is wired correctly:
+
+- you installed Claude Code, Codex, Gemini CLI, or another coding CLI
+- you saw ACP mentioned in support threads
+- you added one setting but never restarted the gateway
+- the current chat still looks the same as before
+- the assistant mentions ACP conceptually
+
+All of those can be true while ACP is still not functionally wired.
+
+## Fast troubleshooting checklist
+
+Use this order.
+
+### 1. Confirm the task actually needs ACP
+If not, stop and debug the normal path.
+
+### 2. Check whether ACP-related plugin/runtime support is available
+Do not assume install equals integration.
+
+### 3. If needed, allow ACPX
+```bash
+openclaw config set plugins.allow '["acpx"]' --strict-json
+```
+
+### 4. Restart the gateway
+```bash
+openclaw gateway restart
+```
+
+### 5. Check status
+```bash
+openclaw gateway status --json
+```
+
+### 6. Start a fresh chat
+This matters more than people want it to.
+
+### 7. Retry one ACP-specific workflow
+Use a single concrete test, not a cloud of assumptions.
+
+## How to tell you are debugging the wrong thing
+
+You may be debugging the wrong thing if:
+
+- you are trying to force ACP onto a normal assistant workflow
+- your actual issue is missing tools, not ACP specifically
+- the gateway is unhealthy in a more basic way
+- the current chat is stale and making a healthy setup look broken
+- the problem is really result routing, not startup wiring
+
+## Common failure patterns
+
+## Pattern 1: “I installed the CLI, why doesn’t OpenClaw use it?”
+Because installation is not the same as integration.
+
+## Pattern 2: “I enabled ACPX but nothing changed.”
+Probably one of:
+
+- gateway was not restarted
+- current chat is stale
+- the workflow did not actually use ACP
+
+## Pattern 3: “The config looks right, but the session does nothing.”
+Possible causes:
+
+- missing runtime path
+- stale session
+- routing/result return failure
+- expectation mismatch
+
+## Pattern 4: “Something ran, but the result never came back.”
+That points toward session/bridge/result-path issues, not just initial enablement.
+
+## A simple mental model
+
+Think of ACP setup as a chain:
+
+1. **workflow needs ACP**
+2. **runtime path exists**
+3. **ACPX/plugin support is available**
+4. **gateway loaded the current config**
+5. **chat sees the updated tool/runtime state**
+6. **result returns to the session**
+
+If one link is broken, the whole thing feels like “ACP doesn’t work.”
+
+## Final thought
+
+ACP agent configuration in OpenClaw is not one setting.
+
+It is a path that has to be fully wired:
+
+- the right workflow
+- the right runtime support
+- the right plugin/config state
+- the right gateway reload
+- the right session freshness
+- the right result return path
+
+Miss one of those, and it will look broken in a way that wastes an hour.
+
+## Related pages
+
+- `ACP vs Normal OpenClaw Agents: What’s the Difference?`
+- `How ACP Sessions Work in OpenClaw`
+- `How to Enable the ACPX Plugin in OpenClaw`
+- `Why ACPX Isn’t Showing Up in OpenClaw`

@@ -1,0 +1,248 @@
+---
+title: "Plugin Installed but Tools Don’t Appear in OpenClaw"
+description: "Troubleshoot when a plugin seems installed but its tools do not show up in OpenClaw, including allowlists, gateway restarts, stale chats, and expectation mismatch."
+---
+
+![OpenClaw lobster logo](/images/articles/openclaw-lobster.svg)
+
+*This is one of those bugs that makes users feel gaslit. You installed the plugin. The install looked fine. And yet the tools are nowhere to be found, as if the machine quietly changed its mind.*
+
+If a plugin appears to be installed but its tools still do **not** show up in OpenClaw, the most common causes are usually not exotic.
+
+They are usually one of these:
+
+- the plugin is blocked by the current allowlist/config
+- the gateway has not reloaded since installation or config change
+- the current chat is stale and still using the old tool catalog
+- the workflow expects a different runtime path than the one you actually enabled
+- the plugin is installed, but not the part of the system you thought it would affect
+
+This guide is the practical checklist for fixing that in the right order.
+
+> ![Wrench icon](/images/icons/wrench.svg)
+> **Fast path:** check allowlist/config, restart the gateway, then test in a **fresh chat**. That boring sequence resolves a weird amount of plugin confusion.
+
+## ![Wrench icon](/images/icons/wrench.svg) At a glance
+
+- A successful install does **not** guarantee the plugin’s tools are active in the current session.
+- Check **config → gateway reload → fresh chat** in that order.
+- If the plugin depends on a specific runtime path, make sure you are debugging the right execution layer.
+
+
+## What users usually mean by this
+
+Usually it looks like one of these:
+
+- install command succeeded, but expected tools are missing
+- a guide says the plugin should expose tools, but the current chat cannot use them
+- the plugin worked earlier, but now tools are gone
+- the plugin is installed locally, yet OpenClaw behaves as if nothing changed
+
+That usually means the plugin exists somewhere in the setup, but the **active runtime/session state** is not exposing its tools.
+
+## First: installation is not the whole story
+A plugin can be installed and still not show up correctly if:
+
+- it is not allowed by config
+- the gateway is still using the old state
+- the session predates the plugin becoming available
+- the expected workflow depends on a different path than the plugin actually provides
+
+So do not stop at:
+
+> “But the install succeeded.”
+
+That is just step one.
+
+## The fastest troubleshooting flow
+
+## 1) Check whether the plugin is actually allowed
+If your setup uses a plugin allowlist, installation alone is not enough.
+
+A plugin can exist on disk and still be blocked from surfacing.
+
+So inspect your config and ask:
+
+- is the plugin allowed?
+- did a recent config change narrow the allowlist?
+- did an update/rollback leave the config in a mismatched state?
+
+For ACP-related cases, this often means checking whether `acpx` is included.
+
+## 2) Restart the gateway
+After installing a plugin or changing plugin config:
+
+```bash
+openclaw gateway restart
+```
+
+Then inspect status:
+
+```bash
+openclaw gateway status --json
+```
+
+If you skip the restart, you may just be staring at stale runtime state and blaming the plugin for it.
+
+## 3) Start a fresh chat
+This is the fake-bug generator.
+
+Even if the plugin is now available, the current conversation may still reflect the old tool catalog.
+
+So after installation or config change:
+
+- open a new chat
+- retry the workflow there
+
+If the fresh chat works, the plugin was probably fine and the old session was just stale.
+
+## 4) Make sure you expected the right thing from the plugin
+Some plugin problems are really expectation problems.
+
+Examples:
+
+- expecting ACP behavior from a normal plugin install
+- expecting normal assistant tools from an ACP-oriented plugin/runtime path
+- expecting installation to automatically refresh the current chat
+- expecting a plugin to expose tools for a workflow it does not actually power
+
+This matters because you can spend an hour debugging a “missing plugin” that is really just a mismatch between the plugin and the workflow.
+
+## 5) Check whether update/rollback drift broke plugin state
+If the issue started after:
+
+- upgrading
+- rolling back
+- changing versions
+- editing config manually
+
+…then config drift may be the real culprit.
+
+Typical symptom pattern:
+
+- plugin used to appear
+- version changed
+- gateway now behaves oddly
+- current config no longer matches the running binary/runtime expectations
+
+If that happened recently, inspect your config rather than assuming the install itself failed.
+
+## Common root causes
+
+## Root cause 1: plugin blocked by allowlist
+Symptoms:
+
+- install succeeded
+- tools still do not surface
+- status hints at config/plugin limitations
+
+Fix:
+
+- update the allowlist/config
+- restart the gateway
+
+## Root cause 2: gateway never reloaded
+Symptoms:
+
+- install or config change happened
+- runtime behavior did not change at all
+
+Fix:
+
+```bash
+openclaw gateway restart
+```
+
+## Root cause 3: stale session
+Symptoms:
+
+- old chat does not show tools
+- fresh chat does
+
+Fix:
+
+- use a fresh chat
+
+## Root cause 4: wrong runtime expectation
+Symptoms:
+
+- plugin is installed
+- but the task depends on a different execution path
+- user is mixing normal assistant, plugin, and ACP expectations together
+
+Fix:
+
+- identify which path the workflow actually needs
+
+## Root cause 5: version/config drift
+Symptoms:
+
+- issue began after update or rollback
+- plugin state became inconsistent
+
+Fix:
+
+- inspect current config
+- verify it matches the running version/runtime
+
+## Practical checklist
+
+Use this order:
+
+### 1. Confirm the plugin really installed
+### 2. Check whether config/allowlist permits it
+### 3. Restart the gateway
+### 4. Check `openclaw gateway status --json`
+### 5. Start a fresh chat
+### 6. Retry one exact tool-dependent workflow
+
+That gives you much better signal than vague retesting.
+
+## How to tell whether the plugin is the actual problem
+
+It is probably a plugin-state problem if:
+
+- expected tools are missing only after plugin-related changes
+- a fresh chat behaves differently
+- status/config suggests plugin gating or load issues
+- update/rollback timing lines up with the breakage
+
+It is probably **not** just the plugin if:
+
+- the workflow actually depends on ACP/runtime wiring instead
+- the action was blocked by approvals
+- the gateway itself is unhealthy in a broader way
+
+## Common mistakes
+
+### Treating install success as proof the tools should appear immediately
+It is not.
+
+### Restarting nothing
+That never helps.
+
+### Testing only in the same old chat
+A classic way to manufacture confusion.
+
+### Mixing plugin issues with ACP issues and calling it all one bug
+Understandable, but messy.
+
+## Final thought
+
+When a plugin is installed but its tools do not appear in OpenClaw, the fix is usually not mysterious.
+
+It is usually:
+
+1. config/allowlist
+2. gateway reload
+3. fresh chat
+4. correct expectation about what the plugin actually powers
+
+Boring checklist. Useful result.
+
+## Related pages
+
+- `Why ACPX Isn’t Showing Up in OpenClaw`
+- `How to Enable the ACPX Plugin in OpenClaw`
+- `OpenClaw Not Responding After an Update? Start Here`
+- `Why OpenClaw Says It Will Act but Doesn’t Complete the Task`
