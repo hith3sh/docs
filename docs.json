@@ -105,7 +105,10 @@
               "plugin-installed-but-tools-dont-appear-in-openclaw",
               "agent-responds-but-result-never-reaches-the-parent-session",
               "connected-channel-or-bot-is-online-but-openclaw-ignores-messages",
-              "healthy-gateway-wrong-routing-why-openclaw-isnt-responding-in-the-channel-you-expect"
+              "healthy-gateway-wrong-routing-why-openclaw-isnt-responding-in-the-channel-you-expect",
+              "how-to-run-multiple-openclaw-bots-or-agents-in-one-discord-setup",
+              "how-to-fix-openclaw-discord-voice-chat-join-failures",
+              "why-openclaw-works-in-dm-but-not-in-groups-or-threads"
             ]
           }
         ]
