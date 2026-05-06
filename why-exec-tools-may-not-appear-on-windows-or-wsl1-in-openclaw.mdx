@@ -3,16 +3,29 @@ title: "Why Exec Tools May Not Appear on Windows or WSL1 in OpenClaw"
 description: "Understand why exec tools may be missing on Windows or WSL1 in OpenClaw and what to check first."
 ---
 
+![OpenClaw overview illustration](/images/articles/openclaw-bento.png)
+
 *This is one of those support issues where the user experience is basically: “I installed the thing, why are the shell tools missing?” And the answer is often an annoying mix of platform capability limits, runtime expectations, and Windows being Windows.*
 
 If exec-style tools are missing in OpenClaw on **Windows** or **WSL1**, the problem is often not that you clicked the wrong button.
 
 It is usually one of these:
 
+> ![Warning icon](/images/icons/triangle-alert.svg)
+> **Blunt version:** if you are on **WSL1**, treat that as the prime suspect early. Exec-heavy flows are much happier on **WSL2** or a normal Linux host.
+
+
 - the current environment does not support the required runtime capability
 - the host/platform combination is limited
 - the session started before tools were refreshed
 - the setup is running on a path where shell/PTY support is unavailable or intentionally disabled
+
+## ![Warning icon](/images/icons/triangle-alert.svg) At a glance
+
+- Confirm whether you are on **Windows, WSL1, or WSL2** before debugging anything else.
+- If this is **WSL1**, treat that as a serious compatibility warning sign.
+- For exec-heavy workflows, **WSL2 or Linux** is the sane path.
+
 
 ## Short version
 

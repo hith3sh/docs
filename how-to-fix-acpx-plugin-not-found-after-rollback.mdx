@@ -3,6 +3,8 @@ title: "How to Fix “acpx plugin not found” After Rolling Back OpenClaw"
 description: "Fix the “acpx plugin not found” error after rolling back OpenClaw by cleaning up incompatible plugin config."
 ---
 
+![OpenClaw lobster logo](/images/articles/openclaw-lobster.svg)
+
 *This error is usually not mysterious. It’s a version mismatch wearing a fake moustache.*
 
 If you rolled OpenClaw back to an older version and now you’re seeing a config validation failure like:
@@ -18,6 +20,16 @@ acpx plugin not found
 - your config is now newer than your binary
 
 That mismatch is what breaks startup or validation.
+
+> ![Lightbulb icon](/images/icons/lightbulb.svg)
+> **Mental model:** you are usually fixing a **config-versus-binary mismatch**, not repairing ACPX itself. The rollback changed the app version, but your saved config stayed ahead.
+
+## ![Refresh icon](/images/icons/refresh-cw.svg) At a glance
+
+- This usually happens right after a **rollback**.
+- The fix is normally to make `~/.openclaw/openclaw.json` match the **older binary** again.
+- Remove only the incompatible ACPX config, restart the gateway, then re-check status.
+
 
 ## Why this happens
 

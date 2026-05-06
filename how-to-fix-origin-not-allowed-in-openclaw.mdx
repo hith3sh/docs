@@ -3,6 +3,8 @@ title: "How to Fix “Origin not allowed” in OpenClaw"
 description: "Fix the “Origin not allowed” error in OpenClaw by checking public URL, proxy, and callback mismatches."
 ---
 
+![OpenClaw overview illustration](/images/articles/openclaw-bento.png)
+
 *This is one of those errors that sounds vague, but usually means something pretty specific: the UI, plugin, proxy, or remote client is reaching OpenClaw from a web origin your setup is not willing to trust.*
 
 If you hit an **`Origin not allowed`** error in OpenClaw, the short version is:
@@ -14,6 +16,16 @@ If you hit an **`Origin not allowed`** error in OpenClaw, the short version is:
 Annoying, yes. Usually fixable, also yes.
 
 This guide walks through the common causes, how to verify them, and how to fix the problem without blindly punching holes in your config.
+
+> ![Warning icon](/images/icons/triangle-alert.svg)
+> **Most common root cause:** the URL in your browser, proxy, or callback flow does not match the public URL your OpenClaw setup thinks it is serving.
+
+## ![Wrench icon](/images/icons/wrench.svg) At a glance
+
+- Check the **exact browser origin** you are using: protocol, hostname, and port all matter.
+- Make sure your **proxy/public URL/callback URL** all agree with that origin.
+- Fix mismatches first; do **not** disable origin checks just because the error is annoying.
+
 
 ## What “Origin not allowed” usually means
 

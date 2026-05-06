@@ -3,6 +3,8 @@ title: "OpenClaw Not Responding After an Update? Start Here"
 description: "Troubleshoot OpenClaw when it stops responding after an update, including stale sessions, gateway reloads, and config drift."
 ---
 
+![OpenClaw overview illustration](/images/articles/openclaw-bento.png)
+
 *Post-update problems are frustrating because they make you doubt everything at once: the install, the config, the gateway, the current chat, your own memory, and possibly the phase of the moon.*
 
 If OpenClaw stopped responding properly after an update, the good news is that this is usually **not** a random failure.
@@ -17,6 +19,16 @@ The bad news is that “not responding” can mean a few different things:
 - a version change introduced a config mismatch
 
 This guide is the fastest practical checklist to narrow it down.
+
+> ![Refresh icon](/images/icons/refresh-cw.svg)
+> **Do this early:** after an update, test the same task in a **fresh chat** before assuming the install is broken. Stale sessions fake a lot of post-update bugs.
+
+## ![Refresh icon](/images/icons/refresh-cw.svg) At a glance
+
+- Define what “not responding” actually means in your case before changing things blindly.
+- Check `openclaw status` and `openclaw gateway status` early.
+- After updates, always retry in a **fresh chat** to rule out stale session state.
+
 
 ## First: define what “not responding” means in your case
 

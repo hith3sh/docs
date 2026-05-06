@@ -3,11 +3,23 @@ title: "How to Enable the ACPX Plugin in OpenClaw"
 description: "Enable the ACPX plugin in OpenClaw, reload the gateway, and verify it is available in a fresh chat."
 ---
 
+![OpenClaw logo](/images/articles/openclaw-logo.svg)
+
 *If ACPX is installed but not showing up, the problem is usually not magic. It’s usually one of three things: the plugin isn’t allowed, the gateway hasn’t reloaded, or the current chat started before OpenClaw refreshed its tool catalog.*
 
 If you want OpenClaw to use ACP-backed tooling and sessions, you need the **ACPX plugin** available and loaded correctly.
 
 This guide covers the normal setup path and the most common reasons ACPX seems to be missing.
+
+> ![Wrench icon](/images/icons/wrench.svg)
+> **Fast path:** allow `acpx`, restart the gateway, then test in a **fresh chat**. Most ACPX “missing” reports boil down to one of those three steps not happening.
+
+## ![Monitor icon](/images/icons/monitor-cog.svg) At a glance
+
+- Add `acpx` to the plugin allowlist if your setup uses one.
+- Restart the gateway so OpenClaw reloads the new plugin state.
+- Test in a **fresh chat**, because old sessions often hide the fact that ACPX is already fixed.
+
 
 ## What ACPX is, in plain English
 

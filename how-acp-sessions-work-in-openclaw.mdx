@@ -3,6 +3,8 @@ title: "How ACP Sessions Work in OpenClaw"
 description: "Learn how ACP sessions work in OpenClaw, when to use them, and how they differ from normal chats."
 ---
 
+![OpenClaw logo](/images/articles/openclaw-logo.svg)
+
 *ACP sessions are one of those OpenClaw concepts that make sense once the pieces are in the right order. Until then, it mostly feels like the docs are assuming you already know what ACP means.*
 
 If you are trying to use OpenClaw with external coding-style runtimes or ACP-backed agent flows, it helps to understand what an **ACP session** actually is.
@@ -12,6 +14,16 @@ Because a lot of setup confusion comes from this exact mistake:
 > people think they are starting a normal OpenClaw chat, when they are really trying to use a different runtime path.
 
 This page explains what ACP sessions are, how they differ from normal chats, what has to be enabled first, and why they sometimes seem to do nothing.
+
+> ![Monitor icon](/images/icons/monitor-cog.svg)
+> **Helpful mental model:** normal chats are the default assistant path; ACP sessions are a separate execution path where OpenClaw coordinates work through ACP-backed runtime plumbing.
+
+## ![Monitor icon](/images/icons/monitor-cog.svg) At a glance
+
+- ACP sessions are a **different execution path**, not just normal chats with extra sauce.
+- They depend on ACP-related runtime support being present and loaded.
+- If ACPX was enabled recently, test in a **fresh chat** before declaring it broken.
+
 
 ## Short version
 

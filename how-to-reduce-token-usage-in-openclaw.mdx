@@ -3,6 +3,8 @@ title: "How to Reduce Token Usage in OpenClaw"
 description: "Reduce token usage in OpenClaw with smaller context, cleaner session boundaries, and cheaper model choices."
 ---
 
+![OpenClaw logo](/images/articles/openclaw-logo.svg)
+
 *If OpenClaw is chewing through tokens like a raccoon in a garbage bin, the fix usually isn’t one magical switch. It’s a few boring habits that stop context bloat, repeated work, and oversized prompts from quietly lighting money on fire.*
 
 If you are trying to reduce token usage in OpenClaw, there are really two goals:
@@ -13,6 +15,16 @@ If you are trying to reduce token usage in OpenClaw, there are really two goals:
 Because “save tokens” by making the assistant useless is not exactly a win.
 
 This guide covers the practical ways to cut waste without wrecking the experience.
+
+> ![Lightbulb icon](/images/icons/lightbulb.svg)
+> **Biggest win first:** start new chats for unrelated work. That is usually a better token-saving move than obsessing over one clever prompt tweak.
+
+## ![Lightbulb icon](/images/icons/lightbulb.svg) At a glance
+
+- Start new chats for unrelated work to stop context bloat.
+- Keep prompts and instructions tight instead of repeating giant background dumps.
+- Pick cheaper model paths where the task does not need an expensive brain.
+
 
 ## Why token usage gets high
 

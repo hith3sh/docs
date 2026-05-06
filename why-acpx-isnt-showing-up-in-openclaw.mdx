@@ -3,6 +3,8 @@ title: "Why ACPX Isn’t Showing Up in OpenClaw"
 description: "Troubleshoot why ACPX is not showing up in OpenClaw, including allowlists, restarts, and stale chat sessions."
 ---
 
+![OpenClaw lobster logo](/images/articles/openclaw-lobster.svg)
+
 *If ACPX is missing, the fix is usually not exotic. It is usually a boring little chain of cause and effect that got interrupted somewhere.*
 
 If you expected **ACPX** to show up in OpenClaw and it does not, the most likely causes are:
@@ -14,6 +16,16 @@ If you expected **ACPX** to show up in OpenClaw and it does not, the most likely
 - the version you are running does not match the config you kept
 
 This page is the short, practical version of how to check those in the right order.
+
+> ![Wrench icon](/images/icons/wrench.svg)
+> **Check in this order:** allowlist, gateway restart, then a fresh chat. That sequence resolves a silly amount of ACPX confusion.
+
+## ![Wrench icon](/images/icons/wrench.svg) At a glance
+
+- First confirm you actually need ACPX for the workflow you are debugging.
+- Then check: **allowlist → gateway restart → fresh chat**.
+- Most ACPX “missing” cases are setup-state problems, not mysterious runtime failures.
+
 
 ## What “ACPX isn’t showing up” usually means
 
