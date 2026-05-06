@@ -3,39 +3,34 @@ title: "Billing"
 description: "Plans, upgrade flow, and subscription management"
 ---
 
-ClawLink keeps billing simple. Your first connected app is free. Upgrade to **ClawLink Pro** for **$5/month** when you want to connect additional apps.
+ClawLink keeps billing simple. You can start with a **30-day trial**, then continue on a paid plan for **$2.99/month**.
 
 ## Plans
 
 <CardGroup cols={2}>
-  <Card title="Free Plan" icon="sparkles">
-    **$0/month**. Connect **one app** and start using ClawLink without adding a card.
+  <Card title="Trial" icon="sparkles">
+    **$0 for 30 days**. Try ClawLink before billing starts.
   </Card>
   <Card title="Paid Plan" icon="rocket">
-    **$5/month**. Unlock additional connected apps and manage billing through Polar.
+    **$2.99/month**. Keep access active and manage billing through Polar.
   </Card>
 </CardGroup>
 
-## How the free limit works
+## How billing works
 
-- The free plan includes **one connected app**.
-- Billing is based on **distinct integration slugs**, not total connection rows.
-- Once you already have one distinct app connected, adding a different app prompts you to upgrade.
-- Your existing connected app keeps working even if you do not upgrade.
-- Pro removes that one-app cap so you can keep connecting more services.
-
-If you connect two Gmail accounts, that is still one distinct integration for billing. If you connect Gmail and Slack, that counts as two.
-
-ClawLink currently gates billing by connected integrations, not by monthly request quotas.
+- New accounts get a **30-day trial**.
+- After the trial ends, you need an active paid subscription to keep ClawLink access enabled.
+- Billing is **not** based on one free app or distinct integration counts.
+- Billing is also **not** based on monthly request quotas in the current setup.
 
 ## What you see on the Billing page
 
 In **Dashboard > Billing**, ClawLink shows:
 
-- Your current plan and billing status
-- How many distinct integrations are connected
-- Whether the next new integration requires an upgrade
-- Your renewal date when Pro is active
+- Your current billing status
+- Whether your access is active
+- Your trial period, if applicable
+- Your renewal date when a paid subscription is active
 - A direct upgrade or **Manage subscription** action
 
 If you return from checkout and still see the free plan for a moment, wait a minute and refresh. Billing state is synced after checkout completes and the webhook lands.
@@ -53,7 +48,7 @@ Your paid plan becomes active as soon as checkout and billing sync finish.
 
 ## Managing your subscription
 
-If you already have Pro, use **Manage subscription** on the Billing page to:
+If you already have an active subscription, use **Manage subscription** on the Billing page to:
 
 - Update your payment method
 - View invoices and receipts
@@ -67,22 +62,22 @@ ClawLink sends you to the Polar customer portal for those actions.
 
 <AccordionGroup>
   <Accordion title="Do I need a credit card to start?">
-    No. You can connect your first app on the free plan without adding a card. A payment method is only required when you upgrade to Pro.
+    Not for the initial trial period. You can start with the 30-day trial first, then subscribe if you want to keep access active after it ends.
   </Accordion>
 
-  <Accordion title="What happens when I try to connect a second app on Free?">
-    ClawLink blocks the new connection and sends you to Billing to upgrade. Your existing connected app stays active.
+  <Accordion title="Is billing based on how many apps I connect?">
+    No. The current billing setup is not based on a one-app free limit or distinct integration counts.
   </Accordion>
 
   <Accordion title="Can I manage or cancel my subscription later?">
     Yes. Once you're on Pro, open **Dashboard > Billing** and click **Manage subscription** to open the Polar customer portal.
   </Accordion>
 
-  <Accordion title="Does reconnecting the same provider count as another app?">
-    No. Billing is based on distinct integrations, not total connection rows. Reconnecting Gmail or adding another Gmail account does not require a new upgrade. Adding a different integration like Slack does.
+  <Accordion title="Does reconnecting the same provider affect billing?">
+    Not in the old one-app-limit sense. Billing is not currently calculated from distinct provider counts.
   </Accordion>
 
-  <Accordion title="How much is Pro?">
-    ClawLink Pro is **$5/month**.
+  <Accordion title="How much does ClawLink cost after the trial?">
+    The paid plan is **$2.99/month**.
   </Accordion>
 </AccordionGroup>

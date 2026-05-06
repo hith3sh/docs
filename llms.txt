@@ -70,9 +70,9 @@ Common issues and solutions:
 
 ## Billing
 
-- First connected app is free
-- Pro costs $5/month
-- Billing is based on distinct integrations
+- New accounts start with a 30-day trial
+- Paid plan costs $2.99/month
+- Billing is not currently based on a one-app free limit
 - Manage billing from Dashboard > Billing
 
 ## Support
