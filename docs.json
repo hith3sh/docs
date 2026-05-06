@@ -87,7 +87,16 @@
             "group": "Help",
             "pages": [
               "troubleshooting",
-              "faq"
+              "faq",
+              "how-to-fix-origin-not-allowed-in-openclaw",
+              "how-to-enable-the-acpx-plugin-in-openclaw",
+              "how-to-fix-acpx-plugin-not-found-after-rollback",
+              "acp-vs-normal-openclaw-agents-whats-the-difference",
+              "how-to-reduce-token-usage-in-openclaw",
+              "why-exec-tools-may-not-appear-on-windows-or-wsl1-in-openclaw",
+              "how-acp-sessions-work-in-openclaw",
+              "openclaw-not-responding-after-an-update-start-here",
+              "why-acpx-isnt-showing-up-in-openclaw"
             ]
           }
         ]
