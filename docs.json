@@ -76,7 +76,8 @@
               "integrations/openclaw-to-airtable",
               "integrations/openclaw-to-google-calendar",
               "integrations/openclaw-to-hubspot",
-              "integrations/openclaw-to-discord"
+              "integrations/openclaw-to-discord",
+              "build-an-openclaw-sales-assistant-with-gmail-and-hubspot"
             ]
           },
           {
