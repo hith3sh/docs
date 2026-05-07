@@ -1,0 +1,294 @@
+---
+title: "OpenClaw Not Responding? Start Here"
+description: "Troubleshoot OpenClaw when it stops responding, ignores messages, or behaves inconsistently across chats, updates, tools, and channels."
+---
+
+![OpenClaw overview illustration](/images/articles/openclaw-bento.png)
+
+*When OpenClaw stops responding, the annoying part is not just that it broke. It is that “not responding” can describe five different failures that look identical from the outside.*
+
+If OpenClaw is not responding, do **not** start with random fixes.
+
+Start by figuring out which kind of “not responding” you actually have.
+
+In practice, most cases fall into one of these buckets:
+
+- OpenClaw ignores messages entirely
+- OpenClaw responds in one context, but not another
+- OpenClaw broke right after an update
+- tools or plugin-backed behavior disappeared
+- OpenClaw replies, but does not actually complete the task
+
+This page is the umbrella troubleshooting hub for sorting those cases fast.
+
+> ![Compass icon](/images/icons/compass.svg)
+> **Fast rule:** before you change config, identify the symptom family first. Most wasted debugging starts with solving the wrong problem.
+
+## ![Compass icon](/images/icons/compass.svg) At a glance
+
+- "Not responding" is usually a **symptom family**, not a single bug.
+- Start with `openclaw status` and `openclaw gateway status`.
+- Test one minimal request in the **simplest context** that should work.
+- If the issue started after a change, branch into the matching child guide instead of improvising.
+
+## First: identify your symptom family
+
+Before you touch anything, ask which of these is closest.
+
+### Case 1: OpenClaw ignores messages completely
+Examples:
+
+- the connected bot looks online, but replies to nothing
+- a direct message gets no response
+- a group mention gets no response
+- the install appears alive, but interaction feels dead
+
+Start with:
+
+- `openclaw status`
+- `openclaw gateway status --json`
+- the simplest direct test message in the expected context
+
+If this sounds like your issue, continue here and then read:
+
+- `Connected Channel or Bot Is Online but OpenClaw Ignores Messages`
+- `Why OpenClaw Works in DM but Not in Groups or Threads`
+
+### Case 2: OpenClaw broke after an update
+Examples:
+
+- it worked before the upgrade
+- tools disappeared after updating
+- the current chat feels stale or wrong
+- rollback or version changes introduced new weirdness
+
+This usually points to stale sessions, gateway reload issues, or config drift.
+
+Go straight to:
+
+- `OpenClaw Not Responding After an Update? Start Here`
+
+### Case 3: Tools or plugin-backed behavior disappeared
+Examples:
+
+- expected tools no longer show up
+- a plugin installed successfully, but nothing surfaces
+- tool-backed workflows now fail or never appear
+
+This usually points to tool catalog, plugin state, allowlist, or session freshness issues.
+
+Go to:
+
+- `Plugin Installed but Tools Don’t Appear in OpenClaw`
+- `How to Fix “Tool Not Found” in OpenClaw`
+
+### Case 4: OpenClaw replies, but does not actually act
+Examples:
+
+- it says it will do something
+- no tool call follows
+- the reply sounds plausible, but the task never completes
+
+That often means the runtime, tools, approvals, or session state are not lining up with the request.
+
+Read:
+
+- `Why OpenClaw Says It Will Act but Doesn’t Complete the Task`
+
+### Case 5: It works in one place, but not another
+Examples:
+
+- DMs work, but groups do not
+- one channel works, another does not
+- the main chat works, but threads or topics fail
+
+That usually means routing, permissions, context rules, or thread visibility differences.
+
+Read:
+
+- `Why OpenClaw Works in DM but Not in Groups or Threads`
+- `Connected Channel or Bot Is Online but OpenClaw Ignores Messages`
+- `Healthy Gateway, Wrong Routing: Why OpenClaw Isn’t Responding in the Channel You Expect`
+
+## Fastest generic troubleshooting flow
+
+If you are not sure which bucket you are in yet, use this order.
+
+## 1) Check basic status
+Run:
+
+```bash
+openclaw status
+```
+
+Then:
+
+```bash
+openclaw gateway status
+```
+
+And if available:
+
+```bash
+openclaw gateway status --json
+```
+
+You are looking for obvious signals like:
+
+- gateway health problems
+- config validation failures
+- plugin/runtime issues
+- broken state after updates or rollbacks
+
+## 2) Test one minimal request
+Do not start with a long workflow.
+
+Use one simple request in the easiest context that should work.
+
+Good examples:
+
+- one direct message
+- one explicit mention in the target group or thread
+- one short request that previously worked reliably
+
+That helps you separate:
+
+- total failure
+- context-specific failure
+- selective silence
+- tool/runtime failure
+
+## 3) Compare a working context with a broken one
+If anything works anywhere, use that.
+
+Compare:
+
+- DM vs group
+- working channel vs broken channel
+- fresh chat vs old chat
+- pre-update behavior vs post-update behavior
+
+That comparison is usually more useful than trying three random fixes in a row.
+
+## 4) If the issue started after change, follow the matching branch
+Examples:
+
+- after update → check stale chat, reload, config drift
+- after plugin install → check allowlist, restart, fresh chat
+- after moving to groups/threads → check mentions, permissions, routing
+- after rollback → inspect config compatibility
+
+## Common root-cause families
+
+## Root cause 1: stale session or stale tool catalog
+Symptoms:
+
+- old chat behaves oddly
+- fresh chat behaves normally
+- newly added tools or plugin behavior do not appear
+
+Fix:
+
+- start a fresh chat
+- retry the exact same task there
+
+## Root cause 2: gateway or runtime unhealthy
+Symptoms:
+
+- status looks wrong
+- requests stall or fail broadly
+- visible connection exists, but processing does not
+
+Fix:
+
+- check `openclaw status`
+- check `openclaw gateway status --json`
+- restart the gateway if needed
+
+## Root cause 3: routing, permissions, or context mismatch
+Symptoms:
+
+- one context works, another does not
+- DM works, shared context fails
+- bot appears online, but selectively ignores messages
+
+Fix:
+
+- compare working and broken targets directly
+- verify scope, mentions, permissions, and thread visibility
+
+## Root cause 4: plugin or tool surfacing problem
+Symptoms:
+
+- tools disappeared
+- plugin seems installed but inactive
+- expected tool-backed workflows never appear
+
+Fix:
+
+- verify config/allowlist
+- restart gateway
+- test in a fresh chat
+- inspect the tool-specific guide
+
+## Root cause 5: post-update or rollback drift
+Symptoms:
+
+- issue started right after version change
+- behavior changed immediately after upgrade or rollback
+- config and runtime no longer agree
+
+Fix:
+
+- follow the post-update checklist
+- inspect `~/.openclaw/openclaw.json` if version drift is suspected
+
+## Minimal recovery checklist
+
+If you just want the shortest sane checklist, do this:
+
+1. run `openclaw status`
+2. run `openclaw gateway status --json`
+3. test one short request in the simplest expected context
+4. start a fresh chat and retry it
+5. if the issue began after an update, read `OpenClaw Not Responding After an Update? Start Here`
+6. if tools are missing, read `Plugin Installed but Tools Don’t Appear in OpenClaw` and `How to Fix “Tool Not Found” in OpenClaw`
+7. if DMs work but shared spaces do not, read `Why OpenClaw Works in DM but Not in Groups or Threads`
+
+## Common mistakes
+
+### Treating all silence as the same bug
+Bad assumption. Silence after an update is not the same problem as silence only in group threads.
+
+### Debugging only in one stale chat
+A classic self-own.
+
+### Using presence as proof the whole path works
+A bot can be online while routing or processing is still broken.
+
+### Fixing plugin, routing, and update issues as if they were interchangeable
+They overlap, but they are not the same.
+
+## Final thought
+
+The fastest way to fix “OpenClaw not responding” is to stop treating it like one mystery.
+
+It is usually one of a few repeat offenders:
+
+- stale session
+- unhealthy gateway/runtime
+- tool/plugin surfacing issue
+- routing or permissions mismatch
+- post-update config drift
+
+Figure out which family you are in first, and the rest gets much less dramatic.
+
+## Related pages
+
+- `OpenClaw Not Responding After an Update? Start Here`
+- `How to Fix “Tool Not Found” in OpenClaw`
+- `Plugin Installed but Tools Don’t Appear in OpenClaw`
+- `Connected Channel or Bot Is Online but OpenClaw Ignores Messages`
+- `Why OpenClaw Works in DM but Not in Groups or Threads`
+- `Why OpenClaw Says It Will Act but Doesn’t Complete the Task`
+- `Healthy Gateway, Wrong Routing: Why OpenClaw Isn’t Responding in the Channel You Expect`
