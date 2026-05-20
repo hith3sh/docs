@@ -29,76 +29,21 @@ description: "Fix common issues with ClawLink integrations and agent connectivit
   </Accordion>
 
   <Accordion title="ClawLink tools are missing in OpenClaw">
-    If you just installed the plugin and cannot see ClawLink tools yet, OpenClaw is usually still using an older tool catalog for the current chat.
+    Copy this into your OpenClaw chat and the agent will fix it for you:
 
-    **To fix this:**
+    ````text
+    My ClawLink plugin is installed and enabled but its tools are missing in this chat.
+    Please do the following and report back:
 
-    <Steps>
-      <Step title="Install the plugin">
-        Run `openclaw plugins install @useclawlink/openclaw-plugin`.
-      </Step>
-      <Step title="Restart the gateway if needed">
-        Run `openclaw gateway restart` if your OpenClaw setup requires it.
-      </Step>
-      <Step title="Start a fresh chat">
-        If the current chat started before installation, open a new chat so OpenClaw reloads the plugin tools.
-      </Step>
-      <Step title="Run pairing again">
-        Ask OpenClaw to set up ClawLink or start pairing.
-      </Step>
-    </Steps>
-  </Accordion>
+    1. Run `openclaw plugins install @useclawlink/openclaw-plugin` then `openclaw gateway restart`.
+    2. Print the gateway startup log line that lists loaded plugins. Confirm both `tools` and `clawlink-plugin` appear in that list.
+    3. If `tools` is missing, open `~/.openclaw/openclaw.json`. If a `plugins.allow` array is set, add `"tools"` and `"clawlink-plugin"` to it, save, and run `openclaw gateway restart` again.
+    4. Once `tools` is loaded, start a fresh chat and call `clawlink_get_pairing_status`. If pairing is not complete, call `clawlink_begin_pairing` and walk me through approving the device in the browser.
+    ````
 
-  <Accordion title="ClawLink is enabled, but no ClawLink tools load at runtime">
-    If ClawLink shows as installed and enabled in your plugin list, but ClawLink is missing from the gateway startup log and no ClawLink tools appear in chat, the bundled `tools` host plugin is almost certainly disabled.
+    On managed OpenClaw deployments you cannot edit the gateway config yourself — ask your OpenClaw admin to enable the bundled `tools` plugin and reload the gateway, then run the steps above.
 
-    The gateway startup log looks like this:
-
-    ```text
-    http server listening (8 plugins: bonjour, browser, device-pair, file-transfer, memory-core, phone-control, talk-voice, whatsapp)
-    ```
-
-    If `tools` is not listed, OpenClaw cannot expose ClawLink's runtime-registered tools to agent sessions, even though the plugin itself is configured correctly.
-
-    **To fix this:**
-
-    <Steps>
-      <Step title="Open your OpenClaw config">
-        Edit `~/.openclaw/openclaw.json`.
-      </Step>
-      <Step title="Add `tools` to the allow list">
-        If a `plugins.allow` array exists, make sure it contains `"tools"` (and `"clawlink-plugin"`):
-
-        ```json
-        {
-          "plugins": {
-            "allow": [
-              "bonjour",
-              "browser",
-              "device-pair",
-              "file-transfer",
-              "memory-core",
-              "phone-control",
-              "talk-voice",
-              "whatsapp",
-              "tools",
-              "clawlink-plugin"
-            ]
-          }
-        }
-        ```
-
-        If there is no `plugins.allow` list, the `tools` plugin loads by default — you only need this step when an explicit allow list is in use.
-      </Step>
-      <Step title="Reload the gateway">
-        Run `openclaw gateway restart` and confirm the new startup line includes `tools` and `clawlink-plugin`.
-      </Step>
-      <Step title="Start a fresh chat and retry">
-        Open a new chat and try the affected app again (for example, Google Calendar).
-      </Step>
-    </Steps>
-
-    On managed OpenClaw deployments, ask your OpenClaw admin to enable the bundled `tools` plugin and reload the gateway.
+    **Why this works:** ClawLink registers its tools through OpenClaw's bundled `tools` host plugin. If `tools` is not loaded, ClawLink's tools cannot reach agent sessions even though the plugin is installed. The most common second cause is that the current chat started before the plugin was installed, so its tool catalog is stale and a fresh chat is needed.
   </Accordion>
 
   <Accordion title="API calls are failing">

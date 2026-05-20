@@ -29,6 +29,20 @@ If you don't have OpenClaw yet, install it before adding the ClawLink plugin.
 
 ## 2. Install the ClawLink plugin
 
+The fastest path is to paste the prompt below into your OpenClaw chat and let the agent run setup for you.
+
+````text
+Set up the ClawLink plugin for me end to end:
+
+1. Install it: `openclaw plugins install @useclawlink/openclaw-plugin` then `openclaw gateway restart`.
+2. Confirm both `tools` and `clawlink-plugin` appear in the gateway's loaded-plugins log line. If `tools` is missing, fix `~/.openclaw/openclaw.json` so `plugins.allow` includes it, then restart again.
+3. Start a fresh chat in OpenClaw and call `clawlink_begin_pairing`. Give me the pairing URL.
+4. After I tell you I approved it in the browser, call `clawlink_get_pairing_status` until pairing is complete and confirm the device is saved.
+5. Tell me to open https://claw-link.dev/dashboard/integrations to connect the apps I want.
+````
+
+If you'd rather do it manually:
+
 <Steps>
   <Step title="Install the plugin">
     ```bash
