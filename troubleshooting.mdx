@@ -4,58 +4,41 @@ description: "Fix common issues with ClawLink integrations and agent connectivit
 ---
 
 <Tip>
-  Start every debugging session with **Request Logs**. Go to your dashboard and open the logs to see exactly which integration was called, what action was attempted, and any error message returned. Most issues can be diagnosed in under a minute from the logs alone.
+  Start every debugging session with **Usage**. Open the logs to see exactly which integration was called, what action was attempted, and any error message returned. Most issues can be diagnosed in under a minute from the logs alone.
 </Tip>
 
-## Common issues
+## Start here
+
+When something breaks, sort it into one of these buckets first:
+
+- **Setup and pairing**: install, browser approval, missing tools, stale sessions
+- **Connections**: reconnect flows, expired provider auth, missing permissions
+- **Execution**: the agent called a tool but the result failed or never returned
+- **Routing**: the right bot is online, but the wrong session or channel is receiving traffic
+
+## Common fixes
 
 <AccordionGroup>
   <Accordion title="Connection shows 'Needs reconnect'">
-    A **Needs reconnect** status usually means the provider credentials expired, were revoked, or need fresh consent.
+    A **Needs reconnect** status usually means the provider credential expired, was revoked, or needs fresh consent.
 
-    **To fix this:**
-
-    <Steps>
-      <Step title="Go to Dashboard > Connections">
-        Open your dashboard and navigate to **Connections**.
-      </Step>
-      <Step title="Expand the affected row">
-        Find the affected app and expand its connection row.
-      </Step>
-      <Step title="Run the hosted reconnect flow">
-        Click **Reconnect** and finish the provider flow in the popup.
-      </Step>
-    </Steps>
+    Go to **Connections**, expand the row, and run **Reconnect**. Then retry the same task from your agent.
   </Accordion>
 
   <Accordion title="ClawLink tools are missing in OpenClaw">
-    Copy this into your OpenClaw chat and the agent will fix it for you:
+    Start with the dedicated setup articles:
 
-    ````text
-    My ClawLink plugin is installed and enabled but its tools are missing in this chat.
-    Please do the following and report back:
+    - [OpenClaw not responding](/openclaw-not-responding)
+    - [Plugin installed but tools do not appear](/plugin-installed-but-tools-dont-appear-in-openclaw)
+    - [How to fix tool not found](/how-to-fix-tool-not-found-in-openclaw)
 
-    1. Run `openclaw plugins install @useclawlink/openclaw-plugin` then `openclaw gateway restart`.
-    2. Print the gateway startup log line that lists loaded plugins. Confirm both `tools` and `clawlink-plugin` appear in that list.
-    3. If `tools` is missing, open `~/.openclaw/openclaw.json`. If a `plugins.allow` array is set, add `"tools"` and `"clawlink-plugin"` to it, save, and run `openclaw gateway restart` again.
-    4. Once `tools` is loaded, start a fresh chat and call `clawlink_get_pairing_status`. If pairing is not complete, call `clawlink_begin_pairing` and walk me through approving the device in the browser.
-    ````
-
-    On managed OpenClaw deployments you cannot edit the gateway config yourself — ask your OpenClaw admin to enable the bundled `tools` plugin and reload the gateway, then run the steps above.
-
-    **Why this works:** ClawLink registers its tools through OpenClaw's bundled `tools` host plugin. If `tools` is not loaded, ClawLink's tools cannot reach agent sessions even though the plugin is installed. The most common second cause is that the current chat started before the plugin was installed, so its tool catalog is stale and a fresh chat is needed.
+    The most common causes are a stale chat session after install or a gateway that has not reloaded the required plugins.
   </Accordion>
 
   <Accordion title="API calls are failing">
-    If your agent is making requests but they're failing, check the Request Logs for details.
+    Open **Usage** and inspect the failed request first. The log tells you which integration ran, which action was attempted, and whether the problem is likely connection-related or provider-side.
 
-    **To diagnose this:**
-
-    1. Go to your dashboard and open **Request Logs**
-    2. Find the failed request—the log shows the integration, the action attempted, and the error message returned
-    3. Use the error message to identify whether the issue is with your credentials, the request itself, or the third-party service
-
-    Common causes include invalid parameters, permissions issues with the connected account, or the third-party service being temporarily unavailable.
+    Common causes include invalid parameters, expired auth, missing scopes, or a temporary provider outage.
   </Accordion>
 
   <Accordion title="Pairing link expired or approval did not finish">
@@ -77,15 +60,9 @@ description: "Fix common issues with ClawLink integrations and agent connectivit
   </Accordion>
 
   <Accordion title="Rate limit errors">
-    Rate limit errors mean the third-party API (not ClawLink) has throttled requests from your account. This happens when too many calls are made in a short window.
+    Rate limit errors usually come from the provider, not ClawLink. ClawLink retries transient failures automatically, but repeated bursts can still fail if the provider account limit is too low for the workflow.
 
-    ClawLink automatically retries rate-limited requests with exponential backoff—so occasional rate limits resolve themselves. If failures persist, your agent is making requests faster than the third-party API allows.
-
-    **To resolve persistent rate limiting:**
-
-    - Slow down how frequently your agent triggers the affected integration
-    - Check the third-party service's rate limit documentation to understand the limits for your account tier
-    - Consider upgrading your account with the third-party service if you need higher throughput
+    Slow down the workflow or reduce how often the agent triggers that provider.
   </Accordion>
 
   <Accordion title="OAuth token expired (Gmail, Google Sheets, etc.)">
@@ -114,14 +91,12 @@ description: "Fix common issues with ClawLink integrations and agent connectivit
     - If possible, remove the manual key and run browser pairing instead
   </Accordion>
 
-  <Accordion title="Requests not appearing in logs">
-    If your agent is running but you don't see requests in the logs, try the following:
-
-    1. **Refresh the logs page**—there can be a short delay before new entries appear
-    2. **Confirm the device is paired**—if OpenClaw is not authenticated to ClawLink, requests never reach tool execution
-    3. **Verify the app is actually connected**—an unconnected provider cannot produce tool execution rows
-    4. **Check the local credential**—if the device credential was revoked, requests are rejected before they are logged
-
-    If requests still do not appear after a few minutes, run pairing again and make sure the app is connected in **Connections**.
-  </Accordion>
 </AccordionGroup>
+
+## Deep-dive articles
+
+Use the grouped help sections in the sidebar when the issue is narrower than the common fixes above:
+
+- **OpenClaw setup issues** for install, pairing, and stale tool catalogs
+- **ACP and runtime** for ACPX, ACP sessions, and runtime wiring
+- **Routing and execution** for session routing, channel behavior, and result handoff problems

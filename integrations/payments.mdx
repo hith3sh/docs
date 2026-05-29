@@ -1,6 +1,6 @@
 ---
 title: "Payments"
-description: "Stripe, PayPal, and QuickBooks integrations"
+description: "Payments and finance integrations for customers, invoices, accounting, and transaction workflows"
 ---
 
 Connect your payment and accounting tools so your agent can manage transactions, generate invoices, and track financial data.
@@ -9,49 +9,33 @@ Connect your payment and accounting tools so your agent can manage transactions,
   Keep your payment API keys secure. Never share them publicly or commit them to source control. ClawLink encrypts and stores your credentials securely, but you should rotate any key that you suspect has been compromised immediately.
 </Warning>
 
-<AccordionGroup>
-  <Accordion title="Stripe">
-    Stripe lets your agent manage payments, customers, and invoices in your Stripe account.
+## Common apps in this category
 
-    **What you can do:**
-    - Look up customers and their payment history
-    - Create and send invoices
-    - Retrieve payment intent and charge details
-    - Manage subscriptions and billing
+- Stripe
+- PayPal
+- QuickBooks
+- Xero
+- Square
+- Razorpay
 
-    **Credentials:** API secret key — find it in the Stripe Dashboard under **Developers → API keys**. Use a restricted key with only the permissions your agent needs.
+## Typical tasks
 
-    **Example prompt:**
-    > "Pull up all failed payments from the last 7 days in Stripe and give me the customer emails."
-  </Accordion>
+- Looking up customers and invoices
+- Investigating failed payments
+- Syncing finance records into other systems
+- Creating follow-up tasks from billing events
 
-  <Accordion title="PayPal">
-    PayPal lets your agent process payments and manage transactions in your PayPal account.
+## Popular guides
 
-    **What you can do:**
-    - Look up transaction history
-    - Issue refunds
-    - Create and send payment requests
-    - Manage payouts
+<CardGroup cols={2}>
+  <Card title="Connect Stripe" icon="credit-card" href="/integrations/openclaw-to-stripe">
+    Work with customers, invoices, and billing data.
+  </Card>
+  <Card title="Connect Shopify" icon="credit-card" href="/integrations/openclaw-to-shopify">
+    Pair commerce workflows with payments and order data.
+  </Card>
+</CardGroup>
 
-    **Credentials:** Client ID and secret — create a REST API app in the PayPal Developer Dashboard and use the live credentials for your account.
-
-    **Example prompt:**
-    > "Check if the PayPal payment from order #4821 has been completed and show me the transaction details."
-  </Accordion>
-
-  <Accordion title="QuickBooks">
-    QuickBooks lets your agent manage invoices and accounting data in your QuickBooks Online company.
-
-    **What you can do:**
-    - Create and send invoices
-    - Record expenses and payments
-    - Query customers and vendors
-    - Pull profit and loss reports
-
-    **Credentials:** OAuth 2.0 — authorize access through your Intuit account during the connection flow.
-
-    **Example prompt:**
-    > "Create an invoice in QuickBooks for client Acme Corp for $3,200 due in 30 days."
-  </Accordion>
-</AccordionGroup>
+<Note>
+  For finance systems, use the narrowest permissions your workflow needs and reconnect immediately if you suspect a credential was exposed.
+</Note>

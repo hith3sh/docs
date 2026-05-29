@@ -3,7 +3,7 @@ title: "Overview"
 description: "Browse the supported apps and understand how hosted connections work"
 ---
 
-Integrations let your ClawLink agents connect to the tools you already use. Once you add a connection for a service, your agent gains a set of tools it can call for reading data, triggering actions, and moving information between services.
+Integrations let your ClawLink agent connect to the tools you already use. Once you add a connection for a service, your agent gains tools for reading data, triggering actions, and moving information between services.
 
 ## How to connect an integration
 
@@ -12,13 +12,13 @@ Integrations let your ClawLink agents connect to the tools you already use. Once
     Go to your ClawLink dashboard and select **Connections** from the sidebar.
   </Step>
   <Step title="Choose a service">
-    Find the app you want and click **Connect** or **Add connection**.
+    Find the app you want and click **Connect**.
   </Step>
   <Step title="Finish the hosted flow">
     ClawLink opens the provider flow in a popup and creates or updates the exact connection row for that app.
   </Step>
   <Step title="Start using it">
-    Your agent can now use the integration immediately through the OpenClaw plugin.
+    Your agent can now use the integration immediately through OpenClaw or Hermes.
   </Step>
 </Steps>
 
@@ -26,7 +26,7 @@ Integrations let your ClawLink agents connect to the tools you already use. Once
 
 <CardGroup cols={2}>
   <Card title="Communication" icon="message" href="/integrations/communication">
-    Gmail, Slack, Discord, Microsoft Teams, and Telegram
+    Gmail, Slack, Outlook, Discord, Microsoft Teams, and Telegram
   </Card>
   <Card title="Productivity" icon="calendar" href="/integrations/productivity">
     Google Sheets, Google Calendar, Google Drive, Notion, Airtable, and Todoist
@@ -38,23 +38,23 @@ Integrations let your ClawLink agents connect to the tools you already use. Once
     Apollo, HubSpot, Salesforce, and Pipedrive
   </Card>
   <Card title="Payments & Finance" icon="credit-card" href="/integrations/payments">
-    Stripe, PayPal, and QuickBooks
+    Stripe, PayPal, QuickBooks, and Xero
   </Card>
   <Card title="Social Media" icon="share" href="/integrations/social-media">
-    YouTube, Twitter/X, LinkedIn, and Instagram
+    YouTube, X, LinkedIn, Instagram, and more
   </Card>
 </CardGroup>
 
-## Additional integrations
+## Beyond the basics
 
-ClawLink also supports the following services. Connect them from the [Connections page](/dashboard/integrations) the same way as any other app.
+The catalog goes beyond the guides listed in this docs site. ClawLink also includes apps across categories like:
 
-**Data & Analytics** — Google Analytics, Mixpanel, Segment
-
-**Storage & Databases** — AWS S3, Supabase, Firebase
-
-**E-commerce** — Shopify, WooCommerce
+- **Data & analytics** — Google Analytics, Mixpanel, Segment, Firecrawl
+- **Storage and databases** — Supabase, Firebase, SharePoint, Snowflake
+- **Marketing** — Mailchimp, Klaviyo, Instantly, Buffer
+- **AI and ML** — OpenAI, ElevenLabs, Perplexity, Replicate
+- **Commerce** — Shopify, WooCommerce
 
 <Note>
-  ClawLink stores your credentials encrypted at rest and never exposes them to your agent in plain text. Your tokens and API keys are only used to make authorized requests on your behalf.
+  Setup mode varies by app. The dashboard is the source of truth for whether an app is live, needs reconnect, or is still coming soon.
 </Note>

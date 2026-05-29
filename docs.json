@@ -8,13 +8,13 @@
     "dark": "#991B1B"
   },
   "logo": {
-    "dark": "/images/logo/link.png",
-    "light": "/images/logo/link.png"
+    "dark": "/images/logo/link_logo_black.png",
+    "light": "/images/logo/link_logo_black.png"
   },
-  "favicon": "/images/logo/link.png",
+  "favicon": "/images/logo/link_logo_black.png",
   "navbar": {
     "logo": {
-      "url": "/images/logo/link.png"
+      "url": "/images/logo/link_logo_black.png"
     },
     "items": [
       {
@@ -51,6 +51,7 @@
               "introduction",
               "quickstart",
               "openclaw",
+              "hermes",
               "how-it-works"
             ]
           },
@@ -58,9 +59,11 @@
             "group": "Dashboard",
             "pages": [
               "dashboard/overview",
+              "dashboard/install",
               "dashboard/integrations",
               "dashboard/request-logs",
-              "dashboard/settings"
+              "dashboard/settings",
+              "billing"
             ]
           },
           {
@@ -73,38 +76,65 @@
               "integrations/crm-sales",
               "integrations/payments",
               "integrations/social-media",
-              "integrations/notion",
-              "integrations/openclaw-to-notion",
-              "integrations/openclaw-to-slack",
-              "integrations/openclaw-to-gmail",
-              "integrations/openclaw-to-airtable",
-              "integrations/openclaw-to-google-calendar",
-              "integrations/openclaw-to-hubspot",
-              "integrations/openclaw-to-discord",
-              "integrations/openclaw-to-apollo",
-              "integrations/openclaw-to-facebook",
-              "integrations/openclaw-to-github",
-              "integrations/openclaw-to-google-drive",
-              "integrations/openclaw-to-google-sheets",
-              "integrations/openclaw-to-instagram",
-              "integrations/openclaw-to-linear",
-              "integrations/openclaw-to-linkedin",
-              "integrations/openclaw-to-pipedrive",
-              "integrations/openclaw-to-salesforce",
-              "integrations/openclaw-to-shopify",
-              "integrations/openclaw-to-stripe",
-              "integrations/openclaw-to-telegram",
-              "integrations/openclaw-to-todoist",
-              "integrations/openclaw-to-twitter-x",
-              "integrations/openclaw-to-youtube",
-              "build-an-openclaw-sales-assistant-with-gmail-and-hubspot"
+              {
+                "group": "Communication guides",
+                "pages": [
+                  "integrations/openclaw-to-gmail",
+                  "integrations/openclaw-to-slack",
+                  "integrations/openclaw-to-discord",
+                  "integrations/openclaw-to-telegram"
+                ]
+              },
+              {
+                "group": "Productivity guides",
+                "pages": [
+                  "integrations/openclaw-to-airtable",
+                  "integrations/openclaw-to-google-calendar",
+                  "integrations/openclaw-to-google-drive",
+                  "integrations/openclaw-to-google-sheets",
+                  "integrations/openclaw-to-notion",
+                  "integrations/openclaw-to-todoist"
+                ]
+              },
+              {
+                "group": "CRM and sales guides",
+                "pages": [
+                  "integrations/openclaw-to-apollo",
+                  "integrations/openclaw-to-hubspot",
+                  "integrations/openclaw-to-pipedrive",
+                  "integrations/openclaw-to-salesforce"
+                ]
+              },
+              {
+                "group": "Developer guides",
+                "pages": [
+                  "integrations/openclaw-to-github",
+                  "integrations/openclaw-to-linear"
+                ]
+              },
+              {
+                "group": "Commerce and payments guides",
+                "pages": [
+                  "integrations/openclaw-to-shopify",
+                  "integrations/openclaw-to-stripe"
+                ]
+              },
+              {
+                "group": "Social guides",
+                "pages": [
+                  "integrations/openclaw-to-facebook",
+                  "integrations/openclaw-to-instagram",
+                  "integrations/openclaw-to-linkedin",
+                  "integrations/openclaw-to-twitter-x",
+                  "integrations/openclaw-to-youtube"
+                ]
+              }
             ]
           },
           {
-            "group": "Security & Billing",
+            "group": "Guides",
             "pages": [
-              "security",
-              "billing"
+              "build-an-openclaw-sales-assistant-with-gmail-and-hubspot"
             ]
           },
           {
@@ -112,26 +142,48 @@
             "pages": [
               "troubleshooting",
               "faq",
-              "how-to-fix-origin-not-allowed-in-openclaw",
-              "how-to-enable-the-acpx-plugin-in-openclaw",
-              "how-to-fix-acpx-plugin-not-found-after-rollback",
-              "acp-vs-normal-openclaw-agents-whats-the-difference",
-              "how-to-reduce-token-usage-in-openclaw",
-              "why-exec-tools-may-not-appear-on-windows-or-wsl1-in-openclaw",
-              "how-acp-sessions-work-in-openclaw",
-              "openclaw-not-responding",
-              "openclaw-not-responding-after-an-update-start-here",
-              "how-to-fix-tool-not-found-in-openclaw",
-              "why-acpx-isnt-showing-up-in-openclaw",
-              "why-openclaw-says-it-will-act-but-doesnt-complete-the-task",
-              "acp-agent-configuration-in-openclaw-what-actually-needs-to-be-wired",
-              "plugin-installed-but-tools-dont-appear-in-openclaw",
-              "agent-responds-but-result-never-reaches-the-parent-session",
-              "connected-channel-or-bot-is-online-but-openclaw-ignores-messages",
-              "healthy-gateway-wrong-routing-why-openclaw-isnt-responding-in-the-channel-you-expect",
-              "how-to-run-multiple-openclaw-bots-or-agents-in-one-discord-setup",
-              "how-to-fix-openclaw-discord-voice-chat-join-failures",
-              "why-openclaw-works-in-dm-but-not-in-groups-or-threads"
+              "security",
+              "pricing",
+              {
+                "group": "OpenClaw setup issues",
+                "pages": [
+                  "openclaw-not-responding",
+                  "openclaw-not-responding-after-an-update-start-here",
+                  "how-to-fix-tool-not-found-in-openclaw",
+                  "plugin-installed-but-tools-dont-appear-in-openclaw",
+                  "how-to-fix-origin-not-allowed-in-openclaw"
+                ]
+              },
+              {
+                "group": "ACP and runtime",
+                "pages": [
+                  "acp-vs-normal-openclaw-agents-whats-the-difference",
+                  "how-acp-sessions-work-in-openclaw",
+                  "how-to-enable-the-acpx-plugin-in-openclaw",
+                  "how-to-fix-acpx-plugin-not-found-after-rollback",
+                  "why-acpx-isnt-showing-up-in-openclaw",
+                  "why-exec-tools-may-not-appear-on-windows-or-wsl1-in-openclaw",
+                  "acp-agent-configuration-in-openclaw-what-actually-needs-to-be-wired"
+                ]
+              },
+              {
+                "group": "Routing and execution",
+                "pages": [
+                  "why-openclaw-says-it-will-act-but-doesnt-complete-the-task",
+                  "agent-responds-but-result-never-reaches-the-parent-session",
+                  "connected-channel-or-bot-is-online-but-openclaw-ignores-messages",
+                  "healthy-gateway-wrong-routing-why-openclaw-isnt-responding-in-the-channel-you-expect",
+                  "how-to-run-multiple-openclaw-bots-or-agents-in-one-discord-setup",
+                  "how-to-fix-openclaw-discord-voice-chat-join-failures",
+                  "why-openclaw-works-in-dm-but-not-in-groups-or-threads"
+                ]
+              },
+              {
+                "group": "Cost and performance",
+                "pages": [
+                  "how-to-reduce-token-usage-in-openclaw"
+                ]
+              }
             ]
           }
         ]

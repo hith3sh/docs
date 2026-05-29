@@ -1,9 +1,9 @@
 ---
-title: "Request Logs"
+title: "Usage"
 description: "Monitor every API call your agent makes"
 ---
 
-The sidebar label for this page is **Usage**. It gives you a complete record of every tool call your agent has made through ClawLink. Use it to monitor activity, verify requests completed successfully, export data, and debug failures.
+The product label for this page is **Usage**. It gives you a record of every tool call your agent has made through ClawLink. Use it to verify what ran, inspect failures, and understand latency.
 
 ## What logs show
 
@@ -31,26 +31,21 @@ A green indicator means the request completed successfully. A red indicator mean
 
 ## Filtering logs
 
-Use the filter controls at the top of the logs page to narrow down what you see:
+Use the filter controls to narrow down what you see:
 
 - **Search** — type any text to filter by integration name or action
 - **Integration** — select a specific service to see only its requests
 - **Action** — filter by a specific operation
 - **Status** — show only successful requests, only errors, or all requests
 
-## Exporting logs
-
-Use **Export CSV** to download the currently loaded rows for offline review or support handoff.
-
 ## When you see errors
 
 If a request shows an error status, check the following:
 
-1. Open the **Integrations** page and confirm the affected integration is still showing as **Connected**.
-2. If the integration shows **Error**, reconnect it by re-entering your credentials or completing the OAuth flow again.
+1. Open the **Connections** page and confirm the affected integration is still showing as **Connected**.
+2. If the integration needs attention, reconnect it by running the hosted flow again.
 3. Check that your agent is calling a valid action for that integration.
 
 <Tip>
-Use the filters to isolate errors from a specific integration. If you see a sudden spike in failures from one service, it often means credentials have expired or the service had an outage.
+  Use filters to isolate one integration or action. If you see a sudden spike in failures from one service, it usually means the connection needs to be refreshed or the provider had an outage.
 </Tip>
-

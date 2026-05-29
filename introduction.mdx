@@ -3,22 +3,22 @@ title: "Introduction"
 description: "What ClawLink is and why you'd use it"
 ---
 
-ClawLink connects OpenClaw to a growing catalog of apps through one hosted integration layer. Install the ClawLink plugin once, pair your OpenClaw device in the browser, and connect apps from the dashboard. ClawLink handles authentication, credential storage, retries, rate limiting, and request logging for you.
+ClawLink is an open-source integration platform and hosted connection layer for OpenClaw, Hermes, and similar agent workflows. It gives your agent one place to connect real apps without making you build provider auth flows, token refresh logic, and request plumbing yourself.
 
 ## Why use ClawLink
 
-- **Hosted connect flows** — click **Connect** next to an app and ClawLink manages the OAuth or provider auth flow for you.
-- **Browser pairing for OpenClaw** — pair your device once instead of pasting a raw secret into chat for normal setup.
-- **Credentials never stored on your machine** — your API keys and OAuth tokens are encrypted at rest and only decrypted at the moment a request executes.
-- **Usage logs** — every tool call is logged with status, latency, integration, and action. Debug and audit from the dashboard.
-- **Built-in reliability** — ClawLink handles throttling and retries automatically so your agent keeps working even when APIs are slow.
-- **30-day trial** — start at no cost, then continue for $4.99/month if you want to keep access active.
+- **Hosted connect flows** — connect apps from the dashboard instead of hand-building provider auth setup.
+- **Browser pairing** — pair an OpenClaw or Hermes client once and keep provider credentials off the client machine.
+- **Managed credentials** — ClawLink stores provider credentials encrypted at rest and uses them only for authorized execution.
+- **Usage logs** — every tool call records status, latency, integration, and action so you can debug what actually happened.
+- **Built-in reliability** — retries, rate-limit handling, and connection-aware routing are built in.
+- **Simple pricing** — new accounts start with a 30-day trial, then continue at $4.99/month if you want to keep access active.
 
 ## Supported integrations
 
 <CardGroup cols={2}>
   <Card title="Communication" icon="message" href="/integrations/communication">
-    Gmail, Slack, Discord, Microsoft Teams, Telegram
+    Gmail, Slack, Outlook, Discord, Telegram, Microsoft Teams
   </Card>
   <Card title="Productivity" icon="calendar" href="/integrations/productivity">
     Google Sheets, Google Calendar, Google Drive, Notion, Airtable, Todoist
@@ -30,13 +30,13 @@ ClawLink connects OpenClaw to a growing catalog of apps through one hosted integ
     Apollo, HubSpot, Salesforce, Pipedrive
   </Card>
   <Card title="Payments & Finance" icon="credit-card" href="/integrations/payments">
-    Stripe, PayPal, QuickBooks
+    Stripe, PayPal, QuickBooks, Xero
   </Card>
   <Card title="Social Media" icon="share" href="/integrations/social-media">
-    YouTube, Twitter/X, LinkedIn, Instagram
+    YouTube, X, LinkedIn, Instagram, Reddit
   </Card>
   <Card title="All Integrations" icon="grid" href="/integrations/overview">
-    Browse every supported app across every category.
+    Browse the current catalog and the most common setup guides.
   </Card>
 </CardGroup>
 
@@ -45,7 +45,7 @@ ClawLink connects OpenClaw to a growing catalog of apps through one hosted integ
 | Without ClawLink | With ClawLink |
 |---|---|
 | Implement provider auth flows per integration | Start a hosted connect flow from the dashboard |
-| Store credentials locally or in your own vault | Credentials encrypted and stored securely on the edge |
-| Write retry and rate-limit logic yourself | Retries and rate limiting built in |
-| No visibility into what your agent called | Full request logs with status and latency |
-| Hand-wire every client setup in OpenClaw | Install one plugin, pair once, then connect apps as needed |
+| Store credentials locally or in your own vault | Credentials are managed by ClawLink |
+| Write retry and rate-limit logic yourself | Retries and rate-limit handling are built in |
+| No visibility into what your agent called | Usage logs show action, integration, status, and latency |
+| Hand-wire every client setup | Install once, pair once, then connect apps as needed |

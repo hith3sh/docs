@@ -1,37 +1,39 @@
 ---
 title: "Quick Start"
-description: "Install the plugin, pair OpenClaw, and connect your first app in under 5 minutes"
+description: "Install ClawLink, pair your client, and connect your first app in a few minutes"
 ---
 
 <Steps>
   <Step title="Sign up at claw-link.dev">
-    Go to [claw-link.dev](https://claw-link.dev) and create your account. No card is required to connect your first app.
+    Go to [claw-link.dev](https://claw-link.dev) and create your account. New accounts start with a 30-day trial.
   </Step>
 
-  <Step title="Install the OpenClaw plugin">
-    Install the official ClawLink plugin for OpenClaw:
+  <Step title="Choose your client">
+    If you use OpenClaw, install the official ClawLink plugin:
 
     ```bash
-    openclaw plugins install @useclawlink/openclaw-plugin
+    openclaw plugins install clawhub:clawlink-plugin
     openclaw gateway restart
     ```
 
-    If the current OpenClaw chat started before the plugin was installed and you do not see the ClawLink tools yet, start a fresh chat after install.
+    If you prefer npm, `openclaw plugins install @useclawlink/openclaw-plugin` also works.
+
+    If you use Hermes, open **Dashboard > Install** and copy the Hermes bootstrap prompt.
   </Step>
 
-  <Step title="Pair this OpenClaw device">
-    In OpenClaw, ask the assistant to set up ClawLink or start pairing. The plugin returns a browser URL. Open it, sign in to ClawLink if needed, and click **Approve this device**.
+  <Step title="Pair this device">
+    Start pairing from your client. OpenClaw returns a browser URL from the plugin tools. Hermes gives you a browser approval link through its install flow. Open the link, sign in if needed, and approve the device.
   </Step>
 
   <Step title="Connect your first app">
     In the ClawLink dashboard, open **Connections** and click **Add connection**. Pick the app you want and complete the hosted flow.
 
-    - OAuth-backed apps open the provider's consent screen in a popup.
-    - Manual credential apps are being replaced by hosted flows. If an app is not ready yet, it shows **Coming soon** or **Hosted flow pending**.
+    - Apps that are ready today show **Connect**
+    - Other apps may show **Coming soon**
   </Step>
 
   <Step title="Start using your integrations">
-    Your agent can now act on your connected integrations. Try asking it things like:
+    Your agent can now act on your connected integrations. Try prompts like:
 
     - "Send an email to sarah@example.com with subject 'Hello'"
     - "Post a message to #general in Slack saying the deploy is done"
@@ -42,9 +44,9 @@ description: "Install the plugin, pair OpenClaw, and connect your first app in u
 </Steps>
 
 <Tip>
-  Start with the apps you use most day to day. Gmail and Google Calendar are good first choices because the hosted flow is fast and the results are easy to verify. You can add more apps later without changing the OpenClaw plugin setup.
+  Start with the apps you use most day to day. Gmail, Slack, Google Calendar, and Notion are good first choices because the setup is quick and the results are easy to verify.
 </Tip>
 
 <Note>
-  **Settings > API Keys** is still available, but it is an advanced fallback for manual plugin settings UIs and debugging. Browser pairing is the recommended setup path.
+  **Settings > API Keys** still exists, but it is an advanced fallback for manual plugin settings and debugging. Browser pairing is the recommended setup path.
 </Note>

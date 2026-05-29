@@ -1,9 +1,9 @@
 ---
-title: "Overview"
+title: "Dashboard overview"
 description: "What the current dashboard shows and where each workflow lives"
 ---
 
-The dashboard is organized around setup and connection management, not a single copy-and-paste command. The current home page focuses on OpenClaw setup, app discovery, and quick paths into the rest of the product.
+The dashboard is organized around setup, connection management, and execution visibility. It is where you install ClawLink, connect apps, inspect usage, and manage billing.
 
 ## Sidebar navigation
 
@@ -11,32 +11,34 @@ The main sidebar is split into **Platform** and **Resources**.
 
 | Section | What it contains |
 |---|---|
-| **Platform** | **Home**, **Connections**, **Usage**, **Request App** |
+| **Platform** | **Home**, **Connections**, **Install**, **Usage**, **Request App** |
 | **Resources** | **Settings**, **Billing**, **Feedback**, **Documentation** |
 
 ## Home page
 
-The home page currently gives you:
+The home page gives you:
 
-- An **OpenClaw setup** card that explains browser pairing and links to **Settings > API Keys** for advanced/manual fallback
+- An install handoff for OpenClaw and Hermes
 - A searchable app grid across the full integration catalog
-- Sorting controls for **Live first**, **Connected first**, and **Alphabetical**
-- A **Show more apps** control when the page is hiding non-live or less relevant entries by default
-
-The home page does not currently show the old stats cards, recent requests list, or an embedded MCP command block.
+- Sort and filter controls for the catalog
+- Quick paths into the rest of the dashboard
 
 ## Where to go for each job
 
 - Use **Connections** to add, reconnect, expand, or remove individual connection rows.
+- Use **Install** when you want the current setup path for OpenClaw or Hermes.
 - Use **Usage** to inspect tool execution history, failures, and latency.
 - Use **Settings** for profile, advanced/manual API keys, and account security handoff.
 - Use **Billing** for plan status, upgrade, and subscription management.
 
 ## Explore the dashboard
 
-<CardGroup cols={3}>
+<CardGroup cols={2}>
   <Card title="Connections" icon="plug" href="/dashboard/integrations">
     Add apps, reconnect existing accounts, and remove individual connection rows
+  </Card>
+  <Card title="Install" icon="download" href="/dashboard/install">
+    Start with the current setup flow for OpenClaw or Hermes
   </Card>
   <Card title="Usage" icon="list" href="/dashboard/request-logs">
     Monitor every tool call your agent makes

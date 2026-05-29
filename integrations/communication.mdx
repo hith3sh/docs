@@ -1,85 +1,46 @@
 ---
 title: "Communication"
-description: "Gmail, Slack, Discord, Microsoft Teams, and Telegram integrations"
+description: "Email, chat, and messaging integrations for agent workflows"
 ---
 
-Connect your messaging and email services so your agent can send, read, and manage communications on your behalf. Whether you need to draft a reply, post a channel update, or forward a digest, these integrations give your agent direct access.
+Connect your messaging and email services so your agent can send, read, and manage communications on your behalf.
 
-<AccordionGroup>
-  <Accordion title="Gmail">
-    Gmail lets your agent send, read, and manage emails directly from your Google account.
+## Common apps in this category
 
-    **What you can do:**
-    - Send emails to one or more recipients, with CC and BCC support
-    - List recent emails, filtered by search query or label
-    - Fetch the full content of any email by ID
-    - Create draft emails to review before sending
-    - Move emails to trash
+- Gmail
+- Slack
+- Outlook
+- Discord
+- Telegram
+- Microsoft Teams
+- Twilio
+- Google Chat
 
-    **Available tools:**
+## Typical tasks
 
-    | Tool | Description | Required inputs |
-    |------|-------------|-----------------|
-    | `gmail_send_email` | Send an email | `to`, `subject`, `body` (optional: `cc`, `bcc`) |
-    | `gmail_list_emails` | List recent emails | Optional: `maxResults`, `query`, `labelIds` |
-    | `gmail_get_email` | Fetch an email by ID | `id` |
-    | `gmail_create_draft` | Create a draft | `to`, `subject`, `body` |
-    | `gmail_delete_email` | Move an email to trash | `id` |
+- Drafting and sending emails
+- Searching inboxes and summarizing threads
+- Posting Slack or Discord updates
+- Sending Telegram notifications
+- Pulling chat context into another workflow
 
-    **Credentials:** OAuth 2.0 — you'll authorize ClawLink through your Google account. No API key required.
+## Popular guides
 
-    **Example prompt:**
-    > "Check my Gmail for any unread emails from my manager today and summarize them."
-  </Accordion>
+<CardGroup cols={2}>
+  <Card title="Connect Gmail" icon="envelope" href="/integrations/openclaw-to-gmail">
+    Send, read, and manage email from your agent.
+  </Card>
+  <Card title="Connect Slack" icon="message" href="/integrations/openclaw-to-slack">
+    Post updates and work with Slack channels.
+  </Card>
+  <Card title="Connect Discord" icon="message" href="/integrations/openclaw-to-discord">
+    Use Discord-connected workflows from your agent.
+  </Card>
+  <Card title="Connect Telegram" icon="message" href="/integrations/openclaw-to-telegram">
+    Send Telegram messages and notifications.
+  </Card>
+</CardGroup>
 
-  <Accordion title="Slack">
-    Slack lets your agent send messages and manage channels in your workspace.
-
-    **What you can do:**
-    - Send messages to any channel or direct message thread
-    - Manage channel membership and settings
-
-    **Credentials:** OAuth 2.0 — connect your Slack workspace through the authorization flow.
-
-    **Example prompt:**
-    > "Post a daily standup summary to the #team-updates channel in Slack."
-  </Accordion>
-
-  <Accordion title="Discord">
-    Discord lets your agent send messages and manage servers and channels.
-
-    **What you can do:**
-    - Send messages to any server channel
-    - Manage server settings and members
-
-    **Credentials:** Bot token — create a bot in the Discord Developer Portal and paste the token into ClawLink.
-
-    **Example prompt:**
-    > "Send a message to the #announcements channel on my Discord server welcoming new members."
-  </Accordion>
-
-  <Accordion title="Microsoft Teams">
-    Microsoft Teams lets your agent send messages and manage teams and channels in your organization.
-
-    **What you can do:**
-    - Send messages to Teams channels and chats
-    - Manage team membership and settings
-
-    **Credentials:** OAuth 2.0 — authorize access through your Microsoft account.
-
-    **Example prompt:**
-    > "Post a meeting recap to the General channel in my Microsoft Teams workspace."
-  </Accordion>
-
-  <Accordion title="Telegram">
-    Telegram lets your agent send messages via the Telegram Bot API.
-
-    **What you can do:**
-    - Send messages to any chat, group, or channel your bot is a member of
-
-    **Credentials:** Bot API token — create a bot with @BotFather on Telegram and paste the token into ClawLink.
-
-    **Example prompt:**
-    > "Send me a Telegram message whenever a new order comes in on my Shopify store."
-  </Accordion>
-</AccordionGroup>
+<Note>
+  Connection details vary by provider. Use the dashboard to see whether a given app is ready today, needs reconnect, or is still coming soon.
+</Note>

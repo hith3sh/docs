@@ -3,58 +3,31 @@ title: "OpenClaw setup"
 description: "Install the ClawLink plugin in OpenClaw and pair this device"
 ---
 
-ClawLink works with OpenClaw through the `@useclawlink/openclaw-plugin` package. The flow is: install OpenClaw, install the ClawLink plugin into it, approve this device in your browser, then connect apps from the ClawLink dashboard.
+ClawLink works with OpenClaw through the ClawLink plugin. The normal flow is: install the plugin, start browser pairing, approve the device, then connect apps from the ClawLink dashboard.
 
-## 1. Install OpenClaw
+## Install the plugin
 
-If you don't have OpenClaw yet, install it before adding the ClawLink plugin.
+The recommended install path uses ClawHub:
 
-<Steps>
-  <Step title="Install the OpenClaw client">
-    Follow the official OpenClaw install instructions for your platform from [openclaw.com](https://openclaw.com). Most users install the desktop client; self-hosted gateway installs are also supported.
-  </Step>
-  <Step title="Start the gateway at least once">
-    Launch OpenClaw so the gateway initializes and writes its config file at `~/.openclaw/openclaw.json`. ClawLink reads pairing state from that file.
-  </Step>
-  <Step title="Confirm the gateway is running">
-    When the gateway starts, the log prints a line like:
+```bash
+openclaw plugins install clawhub:clawlink-plugin
+openclaw gateway restart
+```
 
-    ```text
-    http server listening (8 plugins: bonjour, browser, device-pair, file-transfer, memory-core, phone-control, talk-voice, whatsapp)
-    ```
+If you prefer npm, this also works:
 
-    Keep this line in mind — you'll check it again after installing the ClawLink plugin to make sure `clawlink-plugin` shows up alongside the built-ins.
-  </Step>
-</Steps>
+```bash
+openclaw plugins install @useclawlink/openclaw-plugin
+openclaw gateway restart
+```
 
-## 2. Install the ClawLink plugin
+If the current chat started before the plugin was installed and the ClawLink tools do not appear yet, start a fresh chat so OpenClaw reloads the tool catalog.
 
-The fastest path is to paste the prompt below into your OpenClaw chat and let the agent run setup for you.
-
-````text
-Set up the ClawLink plugin for me end to end:
-
-1. Install it: `openclaw plugins install @useclawlink/openclaw-plugin` then `openclaw gateway restart`.
-2. Confirm both `tools` and `clawlink-plugin` appear in the gateway's loaded-plugins log line. If `tools` is missing, fix `~/.openclaw/openclaw.json` so `plugins.allow` includes it, then restart again.
-3. Start a fresh chat in OpenClaw and call `clawlink_begin_pairing`. Give me the pairing URL.
-4. After I tell you I approved it in the browser, call `clawlink_get_pairing_status` until pairing is complete and confirm the device is saved.
-5. Tell me to open https://claw-link.dev/dashboard/integrations to connect the apps I want.
-````
-
-If you'd rather do it manually:
+## Pair this device
 
 <Steps>
-  <Step title="Install the plugin">
-    ```bash
-    openclaw plugins install @useclawlink/openclaw-plugin
-    openclaw gateway restart
-    ```
-
-    If the current chat started before the plugin was installed and the ClawLink tools do not appear yet, start a fresh chat so OpenClaw reloads the plugin catalog.
-  </Step>
-
   <Step title="Start browser pairing">
-    In OpenClaw, ask the assistant to set up ClawLink or start pairing. The plugin starts a pairing session and gives you a browser URL.
+    In OpenClaw, ask the assistant to set up ClawLink or start pairing. The plugin should call `clawlink_begin_pairing` and return a browser URL.
   </Step>
 
   <Step title="Approve this device in your browser">
@@ -66,15 +39,15 @@ If you'd rather do it manually:
   </Step>
 
   <Step title="Connect apps from the dashboard">
-    Open [Dashboard > Connections](https://claw-link.dev/dashboard/integrations), add the apps you want, and start using them from OpenClaw.
+    Open **Dashboard > Connections**, add the apps you want, and start using them from OpenClaw.
   </Step>
 </Steps>
 
 ## What pairing stores locally
 
-Browser pairing creates a device credential in the same `cllk_live_...` format as manual API keys and stores it locally in `~/.openclaw/openclaw.json`.
+Browser pairing stores a local ClawLink device credential in `~/.openclaw/openclaw.json`.
 
-In the recommended flow, you never have to paste that raw key into chat. OpenClaw stores it for the plugin after the browser approval finishes.
+In the recommended flow, you never have to paste that raw key into chat. OpenClaw stores it for the plugin after browser approval finishes.
 
 ## Available plugin tools
 
@@ -86,6 +59,7 @@ After setup, the plugin exposes tools for pairing, connection management, tool d
 - `clawlink_get_connection_status`
 - `clawlink_list_integrations`
 - `clawlink_list_tools`
+- `clawlink_search_tools`
 - `clawlink_describe_tool`
 - `clawlink_preview_tool`
 - `clawlink_call_tool`
@@ -98,6 +72,6 @@ In that fallback path:
 
 1. Create a key in **Settings > API Keys**
 2. Copy the raw `cllk_live_...` value when it is shown
-3. Paste it into the plugin settings field
+3. Paste it into the plugin settings field for `clawlink-plugin`
 
 Most users should skip this and use browser pairing instead.
