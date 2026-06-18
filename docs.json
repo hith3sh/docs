@@ -32,12 +32,12 @@
     ],
     "primary": {
       "type": "github",
-      "href": "https://github.com/hith3sh/clawlink"
+      "href": "https://github.com/ClawLink-HQ/clawlink"
     }
   },
   "footer": {
     "socials": {
-      "github": "https://github.com/hith3sh/clawlink"
+      "github": "https://github.com/ClawLink-HQ/clawlink"
     }
   },
   "navigation": {
@@ -144,13 +144,18 @@
               "faq",
               "security",
               "pricing",
+              "how-to-fix-tool-not-found-in-openclaw",
+              "plugin-installed-but-tools-dont-appear-in-openclaw"
+            ]
+          },
+          {
+            "group": "OpenClaw (general)",
+            "pages": [
               {
-                "group": "OpenClaw setup issues",
+                "group": "Setup issues",
                 "pages": [
                   "openclaw-not-responding",
                   "openclaw-not-responding-after-an-update-start-here",
-                  "how-to-fix-tool-not-found-in-openclaw",
-                  "plugin-installed-but-tools-dont-appear-in-openclaw",
                   "how-to-fix-origin-not-allowed-in-openclaw"
                 ]
               },
