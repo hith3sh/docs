@@ -26,13 +26,12 @@ When something breaks, sort it into one of these buckets first:
   </Accordion>
 
   <Accordion title="ClawLink tools are missing in OpenClaw">
-    Start with the dedicated setup articles:
+    The most common causes are a stale chat session after install, or a client that has not reloaded the ClawLink plugin. **To fix this:**
 
-    - [OpenClaw not responding](/openclaw-not-responding)
-    - [Plugin installed but tools do not appear](/plugin-installed-but-tools-dont-appear-in-openclaw)
-    - [How to fix tool not found](/how-to-fix-tool-not-found-in-openclaw)
-
-    The most common causes are a stale chat session after install or a gateway that has not reloaded the required plugins.
+    - Start a **fresh chat** after installing the plugin so it picks up the new tool catalog.
+    - Restart the client (for OpenClaw, `openclaw gateway restart`) so the plugin reloads.
+    - Confirm the device is paired and your apps show as connected in **Dashboard > Connections**.
+    - Still missing? Check **Usage** for failed calls, or re-run browser pairing from **Settings > API Keys**.
   </Accordion>
 
   <Accordion title="API calls are failing">
@@ -95,8 +94,4 @@ When something breaks, sort it into one of these buckets first:
 
 ## Deep-dive articles
 
-Use the grouped help sections in the sidebar when the issue is narrower than the common fixes above:
-
-- **OpenClaw (general) → Setup issues** for "not responding," origin errors, and post-update problems
-- **OpenClaw (general) → ACP and runtime** for ACPX, ACP sessions, and runtime wiring
-- **OpenClaw (general) → Routing and execution** for session routing, channel behavior, and result handoff problems
+For narrower client-side issues (OpenClaw gateway behavior, session routing, token usage), see the official OpenClaw documentation. For anything between your agent and ClawLink — connections, pairing, execution failures — start in **Usage** and work through the common fixes above.

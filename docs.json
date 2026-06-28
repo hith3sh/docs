@@ -154,52 +154,7 @@
               "troubleshooting",
               "faq",
               "security",
-              "pricing",
-              "how-to-fix-tool-not-found-in-openclaw",
-              "plugin-installed-but-tools-dont-appear-in-openclaw"
-            ]
-          },
-          {
-            "group": "OpenClaw (general)",
-            "pages": [
-              {
-                "group": "Setup issues",
-                "pages": [
-                  "openclaw-not-responding",
-                  "openclaw-not-responding-after-an-update-start-here",
-                  "how-to-fix-origin-not-allowed-in-openclaw"
-                ]
-              },
-              {
-                "group": "ACP and runtime",
-                "pages": [
-                  "acp-vs-normal-openclaw-agents-whats-the-difference",
-                  "how-acp-sessions-work-in-openclaw",
-                  "how-to-enable-the-acpx-plugin-in-openclaw",
-                  "how-to-fix-acpx-plugin-not-found-after-rollback",
-                  "why-acpx-isnt-showing-up-in-openclaw",
-                  "why-exec-tools-may-not-appear-on-windows-or-wsl1-in-openclaw",
-                  "acp-agent-configuration-in-openclaw-what-actually-needs-to-be-wired"
-                ]
-              },
-              {
-                "group": "Routing and execution",
-                "pages": [
-                  "why-openclaw-says-it-will-act-but-doesnt-complete-the-task",
-                  "agent-responds-but-result-never-reaches-the-parent-session",
-                  "connected-channel-or-bot-is-online-but-openclaw-ignores-messages",
-                  "healthy-gateway-wrong-routing-why-openclaw-isnt-responding-in-the-channel-you-expect",
-                  "how-to-run-multiple-openclaw-bots-or-agents-in-one-discord-setup",
-                  "how-to-fix-openclaw-discord-voice-chat-join-failures",
-                  "why-openclaw-works-in-dm-but-not-in-groups-or-threads"
-                ]
-              },
-              {
-                "group": "Cost and performance",
-                "pages": [
-                  "how-to-reduce-token-usage-in-openclaw"
-                ]
-              }
+              "pricing"
             ]
           }
         ]

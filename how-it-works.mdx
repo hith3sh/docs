@@ -3,12 +3,12 @@ title: "How It Works"
 description: "How the hosted app, execution worker, shared storage, and request flow fit together"
 ---
 
-ClawLink runs as a hosted web app plus a separate execution layer. The browser-facing flows and the tool execution flows share the same data and credential storage, so pairing, connections, and execution stay in sync.
+ClawLink runs as a single hosted web app that also performs tool execution in the same worker. The browser-facing flows and the tool execution flows share the same data and credential storage, so pairing, connections, and execution stay in sync.
 
-- `clawlink-web` on `claw-link.dev` handles the hosted app, dashboard, pairing pages, billing routes, OAuth callbacks, and Next API routes.
-- `clawlink` on `api.claw-link.dev` handles tool execution, request routing, and scheduled backend work.
+- `clawlink-web` on `claw-link.dev` handles the hosted app, dashboard, pairing pages, connect popups and OAuth callbacks, billing routes, **and tool execution** — the runtime that resolves a connection, decrypts the credential, and calls each provider.
+- `clawlink-trial-cron` is a small scheduled worker that runs once a day to send trial-expired emails. It calls back into `clawlink-web` over a service binding; it does not execute tools itself.
 
-Both workers use the same D1 database and the same `CREDENTIALS` KV namespace, so browser flows and execution stay in sync.
+Both workers share the same D1 database (`clawlink`) and the same `CREDENTIALS` KV namespace.
 
 ## Runtime architecture
 
@@ -22,20 +22,15 @@ claw-link.dev  (clawlink-web)
    ├── pairing pages
    ├── connect popups and callbacks
    ├── billing routes
-   └── Next API routes
+   └── tool execution runtime
    │
    ├── shared D1: clawlink
    └── shared KV: CREDENTIALS
    │
    ▼
-api.claw-link.dev  (clawlink)
-   ├── tool execution
-   ├── connection-aware routing
-   ├── retries and provider calls
-   └── scheduled backend work
-   │
-   ▼
 Third-party APIs
+
+clawlink-trial-cron — daily scheduled email worker (calls back into clawlink-web)
 ```
 
 <Steps>
@@ -51,7 +46,7 @@ Third-party APIs
     Browser pairing stores a local ClawLink credential for the OpenClaw or Hermes client. The client uses that credential when it asks ClawLink to list tools, preview actions, or execute a tool call.
   </Step>
 
-  <Step title="The execution worker resolves the right connection">
+  <Step title="The execution runtime resolves the right connection">
     The backend worker looks up the user, finds the target integration, and resolves the right connection row. If multiple connections exist for the same provider, ClawLink uses the default connection unless the request names a specific one.
   </Step>
 
