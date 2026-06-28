@@ -67,6 +67,17 @@
             ]
           },
           {
+            "group": "Developer API",
+            "pages": [
+              "api/overview",
+              "api/authentication",
+              "api/executions",
+              "api/file-uploads",
+              "api/flows",
+              "api/errors"
+            ]
+          },
+          {
             "group": "Integrations",
             "pages": [
               "integrations/overview",
