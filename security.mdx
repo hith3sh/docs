@@ -7,7 +7,11 @@ ClawLink is designed so that provider credentials stay off your machine and out 
 
 ## Credential storage
 
-Provider API keys and OAuth tokens are encrypted at rest using AES-256-GCM. ClawLink never stores or exposes those provider credentials in plaintext. When your agent makes a tool call, the provider credential is decrypted only at the moment of execution.
+Most integrations connect through a hosted OAuth flow run by **Composio**, our credential infrastructure partner. Your provider OAuth tokens are vaulted by Composio — ClawLink stores only an opaque reference to your connected account, not the tokens themselves. Composio publishes its compliance posture at its trust center.
+
+When an integration uses a credential ClawLink holds directly — such as an API key you enter during setup — it is encrypted with AES-256-GCM before it is written to our database, never stored or logged in plaintext, and decrypted only in memory at the moment your request runs. Encryption keys can be rotated without downtime.
+
+ClawLink's code is [public on GitHub](https://github.com/ClawLink-HQ/clawlink), including how credentials are encrypted and handled, so you or your security team can verify this directly. For the full picture of these boundaries, see the [Security Overview](https://claw-link.dev/security).
 
 ## Your machine stays clean
 
@@ -60,3 +64,7 @@ All communication between your agent and ClawLink, and between ClawLink and thir
 ## Account security controls
 
 Use **Settings > Security** to open the hosted account management screen for password, email, connected sign-in methods, and any additional protections your sign-in method supports.
+
+## Reporting security issues
+
+Send security reports to **security@claw-link.dev**. Include reproduction steps, affected endpoints, and any relevant account or request context.

@@ -17,11 +17,11 @@ description: "Frequently asked questions about ClawLink"
   </Accordion>
 
   <Accordion title="Are my provider credentials stored on my machine?">
-    No. ClawLink stores provider credentials on its side, encrypted at rest. Your local client stores only the ClawLink device credential created during pairing.
+    No. Provider credentials never touch your machine. For hosted OAuth connections, tokens are vaulted by Composio, ClawLink's credential infrastructure partner — ClawLink keeps only a reference to your connected account. API keys you enter manually are encrypted with AES-256-GCM at rest. Your local client stores only the ClawLink device credential created during pairing. See [Security](/security) for details.
   </Accordion>
 
   <Accordion title="Which integrations are supported?">
-    ClawLink supports a growing catalog of 150+ apps across communication, productivity, developer tools, CRM, payments, analytics, storage, marketing, AI, and commerce. The docs site covers the most common categories and setup guides, but the dashboard catalog is the current source of truth.
+    ClawLink supports a growing catalog of 200+ apps across communication, productivity, developer tools, CRM, payments, analytics, storage, marketing, AI, and commerce. The docs site covers the most common categories and setup guides, but the dashboard catalog is the current source of truth.
   </Accordion>
 
   <Accordion title="How do I set it up in OpenClaw?">
@@ -33,7 +33,7 @@ description: "Frequently asked questions about ClawLink"
   </Accordion>
 
   <Accordion title="How do I add an integration that isn't listed?">
-    Use **Dashboard > Request App** if it is available in your account, or open an issue in the main ClawLink repository.
+    Use **Dashboard > Request App**, or open an issue in the [ClawLink repository](https://github.com/ClawLink-HQ/clawlink/issues).
   </Accordion>
 
   <Accordion title="What happened to the older one-command setup docs?">
@@ -57,6 +57,6 @@ description: "Frequently asked questions about ClawLink"
   </Accordion>
 
   <Accordion title="How do I contact support?">
-    For bugs or feature requests, open an issue on the ClawLink repository. For account-related questions, use the dashboard support or feedback path available in your workspace.
+    The fastest path is the **support chat in the dashboard** — open it from the chat launcher and a real person replies within a few minutes. For bugs or feature requests, you can also open an issue on the [ClawLink repository](https://github.com/ClawLink-HQ/clawlink/issues). For security issues, email **security@claw-link.dev**.
   </Accordion>
 </AccordionGroup>
